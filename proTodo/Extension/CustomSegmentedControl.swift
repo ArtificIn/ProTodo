@@ -26,7 +26,6 @@ class CustomSegmentedControl : UIView {
         stack.distribution = .fillEqually
         addSubview(stack)
         
-        // 코드로 constraints를 지정하기 위해 translatesAutoresizeingMaskIntoConstraints를 반드시 false로 해줘야함
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
         stack.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
@@ -40,7 +39,7 @@ class CustomSegmentedControl : UIView {
         addSubview(selectorView)
         //selectorView = UIView(frame: CGRect(x: 0, y: self.frame.height, width: selectorWidth, height: 2))
         selectorView.translatesAutoresizingMaskIntoConstraints = false
-        selectorView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
+        selectorView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
         selectorView.widthAnchor.constraint(equalToConstant: selectorWidth).isActive = true
         selectorView.heightAnchor.constraint(equalToConstant: 2).isActive = true
        

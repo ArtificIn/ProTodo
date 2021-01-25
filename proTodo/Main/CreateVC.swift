@@ -61,13 +61,11 @@ extension CreateVC {
     }
     
     func TextFieldSetting(){
-        textField.attributedPlaceholder = NSAttributedString(string: "할 일을 입력하세요.",
-                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        textField.attributedPlaceholder = NSAttributedString(string: "할 일을 입력하세요.", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
     }
     
     @objc func completeAction(){
         guard let memo = textField.text else {return}
-        //guard let
         
         if (memo != ""){
             let newTodo = Todo(memo: memo, color: selectColor, update: Date())

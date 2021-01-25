@@ -13,14 +13,13 @@ class CustomTabbarCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "Tab"
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         label.textColor = .lightGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     override var isSelected: Bool {
         didSet{
-            print("Changed")
             self.label.textColor = isSelected ? .black : .lightGray
         }
     }

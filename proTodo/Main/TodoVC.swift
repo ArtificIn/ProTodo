@@ -12,8 +12,7 @@ class TodoVC: UIViewController {
     @IBOutlet weak var todoList: UITableView!
     @IBOutlet weak var plusBtn: UIButton!
     @IBOutlet weak var menuBar: UICollectionView!
-    @IBOutlet weak var leftTapBtn: UIView!
-    @IBOutlet weak var rightTapBtn: UIView!
+    @IBOutlet weak var dateLabel: UILabel!
     
     var selectedIndex : NSInteger! = -1
     var isReapeat : Bool = false
@@ -27,6 +26,7 @@ class TodoVC: UIViewController {
         super.viewDidLoad()
         delegate()
         createSegmentedControl()
+        dateSetting()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -48,6 +48,15 @@ extension TodoVC {
 
         codeSegmented.backgroundColor = UIColor.colorRGBHex(hex: 0x373535)
         view.addSubview(codeSegmented)
+    }
+    
+    private func dateSetting(){
+        let date = Date2String(date: Date(), format: "MM월 YYYY").split(separator: " ")
+        let month = NSMutableAttributedString(string: String(date[0]) + "  ", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 26)])
+        let year = NSMutableAttributedString(string: String(date[1]), attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20)])
+        
+        month.append(year)
+        self.dateLabel.attributedText = month
     }
 }
 
