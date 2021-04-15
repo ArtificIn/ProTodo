@@ -18,6 +18,7 @@ class CustomTabbarCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
     override var isSelected: Bool {
         didSet{
             self.label.textColor = isSelected ? .black : .lightGray

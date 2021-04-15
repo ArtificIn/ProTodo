@@ -30,8 +30,6 @@ class CustomMenuBar: UIView {
         view.backgroundColor = UIColor.colorRGBHex(hex: 0xebeaea)
         return view
     }
-    
-    
 }
 
 extension CustomMenuBar : UICollectionViewDelegate, UICollectionViewDataSource {

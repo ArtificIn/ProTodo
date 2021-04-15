@@ -8,11 +8,16 @@
 
 import UIKit
 
+protocol CustomSegmentControlDelegate : class {
+    func customSegmentBar(scrollTo index: Int)
+}
 
 class CustomSegmentedControl : UIView {
     private var buttonTitles : [String]!
     private var buttons : [UIButton] = []
     private var selectorView : UIView = UIView()
+    
+    weak var delegate : CustomSegmentControlDelegate?
     
     var textColor:UIColor = UIColor.colorRGBHex(hex: 0xc4c4c4)
     var selectorViewColor:UIColor = .white
@@ -37,7 +42,7 @@ class CustomSegmentedControl : UIView {
         let selectorWidth = frame.width / CGFloat(self.buttonTitles.count)
         selectorView.backgroundColor = selectorViewColor
         addSubview(selectorView)
-        //selectorView = UIView(frame: CGRect(x: 0, y: self.frame.height, width: selectorWidth, height: 2))
+        
         selectorView.translatesAutoresizingMaskIntoConstraints = false
         selectorView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
         selectorView.widthAnchor.constraint(equalToConstant: selectorWidth).isActive = true
@@ -56,7 +61,6 @@ class CustomSegmentedControl : UIView {
             button.setTitle(buttonTitle, for: .normal)
             button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 21)
             
-        
             button.addTarget(self, action: #selector(CustomSegmentedControl.buttonAction(sender:)), for: .touchUpInside)
             button.setTitleColor(textColor, for: .normal)
             buttons.append(button)
@@ -75,6 +79,7 @@ class CustomSegmentedControl : UIView {
                     self.selectorView.frame.origin.x = selectorPosition
                 }
                 btn.setTitleColor(selectortextColor, for: .normal)
+                delegate?.customSegmentBar(scrollTo: buttonIndex)
             }
         }
     }

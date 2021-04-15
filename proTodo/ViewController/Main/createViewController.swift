@@ -14,7 +14,7 @@ protocol todoNumber {
     func returnPosition()
 }
 
-class CreateVC: UIViewController, UITextFieldDelegate {
+class CreateViewController : UIViewController, UITextFieldDelegate {
     @IBOutlet weak var ColorCollectionView: UICollectionView!
     @IBOutlet weak var dateView: UIView!
     @IBOutlet weak var colorView: UIView!
@@ -51,7 +51,7 @@ class CreateVC: UIViewController, UITextFieldDelegate {
 
 
 // logic code
-extension CreateVC {
+extension CreateViewController {
     func touchSetting(){
         completeBtn.addTarget(self, action: #selector(completeAction), for: .touchUpInside)
         
@@ -95,7 +95,7 @@ extension CreateVC {
 
 
 // collectionView control
-extension CreateVC : UICollectionViewDataSource, UICollectionViewDelegate {
+extension CreateViewController : UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.items.count
     }

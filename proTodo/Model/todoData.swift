@@ -13,7 +13,6 @@ let TodoFileName = "ProTodoList.file"
 let projectName = "ProTodo"
 
 
-
 class TodoModel {
     var arrayList : [Todo] = [] // 일반 저장
     var repeatList : [Todo] = [] // 반복하는 할일 저장

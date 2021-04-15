@@ -8,40 +8,34 @@
 
 import UIKit
 
-class TodoVC: UIViewController {
-    @IBOutlet weak var todoList: UITableView!
+class TodoViewController: UIViewController {
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.delegate = self
+            tableView.dataSource = self
+        }
+    }
     @IBOutlet weak var plusBtn: UIButton!
-    @IBOutlet weak var menuBar: UICollectionView!
     @IBOutlet weak var dateLabel: UILabel!
     
-    var selectedIndex : NSInteger! = -1
     var isReapeat : Bool = false
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.todoList.reloadData()
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        delegate()
-        createSegmentedControl()
         dateSetting()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
 }
 
-extension TodoVC {
-    private func delegate(){
-        todoList.delegate = self
-        todoList.dataSource = self
-        self.todoList.isEditing = true
-    }
-        
+extension TodoViewController {
     private func createSegmentedControl(){
         let codeSegmented = CustomSegmentedControl(frame: CGRect(x: 0, y: 20, width: self.view.frame.width, height: 50),
                 buttonTitle:["Calendar", "Project"])
@@ -51,7 +45,7 @@ extension TodoVC {
     }
     
     private func dateSetting(){
-        let date = Date2String(date: Date(), format: "MM월 YYYY").split(separator: " ")
+        let date = Date().Date2String(format: "MM월 YYYY").split(separator: " ")
         let month = NSMutableAttributedString(string: String(date[0]) + "  ", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 26)])
         let year = NSMutableAttributedString(string: String(date[1]), attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20)])
         
@@ -63,14 +57,14 @@ extension TodoVC {
 
 
 
-extension TodoVC : UITableViewDelegate, UITableViewDataSource {
+extension TodoViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Database.arrayList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let todo = Database.arrayList[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "todocell") as! todoCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "todoTableViewCell") as! todoTableViewCell
             
         cell.textField?.text = todo.memo
         cell.colorView.backgroundColor = UIColor.colorRGBHex(hex: todo.color)
