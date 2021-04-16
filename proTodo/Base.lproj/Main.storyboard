@@ -52,7 +52,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="todoCollectionViewCell" id="LJW-QR-vrT" customClass="todoCollectionViewCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="todoCollectionViewCell" id="LJW-QR-vrT" customClass="todoCollectionViewCell" customModule="proTodo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="43" width="375" height="600"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="uX5-UO-BCB">
@@ -193,98 +193,86 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="375" height="600"/>
                                         <connections>
-                                            <outlet property="calendar" destination="0Q0-Oh-PwE" id="aV3-XT-MH2"/>
+                                            <outlet property="calendar" destination="0Q0-Oh-PwE" id="uTP-Rr-mAu"/>
                                             <outlet property="calendar_height_constraint" destination="sd8-BT-0MJ" id="4eO-h1-RhH"/>
                                             <outlet property="dateLabel" destination="dfT-fi-RF1" id="blD-IP-btO"/>
                                             <outlet property="plusBtn" destination="aic-8q-2UQ" id="fi1-UY-LLT"/>
                                             <outlet property="tableView" destination="4rk-zl-Qzr" id="OQH-ZQ-PRe"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="7wa-Z2-sUD" customClass="projectCollectionViewCell" customModule="proTodo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="projectCollectionViewCell" id="7wa-Z2-sUD" customClass="projectCollectionViewCell" customModule="proTodo" customModuleProvider="target">
                                         <rect key="frame" x="385" y="31.666666666666668" width="375" height="623"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="s8f-6h-fpy">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6tL-rI-5LU">
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qf2-4W-SYj">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
-                                                    <subviews>
-                                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qf2-4W-SYj">
-                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
-                                                            <color key="backgroundColor" red="0.2156387568" green="0.2078412473" blue="0.20784330370000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                            <prototypes>
-                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="projectTableViewCell" rowHeight="147" id="3IG-5e-7Jf" customClass="projectTableViewCell" customModule="proTodo" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="28" width="375" height="147"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
-                                                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3IG-5e-7Jf" id="faE-kN-3ZP">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="147"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nH7-2S-uMu">
-                                                                                <rect key="frame" x="18" y="63.666666666666664" width="30" height="21.666666666666664"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                                <color key="textColor" red="0.94903236629999999" green="0.94899672270000002" blue="0.94902092220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nKg-X7-LY8">
-                                                                                <rect key="frame" x="18" y="100.33333333333333" width="339" height="4"/>
-                                                                                <color key="backgroundColor" red="0.47843137254901957" green="0.4784191847" blue="0.47843205929999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                                <color key="tintColor" red="0.94903236629999999" green="0.94899672270000002" blue="0.94902092220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                            </progressView>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iPa-62-qi6">
-                                                                                <rect key="frame" x="18" y="129.33333333333334" width="339" height="1"/>
-                                                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="height" constant="1" id="YeG-Ma-lve"/>
-                                                                                </constraints>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D-Day 10" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fHb-HR-XDb">
-                                                                                <rect key="frame" x="18" y="15" width="116" height="33.666666666666664"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                                                                <color key="textColor" red="0.94903236629999999" green="0.94899672270000002" blue="0.94902092220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                        </subviews>
-                                                                        <constraints>
-                                                                            <constraint firstItem="iPa-62-qi6" firstAttribute="leading" secondItem="faE-kN-3ZP" secondAttribute="leading" constant="18" id="0Ay-tc-5xf"/>
-                                                                            <constraint firstItem="nKg-X7-LY8" firstAttribute="leading" secondItem="faE-kN-3ZP" secondAttribute="leading" constant="18" id="8rc-mE-1kO"/>
-                                                                            <constraint firstItem="nH7-2S-uMu" firstAttribute="leading" secondItem="faE-kN-3ZP" secondAttribute="leading" constant="18" id="L9z-e7-Un0"/>
-                                                                            <constraint firstItem="nKg-X7-LY8" firstAttribute="top" secondItem="nH7-2S-uMu" secondAttribute="bottom" constant="15" id="MN6-XC-lEU"/>
-                                                                            <constraint firstItem="fHb-HR-XDb" firstAttribute="top" secondItem="faE-kN-3ZP" secondAttribute="top" constant="15" id="Wuf-L6-Tce"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="nKg-X7-LY8" secondAttribute="trailing" constant="18" id="a9g-n1-DtT"/>
-                                                                            <constraint firstItem="fHb-HR-XDb" firstAttribute="leading" secondItem="faE-kN-3ZP" secondAttribute="leading" constant="18" id="cYq-CO-ps8"/>
-                                                                            <constraint firstItem="iPa-62-qi6" firstAttribute="top" secondItem="nKg-X7-LY8" secondAttribute="bottom" constant="25" id="ih9-s4-WjG"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="iPa-62-qi6" secondAttribute="trailing" constant="18" id="qua-k3-mnD"/>
-                                                                            <constraint firstItem="nH7-2S-uMu" firstAttribute="top" secondItem="fHb-HR-XDb" secondAttribute="bottom" constant="15" id="xNx-H0-oUy"/>
-                                                                        </constraints>
-                                                                    </tableViewCellContentView>
-                                                                    <connections>
-                                                                        <outlet property="dateLabel" destination="fHb-HR-XDb" id="Oj6-eT-tTi"/>
-                                                                        <outlet property="progressView" destination="nKg-X7-LY8" id="tmv-zK-jph"/>
-                                                                        <outlet property="titleLabel" destination="nH7-2S-uMu" id="TdB-Ln-7sc"/>
-                                                                    </connections>
-                                                                </tableViewCell>
-                                                            </prototypes>
-                                                        </tableView>
-                                                    </subviews>
                                                     <color key="backgroundColor" red="0.2156387568" green="0.2078412473" blue="0.20784330370000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <constraints>
-                                                        <constraint firstItem="qf2-4W-SYj" firstAttribute="leading" secondItem="6tL-rI-5LU" secondAttribute="leading" id="2Qm-MX-t8B"/>
-                                                        <constraint firstItem="qf2-4W-SYj" firstAttribute="top" secondItem="6tL-rI-5LU" secondAttribute="top" id="3Mb-yE-dgg"/>
-                                                        <constraint firstAttribute="bottom" secondItem="qf2-4W-SYj" secondAttribute="bottom" id="YDy-Z8-snT"/>
-                                                        <constraint firstAttribute="trailing" secondItem="qf2-4W-SYj" secondAttribute="trailing" id="dDr-xd-Fcl"/>
-                                                    </constraints>
-                                                </view>
+                                                    <prototypes>
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="projectTableViewCell" rowHeight="147" id="3IG-5e-7Jf" customClass="projectTableViewCell" customModule="proTodo" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="28" width="375" height="147"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3IG-5e-7Jf" id="faE-kN-3ZP">
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="147"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nH7-2S-uMu">
+                                                                        <rect key="frame" x="18" y="63.666666666666664" width="30" height="21.666666666666664"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                        <color key="textColor" red="0.94903236629999999" green="0.94899672270000002" blue="0.94902092220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nKg-X7-LY8">
+                                                                        <rect key="frame" x="18" y="100.33333333333333" width="339" height="4"/>
+                                                                        <color key="backgroundColor" red="0.47843137254901957" green="0.4784191847" blue="0.47843205929999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                        <color key="tintColor" red="0.94903236629999999" green="0.94899672270000002" blue="0.94902092220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                    </progressView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iPa-62-qi6">
+                                                                        <rect key="frame" x="18" y="129.33333333333334" width="339" height="1"/>
+                                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="1" id="YeG-Ma-lve"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D-Day 10" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fHb-HR-XDb">
+                                                                        <rect key="frame" x="18" y="15" width="116" height="33.666666666666664"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                                        <color key="textColor" red="0.94903236629999999" green="0.94899672270000002" blue="0.94902092220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="iPa-62-qi6" firstAttribute="leading" secondItem="faE-kN-3ZP" secondAttribute="leading" constant="18" id="0Ay-tc-5xf"/>
+                                                                    <constraint firstItem="nKg-X7-LY8" firstAttribute="leading" secondItem="faE-kN-3ZP" secondAttribute="leading" constant="18" id="8rc-mE-1kO"/>
+                                                                    <constraint firstItem="nH7-2S-uMu" firstAttribute="leading" secondItem="faE-kN-3ZP" secondAttribute="leading" constant="18" id="L9z-e7-Un0"/>
+                                                                    <constraint firstItem="nKg-X7-LY8" firstAttribute="top" secondItem="nH7-2S-uMu" secondAttribute="bottom" constant="15" id="MN6-XC-lEU"/>
+                                                                    <constraint firstItem="fHb-HR-XDb" firstAttribute="top" secondItem="faE-kN-3ZP" secondAttribute="top" constant="15" id="Wuf-L6-Tce"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="nKg-X7-LY8" secondAttribute="trailing" constant="18" id="a9g-n1-DtT"/>
+                                                                    <constraint firstItem="fHb-HR-XDb" firstAttribute="leading" secondItem="faE-kN-3ZP" secondAttribute="leading" constant="18" id="cYq-CO-ps8"/>
+                                                                    <constraint firstItem="iPa-62-qi6" firstAttribute="top" secondItem="nKg-X7-LY8" secondAttribute="bottom" constant="25" id="ih9-s4-WjG"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="iPa-62-qi6" secondAttribute="trailing" constant="18" id="qua-k3-mnD"/>
+                                                                    <constraint firstItem="nH7-2S-uMu" firstAttribute="top" secondItem="fHb-HR-XDb" secondAttribute="bottom" constant="15" id="xNx-H0-oUy"/>
+                                                                </constraints>
+                                                            </tableViewCellContentView>
+                                                            <connections>
+                                                                <outlet property="dateLabel" destination="fHb-HR-XDb" id="Oj6-eT-tTi"/>
+                                                                <outlet property="progressView" destination="nKg-X7-LY8" id="tmv-zK-jph"/>
+                                                                <outlet property="titleLabel" destination="nH7-2S-uMu" id="TdB-Ln-7sc"/>
+                                                            </connections>
+                                                        </tableViewCell>
+                                                    </prototypes>
+                                                </tableView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="6tL-rI-5LU" firstAttribute="leading" secondItem="s8f-6h-fpy" secondAttribute="leading" id="5a5-mG-0xG"/>
-                                                <constraint firstAttribute="bottom" secondItem="6tL-rI-5LU" secondAttribute="bottom" id="Pra-yf-biI"/>
-                                                <constraint firstAttribute="trailing" secondItem="6tL-rI-5LU" secondAttribute="trailing" id="Q4j-AI-Pa9"/>
-                                                <constraint firstItem="6tL-rI-5LU" firstAttribute="top" secondItem="s8f-6h-fpy" secondAttribute="top" id="hwi-96-p6v"/>
+                                                <constraint firstAttribute="bottom" secondItem="qf2-4W-SYj" secondAttribute="bottom" id="6Ub-HQ-TUc"/>
+                                                <constraint firstAttribute="trailing" secondItem="qf2-4W-SYj" secondAttribute="trailing" id="EGD-UX-tb8"/>
+                                                <constraint firstItem="qf2-4W-SYj" firstAttribute="leading" secondItem="s8f-6h-fpy" secondAttribute="leading" id="Q65-x4-TZc"/>
+                                                <constraint firstItem="qf2-4W-SYj" firstAttribute="top" secondItem="s8f-6h-fpy" secondAttribute="top" id="VXT-Mz-hyr"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="375" height="623"/>

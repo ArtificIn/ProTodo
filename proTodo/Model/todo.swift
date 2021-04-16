@@ -32,7 +32,7 @@ class TodoModel {
     static let shared = TodoModel()
     var arrayList : [Todo] = [] // 일반 저장
     
-    func defaultData() -> Array<Todo>{
+    func defaultData() -> [Todo] {
         let stock = Todo(id: 0, name: "앱 업데이트", color: 0xafeeee, startDate: "2021.10.11", endDate: "2021.10.11", label: [])
         let stock2 = Todo(id: 1, name: "쇼핑하기", color: 0xffbe46, startDate: "2021.10.12", endDate: "2021.10.12", label: [])
         let stock3 = Todo(id: 2, name: "운동하기", color: 0x34de53, startDate: "2021.10.13", endDate: "2021.10.13", label: [])

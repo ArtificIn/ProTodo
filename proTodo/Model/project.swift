@@ -17,20 +17,28 @@ enum Category : String {
 struct Project {
     let id : Int
     var name : String
-    var endDate : Date
-    var alert : Int
+    var endDate :
+    String
+    var alert : Int?
     var category : [Category : Todo]
 }
 
 class ProjectModel {
     static let shared = ProjectModel()
-    var projectList : [Project]
+    var projectList : [Project] = []
     
     init() {
-        projectList = []
+        projectList = defaultData()
     }
     
     init(list : [Project]) {
         projectList = list
+    }
+    
+    private func defaultData() -> [Project] {
+        let p1 = Project(id: 0, name: "기말고사", endDate: "2021.11.11", category: [:])
+        let p2 = Project(id: 1, name: "앱 개발하기", endDate: "2021.06.20", alert: nil, category: [:])
+        
+        return [p1, p2]
     }
 }

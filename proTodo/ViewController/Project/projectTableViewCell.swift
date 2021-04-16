@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import FSCalendar
 
 class projectTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
+    
+    static let CellID = "projectTableViewCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()

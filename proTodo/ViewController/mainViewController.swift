@@ -50,9 +50,9 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
         
         if collectionView == pageCollectionView {
             if indexPath.row == 0 {
-                cell = collectionView.dequeueReusableCell(withReuseIdentifier: "todoCollectionViewCell", for: indexPath) as! todoCollectionViewCell
+                cell = collectionView.dequeueReusableCell(withReuseIdentifier: todoCollectionViewCell.CellID, for: indexPath) as! todoCollectionViewCell
             } else {
-                cell = collectionView.dequeueReusableCell(withReuseIdentifier: "projectCollectionCell", for: indexPath) as! projectCollectionViewCell
+                cell = collectionView.dequeueReusableCell(withReuseIdentifier: projectCollectionViewCell.CellID, for: indexPath) as! projectCollectionViewCell
             }
         }
         return cell

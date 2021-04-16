@@ -19,6 +19,7 @@ class todoTableViewCell: UITableViewCell {
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var repeatBtn: Checkbox!
     
+    static let CellID = "todoTableViewCell"
     let leftMarginForLabel : CGFloat = 10.0
     var isRepeat : Bool = false
     var listItems: Todo?

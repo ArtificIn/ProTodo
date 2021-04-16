@@ -16,17 +16,24 @@ class projectCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private let viewModel = ProjectModel.shared.projectList
+    static let CellID = "projectCollectionViewCell"
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
 }
 
 extension projectCollectionViewCell : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.count
+        return ProjectModel.shared.projectList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "projectTableViewCell") as! projectTableViewCell
-//        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: projectTableViewCell.CellID) as! projectTableViewCell
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
     }
 }
