@@ -21,7 +21,7 @@ class todoTableViewCell: UITableViewCell {
     
     let leftMarginForLabel : CGFloat = 10.0
     var isRepeat : Bool = false
-    var listItems:Todo?
+    var listItems: Todo?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -34,7 +34,7 @@ class todoTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         guard let item = listItems else { return }
-        textField.text = item.memo
+        textField.text = item.name
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -50,8 +50,8 @@ extension todoTableViewCell : UITextFieldDelegate {
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        guard let item = listItems else { return false }
-        item.memo = textField.text!
+        guard var item = listItems else { return false }
+        item.name = textField.text!
         return true
     }
 }

@@ -48,14 +48,13 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell = UICollectionViewCell()
         
-//        if collectionView == pageCollectionView {
-//            if indexPath.row == 0 {
-                cell = collectionView.dequeueReusableCell(withReuseIdentifier: "todoCollectionViewCell", for: indexPath) as! TodoCollectionViewCell
-//            } else {
-//                cell = collectionView.dequeueReusableCell(withReuseIdentifier: "projectCollectionCell", for: indexPath) as! ProjectCollectionCell
-//            }
-//        }
-    
+        if collectionView == pageCollectionView {
+            if indexPath.row == 0 {
+                cell = collectionView.dequeueReusableCell(withReuseIdentifier: "todoCollectionViewCell", for: indexPath) as! todoCollectionViewCell
+            } else {
+                cell = collectionView.dequeueReusableCell(withReuseIdentifier: "projectCollectionCell", for: indexPath) as! projectCollectionViewCell
+            }
+        }
         return cell
     }
 }
