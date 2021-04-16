@@ -30,6 +30,7 @@ extension projectCollectionViewCell : UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: projectTableViewCell.CellID) as! projectTableViewCell
+        cell.selectionStyle = .none
         return cell
     }
     

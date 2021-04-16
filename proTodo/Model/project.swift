@@ -17,8 +17,7 @@ enum Category : String {
 struct Project {
     let id : Int
     var name : String
-    var endDate :
-    String
+    var endDate : String
     var alert : Int?
     var category : [Category : Todo]
 }

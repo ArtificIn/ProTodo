@@ -18,30 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qjE-6G-KBL">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                <color key="backgroundColor" red="0.21568627450980393" green="0.20784313725490194" blue="0.20784313725490194" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="WaK-7T-xHq"/>
-                                </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="qLn-ap-2Rc">
-                                    <size key="itemSize" width="184" height="58"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="menuCollectionCell" id="Ygm-bP-cXF">
-                                        <rect key="frame" x="0.0" y="-4" width="184" height="58"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="saF-aK-lNN">
-                                            <rect key="frame" x="0.0" y="0.0" width="184" height="58"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                        <size key="customSize" width="184" height="58"/>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Jhp-hq-Nw7">
                                 <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                                 <color key="backgroundColor" red="0.2156387568" green="0.2078412473" blue="0.20784330370000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -210,6 +186,8 @@
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qf2-4W-SYj">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                                     <color key="backgroundColor" red="0.2156387568" green="0.2078412473" blue="0.20784330370000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="sectionIndexBackgroundColor" red="0.2156387568" green="0.2078412473" blue="0.20784330370000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="sectionIndexTrackingBackgroundColor" red="0.2156387568" green="0.2078412473" blue="0.20784330370000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <prototypes>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="projectTableViewCell" rowHeight="147" id="3IG-5e-7Jf" customClass="projectTableViewCell" customModule="proTodo" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="28" width="375" height="147"/>
@@ -230,7 +208,7 @@
                                                                         <color key="tintColor" red="0.94903236629999999" green="0.94899672270000002" blue="0.94902092220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     </progressView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iPa-62-qi6">
-                                                                        <rect key="frame" x="18" y="129.33333333333334" width="339" height="1"/>
+                                                                        <rect key="frame" x="18" y="134.33333333333334" width="339" height="1"/>
                                                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="1" id="YeG-Ma-lve"/>
@@ -254,11 +232,12 @@
                                                                     <constraint firstItem="fHb-HR-XDb" firstAttribute="top" secondItem="faE-kN-3ZP" secondAttribute="top" constant="15" id="Wuf-L6-Tce"/>
                                                                     <constraint firstAttribute="trailing" secondItem="nKg-X7-LY8" secondAttribute="trailing" constant="18" id="a9g-n1-DtT"/>
                                                                     <constraint firstItem="fHb-HR-XDb" firstAttribute="leading" secondItem="faE-kN-3ZP" secondAttribute="leading" constant="18" id="cYq-CO-ps8"/>
-                                                                    <constraint firstItem="iPa-62-qi6" firstAttribute="top" secondItem="nKg-X7-LY8" secondAttribute="bottom" constant="25" id="ih9-s4-WjG"/>
+                                                                    <constraint firstItem="iPa-62-qi6" firstAttribute="top" secondItem="nKg-X7-LY8" secondAttribute="bottom" constant="30" id="jhB-zw-C0F"/>
                                                                     <constraint firstAttribute="trailing" secondItem="iPa-62-qi6" secondAttribute="trailing" constant="18" id="qua-k3-mnD"/>
                                                                     <constraint firstItem="nH7-2S-uMu" firstAttribute="top" secondItem="fHb-HR-XDb" secondAttribute="bottom" constant="15" id="xNx-H0-oUy"/>
                                                                 </constraints>
                                                             </tableViewCellContentView>
+                                                            <color key="backgroundColor" red="0.2156387568" green="0.2078412473" blue="0.20784330370000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <connections>
                                                                 <outlet property="dateLabel" destination="fHb-HR-XDb" id="Oj6-eT-tTi"/>
                                                                 <outlet property="progressView" destination="nKg-X7-LY8" id="tmv-zK-jph"/>
@@ -268,6 +247,7 @@
                                                     </prototypes>
                                                 </tableView>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.2156387568" green="0.2078412473" blue="0.20784330370000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="qf2-4W-SYj" secondAttribute="bottom" id="6Ub-HQ-TUc"/>
                                                 <constraint firstAttribute="trailing" secondItem="qf2-4W-SYj" secondAttribute="trailing" id="EGD-UX-tb8"/>
@@ -275,6 +255,7 @@
                                                 <constraint firstItem="qf2-4W-SYj" firstAttribute="top" secondItem="s8f-6h-fpy" secondAttribute="top" id="VXT-Mz-hyr"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" red="0.2156387568" green="0.2078412473" blue="0.20784330370000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <size key="customSize" width="375" height="623"/>
                                         <connections>
                                             <outlet property="tableView" destination="qf2-4W-SYj" id="AhJ-OH-3U0"/>
@@ -299,20 +280,14 @@
                         <constraints>
                             <constraint firstItem="Jhp-hq-Nw7" firstAttribute="leading" secondItem="ALU-0l-4Kh" secondAttribute="leading" id="2fD-qA-oqt"/>
                             <constraint firstItem="aic-8q-2UQ" firstAttribute="centerX" secondItem="Jhp-hq-Nw7" secondAttribute="centerX" id="33x-zO-vVe"/>
-                            <constraint firstItem="qjE-6G-KBL" firstAttribute="leading" secondItem="ALU-0l-4Kh" secondAttribute="leading" id="5Jn-Oq-LAC"/>
-                            <constraint firstItem="qjE-6G-KBL" firstAttribute="top" secondItem="ALU-0l-4Kh" secondAttribute="top" id="O9j-tZ-SR4"/>
                             <constraint firstItem="ALU-0l-4Kh" firstAttribute="trailing" secondItem="Jhp-hq-Nw7" secondAttribute="trailing" id="UY3-GF-blJ"/>
                             <constraint firstItem="ALU-0l-4Kh" firstAttribute="bottom" secondItem="Jhp-hq-Nw7" secondAttribute="bottom" id="bJa-ob-OE8"/>
+                            <constraint firstItem="Jhp-hq-Nw7" firstAttribute="top" secondItem="ALU-0l-4Kh" secondAttribute="top" constant="50" id="bME-cd-6fM"/>
                             <constraint firstItem="ALU-0l-4Kh" firstAttribute="bottom" secondItem="aic-8q-2UQ" secondAttribute="bottom" constant="20" id="hIz-9d-M4z"/>
-                            <constraint firstItem="qjE-6G-KBL" firstAttribute="trailing" secondItem="ALU-0l-4Kh" secondAttribute="trailing" id="i7J-ZC-DvU"/>
-                            <constraint firstItem="Jhp-hq-Nw7" firstAttribute="top" secondItem="qjE-6G-KBL" secondAttribute="bottom" id="khH-m6-5I8"/>
-                            <constraint firstAttribute="trailing" secondItem="qjE-6G-KBL" secondAttribute="trailing" id="oKC-RZ-FjQ"/>
-                            <constraint firstItem="qjE-6G-KBL" firstAttribute="leading" secondItem="ad3-wa-0sB" secondAttribute="leading" id="z3Z-Tg-6IE"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="pageCollectionView" destination="Jhp-hq-Nw7" id="wzO-t7-mrU"/>
-                        <outlet property="segmentCollectionView" destination="qjE-6G-KBL" id="hpL-vH-g7L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vyO-Ny-A9V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
