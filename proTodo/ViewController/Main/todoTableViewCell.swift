@@ -9,18 +9,19 @@
 import UIKit
 
 class todoTableViewCell: UITableViewCell {
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var textField: UITextField! {
+        didSet{
+            textField.textColor = UIColor.white
+            textField.font = UIFont.systemFont(ofSize: 20)
+            textField.backgroundColor = UIColor.colorRGBHex(hex: 0x373535)
+        }
+    }
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var repeatBtn: Checkbox!
     
-    let leftMarginForLabel : CGFloat = 15.0
+    let leftMarginForLabel : CGFloat = 10.0
     var isRepeat : Bool = false
-    
-    var listItems:Todo? {
-        didSet{
-            textField.text = listItems!.memo
-        }
-    }
+    var listItems:Todo?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -32,7 +33,8 @@ class todoTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        textfieldSetting()
+        guard let item = listItems else { return }
+        textField.text = item.memo
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -42,22 +44,14 @@ class todoTableViewCell: UITableViewCell {
 
 
 extension todoTableViewCell : UITextFieldDelegate {
-    func textfieldSetting(){
-        textField.delegate = self
-        textField.textColor = UIColor.white
-        textField.font = UIFont.systemFont(ofSize: 24)
-        textField.backgroundColor = UIColor.colorRGBHex(hex: 0x373535)
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if listItems != nil {
-            listItems?.memo = textField.text!
-        }
+        guard let item = listItems else { return false }
+        item.memo = textField.text!
         return true
     }
 }
