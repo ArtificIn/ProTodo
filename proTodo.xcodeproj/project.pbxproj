@@ -10,6 +10,7 @@
 		7DBC02765E8E95E4FF472D41 /* Pods_proTodo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1D4205DDABE980F08B5843 /* Pods_proTodo.framework */; };
 		9B0BDE0826282A68009F4552 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0BDE0726282A68009F4552 /* Date+.swift */; };
 		9B0BDE0D26282AE0009F4552 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0BDE0C26282AE0009F4552 /* Color+.swift */; };
+		9B0EF5C326298C4100BFDAF6 /* todoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EF5C226298C4100BFDAF6 /* todoCollectionViewCell.swift */; };
 		9B1E6E1E23963B6D002019D8 /* createViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1E6E1D23963B6D002019D8 /* createViewController.swift */; };
 		9B3036102341C24E0094550A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B30360F2341C24E0094550A /* AppDelegate.swift */; };
 		9B3036122341C24E0094550A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3036112341C24E0094550A /* SceneDelegate.swift */; };
@@ -17,15 +18,15 @@
 		9B3036172341C24E0094550A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B3036152341C24E0094550A /* Main.storyboard */; };
 		9B3036192341C24F0094550A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B3036182341C24F0094550A /* Assets.xcassets */; };
 		9B30361C2341C24F0094550A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B30361A2341C24F0094550A /* LaunchScreen.storyboard */; };
-		9B5E286D2341F44800750096 /* todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5E286C2341F44800750096 /* todo.swift */; };
+		9B5E286D2341F44800750096 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5E286C2341F44800750096 /* Todo.swift */; };
 		9B5E286F2341FA0500750096 /* todoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5E286E2341FA0500750096 /* todoTableViewCell.swift */; };
 		9B8DA4752341EFE300096A0E /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DA4742341EFE300096A0E /* Checkbox.swift */; };
-		9B9FEC6F24924AE400162F27 /* calendarAddTodoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9FEC6E24924AE400162F27 /* calendarAddTodoVC.swift */; };
+		9B91D6F1262B244100153A8F /* labelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B91D6F0262B244100153A8F /* labelCollectionViewCell.swift */; };
+		9B91D6F5262B256A00153A8F /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B91D6F4262B256A00153A8F /* Tag.swift */; };
+		9B9FEC6F24924AE400162F27 /* calendarAddTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9FEC6E24924AE400162F27 /* calendarAddTodoViewController.swift */; };
 		9BC9304325BEB6EB00A27000 /* mainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9304225BEB6EB00A27000 /* mainViewController.swift */; };
-		9BD1E73523C5DBA9007DCCEA /* CustomTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD1E73423C5DBA9007DCCEA /* CustomTabbar.swift */; };
-		9BD1E73723C5DE45007DCCEA /* CustomTabbarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD1E73623C5DE45007DCCEA /* CustomTabbarCell.swift */; };
 		9BF4F08A2629757300CFF96E /* projectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4F0892629757300CFF96E /* projectCollectionViewCell.swift */; };
-		9BF4F0962629772B00CFF96E /* project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4F0952629772B00CFF96E /* project.swift */; };
+		9BF4F0962629772B00CFF96E /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4F0952629772B00CFF96E /* Project.swift */; };
 		9BF4F09D2629856F00CFF96E /* projectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4F09C2629856F00CFF96E /* projectTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		7EB44766FFD0929662857BAD /* Pods-proTodo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-proTodo.release.xcconfig"; path = "Target Support Files/Pods-proTodo/Pods-proTodo.release.xcconfig"; sourceTree = "<group>"; };
 		9B0BDE0726282A68009F4552 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		9B0BDE0C26282AE0009F4552 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		9B0EF5C226298C4100BFDAF6 /* todoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = todoCollectionViewCell.swift; sourceTree = "<group>"; };
 		9B1E6E1D23963B6D002019D8 /* createViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createViewController.swift; sourceTree = "<group>"; };
 		9B30360C2341C24E0094550A /* proTodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = proTodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B30360F2341C24E0094550A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -44,15 +46,15 @@
 		9B3036182341C24F0094550A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B30361B2341C24F0094550A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B30361D2341C24F0094550A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9B5E286C2341F44800750096 /* todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todo.swift; sourceTree = "<group>"; };
+		9B5E286C2341F44800750096 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		9B5E286E2341FA0500750096 /* todoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoTableViewCell.swift; sourceTree = "<group>"; };
 		9B8DA4742341EFE300096A0E /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
-		9B9FEC6E24924AE400162F27 /* calendarAddTodoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calendarAddTodoVC.swift; sourceTree = "<group>"; };
+		9B91D6F0262B244100153A8F /* labelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = labelCollectionViewCell.swift; sourceTree = "<group>"; };
+		9B91D6F4262B256A00153A8F /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		9B9FEC6E24924AE400162F27 /* calendarAddTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calendarAddTodoViewController.swift; sourceTree = "<group>"; };
 		9BC9304225BEB6EB00A27000 /* mainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainViewController.swift; sourceTree = "<group>"; };
-		9BD1E73423C5DBA9007DCCEA /* CustomTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbar.swift; sourceTree = "<group>"; };
-		9BD1E73623C5DE45007DCCEA /* CustomTabbarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarCell.swift; sourceTree = "<group>"; };
 		9BF4F0892629757300CFF96E /* projectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projectCollectionViewCell.swift; sourceTree = "<group>"; };
-		9BF4F0952629772B00CFF96E /* project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = project.swift; sourceTree = "<group>"; };
+		9BF4F0952629772B00CFF96E /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		9BF4F09C2629856F00CFF96E /* projectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projectTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,8 +91,9 @@
 		9B0BDDFD26282944009F4552 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9B5E286C2341F44800750096 /* todo.swift */,
-				9BF4F0952629772B00CFF96E /* project.swift */,
+				9B5E286C2341F44800750096 /* Todo.swift */,
+				9BF4F0952629772B00CFF96E /* Project.swift */,
+				9B91D6F4262B256A00153A8F /* Tag.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -118,8 +121,6 @@
 			children = (
 				9B8DA4742341EFE300096A0E /* Checkbox.swift */,
 				9B3036132341C24E0094550A /* CustomSegmentedControl.swift */,
-				9BD1E73423C5DBA9007DCCEA /* CustomTabbar.swift */,
-				9BD1E73623C5DE45007DCCEA /* CustomTabbarCell.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -180,7 +181,9 @@
 			children = (
 				9B5E286E2341FA0500750096 /* todoTableViewCell.swift */,
 				9B1E6E1D23963B6D002019D8 /* createViewController.swift */,
-				9B9FEC6E24924AE400162F27 /* calendarAddTodoVC.swift */,
+				9B9FEC6E24924AE400162F27 /* calendarAddTodoViewController.swift */,
+				9B0EF5C226298C4100BFDAF6 /* todoCollectionViewCell.swift */,
+				9B91D6F0262B244100153A8F /* labelCollectionViewCell.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -309,22 +312,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B91D6F5262B256A00153A8F /* Tag.swift in Sources */,
 				9B0BDE0D26282AE0009F4552 /* Color+.swift in Sources */,
 				9BC9304325BEB6EB00A27000 /* mainViewController.swift in Sources */,
 				9B3036142341C24E0094550A /* CustomSegmentedControl.swift in Sources */,
-				9B9FEC6F24924AE400162F27 /* calendarAddTodoVC.swift in Sources */,
+				9B9FEC6F24924AE400162F27 /* calendarAddTodoViewController.swift in Sources */,
+				9B0EF5C326298C4100BFDAF6 /* todoCollectionViewCell.swift in Sources */,
 				9B8DA4752341EFE300096A0E /* Checkbox.swift in Sources */,
 				9B3036102341C24E0094550A /* AppDelegate.swift in Sources */,
 				9BF4F08A2629757300CFF96E /* projectCollectionViewCell.swift in Sources */,
 				9B0BDE0826282A68009F4552 /* Date+.swift in Sources */,
 				9B3036122341C24E0094550A /* SceneDelegate.swift in Sources */,
-				9B5E286D2341F44800750096 /* todo.swift in Sources */,
-				9BD1E73723C5DE45007DCCEA /* CustomTabbarCell.swift in Sources */,
+				9B5E286D2341F44800750096 /* Todo.swift in Sources */,
 				9B1E6E1E23963B6D002019D8 /* createViewController.swift in Sources */,
 				9B5E286F2341FA0500750096 /* todoTableViewCell.swift in Sources */,
-				9BD1E73523C5DBA9007DCCEA /* CustomTabbar.swift in Sources */,
 				9BF4F09D2629856F00CFF96E /* projectTableViewCell.swift in Sources */,
-				9BF4F0962629772B00CFF96E /* project.swift in Sources */,
+				9BF4F0962629772B00CFF96E /* Project.swift in Sources */,
+				9B91D6F1262B244100153A8F /* labelCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

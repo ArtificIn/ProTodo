@@ -21,13 +21,6 @@ struct Todo {
     var label : [Tag]
 }
 
-struct Tag {
-    let id : Int
-    var name : String
-    var color : Int
-}
-
-
 class TodoModel {
     static let shared = TodoModel()
     var arrayList : [Todo] = [] // 일반 저장
