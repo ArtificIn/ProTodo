@@ -55,8 +55,7 @@ extension todoCollectionViewCell : UITableViewDelegate, UITableViewDataSource {
         let todo = TodoModel.shared.arrayList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: todoTableViewCell.CellID) as! todoTableViewCell
             
-        cell.textField?.text = todo.name
-        cell.colorView.backgroundColor = UIColor.colorRGBHex(hex: todo.color)
+        cell.bindViewModel(todo: todo)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
             
         return cell

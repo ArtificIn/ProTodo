@@ -21,125 +21,24 @@
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
          <BreakpointContent
-            uuid = "E9F606A2-6373-43EA-8EFF-2E6564FEA123"
+            uuid = "20E32108-88C8-4FCF-B038-B92A96DD309A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "proTodo/ViewController/Calendar/todoCollectionViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "calendar"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0F8E8B72-08EC-444D-A154-CFBD81BB13D0"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "proTodo/ViewController/Calendar/todoCollectionViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "todoCollectionViewCell"
-            landmarkType = "3">
+            symbolName = "UICollectionViewFlowLayoutBreakForInvalidSizes"
+            moduleName = "">
             <Locations>
                <Location
-                  uuid = "0F8E8B72-08EC-444D-A154-CFBD81BB13D0 - 23f8c7f57fb56b30"
+                  uuid = "20E32108-88C8-4FCF-B038-B92A96DD309A - 6a6cfc8d24631f32"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "proTodo.todoCollectionViewCell.isReapeat.getter : Swift.Bool"
-                  moduleName = "proTodo"
+                  symbolName = "UICollectionViewFlowLayoutBreakForInvalidSizes"
+                  moduleName = "UIKitCore"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dayeon/Desktop/SwiftProjects/proTodo/proTodo/ViewController/Calendar/todoCollectionViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29"
-                  offsetFromSymbolStart = "89">
-               </Location>
-               <Location
-                  uuid = "0F8E8B72-08EC-444D-A154-CFBD81BB13D0 - 6f1a648c766650c4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "proTodo.todoCollectionViewCell.isReapeat.setter : Swift.Bool"
-                  moduleName = "proTodo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dayeon/Desktop/SwiftProjects/proTodo/proTodo/ViewController/Calendar/todoCollectionViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29"
-                  offsetFromSymbolStart = "118">
-               </Location>
-               <Location
-                  uuid = "0F8E8B72-08EC-444D-A154-CFBD81BB13D0 - 4b271f0d4f156d72"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "proTodo.todoCollectionViewCell.isReapeat.modify : Swift.Bool"
-                  moduleName = "proTodo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dayeon/Desktop/SwiftProjects/proTodo/proTodo/ViewController/Calendar/todoCollectionViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "18">
-               </Location>
-               <Location
-                  uuid = "0F8E8B72-08EC-444D-A154-CFBD81BB13D0 - f5e5087d9d0a40c4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "proTodo.todoCollectionViewCell.isReapeat.modify : Swift.Bool with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "proTodo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dayeon/Desktop/SwiftProjects/proTodo/proTodo/ViewController/Calendar/todoCollectionViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  uuid = "0F8E8B72-08EC-444D-A154-CFBD81BB13D0 - 8568304bd3e89d02"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "proTodo.todoCollectionViewCell.init(frame: __C.CGRect) -&gt; proTodo.todoCollectionViewCell"
-                  moduleName = "proTodo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dayeon/Desktop/SwiftProjects/proTodo/proTodo/ViewController/Calendar/todoCollectionViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29"
-                  offsetFromSymbolStart = "936">
-               </Location>
-               <Location
-                  uuid = "0F8E8B72-08EC-444D-A154-CFBD81BB13D0 - 484c5ea64d36d900"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "proTodo.todoCollectionViewCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;proTodo.todoCollectionViewCell&gt;"
-                  moduleName = "proTodo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dayeon/Desktop/SwiftProjects/proTodo/proTodo/ViewController/Calendar/todoCollectionViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29"
-                  offsetFromSymbolStart = "823">
+                  offsetFromSymbolStart = "0">
                </Location>
             </Locations>
          </BreakpointContent>

@@ -20,4 +20,19 @@ class projectTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    func bindViewModel(project: Project) {
+        dateLabel.text = project.endDate.isEmpty ? "D-Day None" : "D-Day \(calculateDDay(to: project.endDate))"
+        titleLabel.text = project.name
+        progressView.progress = 0.3
+    }
+    
+    func calculateDDay(to: String) -> Int {
+        let dateformatter = DateFormatter()
+        let calendar = Calendar.current
+        dateformatter.dateFormat = "yyyy.MM.dd"
+        guard let end = dateformatter.date(from: to) else { return 0 }
+        let components = calendar.dateComponents([.day], from: Date(), to: end)
+        return components.day!
+    }
 }

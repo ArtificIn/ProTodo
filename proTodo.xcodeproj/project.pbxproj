@@ -12,6 +12,10 @@
 		9B0BDE0D26282AE0009F4552 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0BDE0C26282AE0009F4552 /* Color+.swift */; };
 		9B0EF5C326298C4100BFDAF6 /* todoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EF5C226298C4100BFDAF6 /* todoCollectionViewCell.swift */; };
 		9B1E6E1E23963B6D002019D8 /* createViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1E6E1D23963B6D002019D8 /* createViewController.swift */; };
+		9B2104B1262C086F004C24ED /* CreateLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2104B0262C086F004C24ED /* CreateLabelView.swift */; };
+		9B2104B4262C0BAA004C24ED /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2104B3262C0BAA004C24ED /* Colors.swift */; };
+		9B2104B7262C146C004C24ED /* createLabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2104B6262C146C004C24ED /* createLabelCollectionViewCell.swift */; };
+		9B2104BD262D52B0004C24ED /* LabelCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2104BC262D52B0004C24ED /* LabelCollectionViewLayout.swift */; };
 		9B3036102341C24E0094550A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B30360F2341C24E0094550A /* AppDelegate.swift */; };
 		9B3036122341C24E0094550A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3036112341C24E0094550A /* SceneDelegate.swift */; };
 		9B3036142341C24E0094550A /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3036132341C24E0094550A /* CustomSegmentedControl.swift */; };
@@ -38,6 +42,10 @@
 		9B0BDE0C26282AE0009F4552 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		9B0EF5C226298C4100BFDAF6 /* todoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = todoCollectionViewCell.swift; sourceTree = "<group>"; };
 		9B1E6E1D23963B6D002019D8 /* createViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createViewController.swift; sourceTree = "<group>"; };
+		9B2104B0262C086F004C24ED /* CreateLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLabelView.swift; sourceTree = "<group>"; };
+		9B2104B3262C0BAA004C24ED /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		9B2104B6262C146C004C24ED /* createLabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createLabelCollectionViewCell.swift; sourceTree = "<group>"; };
+		9B2104BC262D52B0004C24ED /* LabelCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCollectionViewLayout.swift; sourceTree = "<group>"; };
 		9B30360C2341C24E0094550A /* proTodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = proTodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B30360F2341C24E0094550A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B3036112341C24E0094550A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +102,7 @@
 				9B5E286C2341F44800750096 /* Todo.swift */,
 				9BF4F0952629772B00CFF96E /* Project.swift */,
 				9B91D6F4262B256A00153A8F /* Tag.swift */,
+				9B2104B3262C0BAA004C24ED /* Colors.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -121,6 +130,7 @@
 			children = (
 				9B8DA4742341EFE300096A0E /* Checkbox.swift */,
 				9B3036132341C24E0094550A /* CustomSegmentedControl.swift */,
+				9B2104BC262D52B0004C24ED /* LabelCollectionViewLayout.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -184,6 +194,8 @@
 				9B9FEC6E24924AE400162F27 /* calendarAddTodoViewController.swift */,
 				9B0EF5C226298C4100BFDAF6 /* todoCollectionViewCell.swift */,
 				9B91D6F0262B244100153A8F /* labelCollectionViewCell.swift */,
+				9B2104B0262C086F004C24ED /* CreateLabelView.swift */,
+				9B2104B6262C146C004C24ED /* createLabelCollectionViewCell.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -317,6 +329,7 @@
 				9BC9304325BEB6EB00A27000 /* mainViewController.swift in Sources */,
 				9B3036142341C24E0094550A /* CustomSegmentedControl.swift in Sources */,
 				9B9FEC6F24924AE400162F27 /* calendarAddTodoViewController.swift in Sources */,
+				9B2104B7262C146C004C24ED /* createLabelCollectionViewCell.swift in Sources */,
 				9B0EF5C326298C4100BFDAF6 /* todoCollectionViewCell.swift in Sources */,
 				9B8DA4752341EFE300096A0E /* Checkbox.swift in Sources */,
 				9B3036102341C24E0094550A /* AppDelegate.swift in Sources */,
@@ -324,11 +337,14 @@
 				9B0BDE0826282A68009F4552 /* Date+.swift in Sources */,
 				9B3036122341C24E0094550A /* SceneDelegate.swift in Sources */,
 				9B5E286D2341F44800750096 /* Todo.swift in Sources */,
+				9B2104B4262C0BAA004C24ED /* Colors.swift in Sources */,
 				9B1E6E1E23963B6D002019D8 /* createViewController.swift in Sources */,
 				9B5E286F2341FA0500750096 /* todoTableViewCell.swift in Sources */,
 				9BF4F09D2629856F00CFF96E /* projectTableViewCell.swift in Sources */,
 				9BF4F0962629772B00CFF96E /* Project.swift in Sources */,
+				9B2104BD262D52B0004C24ED /* LabelCollectionViewLayout.swift in Sources */,
 				9B91D6F1262B244100153A8F /* labelCollectionViewCell.swift in Sources */,
+				9B2104B1262C086F004C24ED /* CreateLabelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

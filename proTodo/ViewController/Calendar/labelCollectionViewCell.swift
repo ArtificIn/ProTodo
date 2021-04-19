@@ -9,11 +9,16 @@
 import UIKit
 
 class labelCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var tagButton: UIButton!
+    @IBOutlet weak var tagButton: UIButton! {
+        didSet {
+            tagButton.titleEdgeInsets = UIEdgeInsets(top: 5, left: 8, bottom: 5, right: 8)
+        }
+    }
     
     static let CellID = "labelCollectionViewCell"
     
-    func bindViewModel(){
-        
+    func bindViewModel(tag : Tag){
+        tagButton.backgroundColor = UIColor.colorRGBHex(hex: tag.color)
+        tagButton.setTitle(" " + tag.name + "    ", for: .normal)
     }
 }
