@@ -14,7 +14,7 @@ enum Category : String {
     case doneList
 }
 
-struct Project {
+struct Project : Identifiable {
     let id : Int
     var name : String
     var endDate : String

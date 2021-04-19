@@ -67,10 +67,7 @@ extension CreateViewController {
     @objc func completeAction(){
         guard let memo = textField.text else {return}
         
-        if !memo.isEmpty {
-            let newTodo = Todo(id: 0,name: memo, color: selectColor, startDate: "2021.10.11", endDate: "2021.10.11", label: [])
-            TodoModel.shared.arrayList.append(newTodo)
-        }
+        
         presentingViewController?.viewWillAppear(true)
         // must insert save code
         dismiss(animated: true)

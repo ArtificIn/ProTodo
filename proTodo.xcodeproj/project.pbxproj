@@ -16,6 +16,8 @@
 		9B2104B4262C0BAA004C24ED /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2104B3262C0BAA004C24ED /* Colors.swift */; };
 		9B2104B7262C146C004C24ED /* createLabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2104B6262C146C004C24ED /* createLabelCollectionViewCell.swift */; };
 		9B2104BD262D52B0004C24ED /* LabelCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2104BC262D52B0004C24ED /* LabelCollectionViewLayout.swift */; };
+		9B2104C1262D7191004C24ED /* projectBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2104C0262D7191004C24ED /* projectBoardViewController.swift */; };
+		9B2104C5262D728C004C24ED /* projectBoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2104C4262D728C004C24ED /* projectBoardTableViewCell.swift */; };
 		9B3036102341C24E0094550A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B30360F2341C24E0094550A /* AppDelegate.swift */; };
 		9B3036122341C24E0094550A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3036112341C24E0094550A /* SceneDelegate.swift */; };
 		9B3036142341C24E0094550A /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3036132341C24E0094550A /* CustomSegmentedControl.swift */; };
@@ -46,6 +48,8 @@
 		9B2104B3262C0BAA004C24ED /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		9B2104B6262C146C004C24ED /* createLabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createLabelCollectionViewCell.swift; sourceTree = "<group>"; };
 		9B2104BC262D52B0004C24ED /* LabelCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCollectionViewLayout.swift; sourceTree = "<group>"; };
+		9B2104C0262D7191004C24ED /* projectBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projectBoardViewController.swift; sourceTree = "<group>"; };
+		9B2104C4262D728C004C24ED /* projectBoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projectBoardTableViewCell.swift; sourceTree = "<group>"; };
 		9B30360C2341C24E0094550A /* proTodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = proTodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B30360F2341C24E0094550A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B3036112341C24E0094550A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 			children = (
 				9BF4F0892629757300CFF96E /* projectCollectionViewCell.swift */,
 				9BF4F09C2629856F00CFF96E /* projectTableViewCell.swift */,
+				9B2104C0262D7191004C24ED /* projectBoardViewController.swift */,
+				9B2104C4262D728C004C24ED /* projectBoardTableViewCell.swift */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -328,6 +334,7 @@
 				9B0BDE0D26282AE0009F4552 /* Color+.swift in Sources */,
 				9BC9304325BEB6EB00A27000 /* mainViewController.swift in Sources */,
 				9B3036142341C24E0094550A /* CustomSegmentedControl.swift in Sources */,
+				9B2104C5262D728C004C24ED /* projectBoardTableViewCell.swift in Sources */,
 				9B9FEC6F24924AE400162F27 /* calendarAddTodoViewController.swift in Sources */,
 				9B2104B7262C146C004C24ED /* createLabelCollectionViewCell.swift in Sources */,
 				9B0EF5C326298C4100BFDAF6 /* todoCollectionViewCell.swift in Sources */,
@@ -345,6 +352,7 @@
 				9B2104BD262D52B0004C24ED /* LabelCollectionViewLayout.swift in Sources */,
 				9B91D6F1262B244100153A8F /* labelCollectionViewCell.swift in Sources */,
 				9B2104B1262C086F004C24ED /* CreateLabelView.swift in Sources */,
+				9B2104C1262D7191004C24ED /* projectBoardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
