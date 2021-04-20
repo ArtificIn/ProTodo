@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import MobileCoreServices
 
 class projectBoardViewController: UIViewController {
+    
     @IBOutlet weak var firstTableView: UITableView!{
         didSet {
             firstTableView.delegate = self
@@ -27,146 +29,145 @@ class projectBoardViewController: UIViewController {
             secondTableView.dragInteractionEnabled = true
         }
     }
-    
-    private var dragView : UIView?
-    private var startTableView: UITableView?
-    private var startIndexPath: IndexPath?
-    
-    private var firstItems = testModelList().array
-    private var secondItems = testModelList().array
+
+    private var selectIndexPath : (IndexPath, Bool)?
+    private var firstItems = [Subject(id: "네이버"), Subject(id: "카카오"), Subject(id: "라인")]
+    private var secondItems = [Subject(id: "할리스"), Subject(id: "스타벅스"), Subject(id: "투썸")]
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 }
 
 extension projectBoardViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return TodoModel.shared.arrayList.count
+        return tableView == firstTableView ? firstItems.count : secondItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: projectBoardTableViewCell.cellID) as! projectBoardTableViewCell
-        cell.todoLabel.text = TodoModel.shared.arrayList[indexPath.row].name
+        cell.todoLabel.text = tableView == firstTableView ?
+            firstItems[indexPath.row].id : secondItems[indexPath.row].id
         return cell
     }
 }
 
 
-extension projectBoardViewController : UITableViewDragDelegate, UITableViewDropDelegate {
-  
+extension projectBoardViewController : UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        let coordinator = CacheDragCoordinator(sourceIndexPath: indexPath)
-        session.localContext = coordinator
-        let item = tableView == firstTableView ? firstItems : secondItems
-        let movingCard = item[indexPath.row]
-        let provider = NSItemProvider(object: movingCard as! NSItemProviderWriting)
-        
-        startTableView = tableView
-        startIndexPath = indexPath
-        
-        return [UIDragItem(itemProvider: provider)]
+        let model = tableView == self.firstTableView ? self.firstItems : self.secondItems
+        let itemProvider = NSItemProvider(object: model[indexPath.row] as NSItemProviderWriting)
+        selectIndexPath = (indexPath, false)
+        return [UIDragItem(itemProvider: itemProvider)]
     }
     
-    
-    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
-        let destinationIndexPath : IndexPath
-        
-        if let indexpath = coordinator.destinationIndexPath {
-            destinationIndexPath = indexpath
-        } else {
-            destinationIndexPath = IndexPath(row: tableView.numberOfRows(inSection: 0), section: 0)
-        }
-        
-        coordinator.session.loadObjects(ofClass: NSString.self) { items in
-            let stringItems = items as! [String]
-            var indexPaths = [IndexPath]()
-            
-            for (index, item) in stringItems.enumerated() {
-                let indexPath = IndexPath(row: destinationIndexPath.row + index, section: destinationIndexPath.section)
-                var model = tableView == self.firstTableView ? self.firstItems : self.secondItems
-                
-                if tableView == self.firstTableView {
-                    self.firstTableView.insertRows(at: [destinationIndexPath], with: .automatic)
-//                    firstItems.insert(, at: destinationIndexPath.item)
-                } else {
-                    self.secondTableView.insertRows(at: [destinationIndexPath], with: .automatic)
-                   
-                }
-                
-                indexPaths.append(indexPath)
+    func tableView(_ tableView: UITableView, dragSessionDidEnd session: UIDragSession) {
+        guard let selectIndexPath = selectIndexPath else { return }
+        if selectIndexPath.1 {
+            if tableView == firstTableView {
+                firstItems.remove(at: selectIndexPath.0.row)
+            } else {
+                secondItems.remove(at: selectIndexPath.0.row)
             }
-            tableView.insertRows(at: indexPaths, with: .automatic)
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [selectIndexPath.0], with: .automatic)
+            tableView.endUpdates()
         }
     }
-    
-    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        
+}
+
+
+extension projectBoardViewController : UITableViewDropDelegate {
+    func tableView(_ tableView: UITableView, canHandle session: UIDropSession) -> Bool {
+        return session.canLoadObjects(ofClass: Subject.self)
     }
     
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
         var dropProposal = UITableViewDropProposal(operation: .cancel)
-        
+        guard session.items.count == 1 else { return dropProposal }
+       
         if tableView.hasActiveDrag {
             if tableView.isEditing {
                 dropProposal = UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
-                print("draging")
             }
         } else {
+            if let indexPath = selectIndexPath {
+                selectIndexPath = (indexPath.0, true)
+            }
             // drag is comming from outside from app
-            print("drag come from outside from app")
-            dropProposal = UITableViewDropProposal(operation: .copy, intent: .insertAtDestinationIndexPath)
-            
-            
+            return UITableViewDropProposal(operation: .copy, intent: .insertAtDestinationIndexPath)
         }
         return dropProposal
     }
+
     
-    
-    func tableView(_ tableView: UITableView, dragSessionDidEnd session: UIDragSession) {
-        guard let dragCoordinator = session.localContext as? CacheDragCoordinator,
-              dragCoordinator.dragCompleted == true,
-              dragCoordinator.isReordering == false else {
-            return
+    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
+        var destinationIndexPath = IndexPath(row: tableView.numberOfRows(inSection: 0), section: 0)
+        if let indexpath = coordinator.destinationIndexPath {
+            destinationIndexPath = indexpath
         }
         
-        let sourceIndexPath = dragCoordinator.sourceIndexPath
+        coordinator.session.loadObjects(ofClass: Subject.self) { [self] items in
+            guard let subject = items as? [Subject] else { return }
+            var indexPaths = [IndexPath]()
+            
+            for (index, value) in subject.enumerated() {
+                let indexPath = IndexPath(row: destinationIndexPath.row + index, section: destinationIndexPath.section)
+                
+                if tableView == self.firstTableView {
+                    self.firstItems.insert(value, at: indexPath.row)
+                } else {
+                    self.secondItems.insert(value, at: indexPath.row)
+                }
+                indexPaths.append(indexPath)
+            }
+            
+            tableView.beginUpdates()
+            tableView.insertRows(at: indexPaths, with: .automatic)
+            tableView.endUpdates()
+        }
+    }
+}
+
+final class Subject : NSObject {
+    let id : String
+    
+    init(id : String) {
+        self.id = id
+    }
+}
+
+extension Subject : NSItemProviderWriting {
+    static var writableTypeIdentifiersForItemProvider: [String] {
+        return [String(kUTTypeData)]
+    }
+    
+    func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress? {
+        let progress = Progress(totalUnitCount: 100)
+        do {
+            let data = try JSONEncoder().encode(self)
+            progress.completedUnitCount = 100
+            completionHandler(data, nil)
+        } catch {
+            completionHandler(nil, error)
+        }
+        return progress
         
-        tableView.performBatchUpdates({
-            tableView.deleteRows(at: [sourceIndexPath], with: .automatic)
-        })
     }
 }
 
-
-class CacheDragCoordinator {
-    let sourceIndexPath : IndexPath
-    var dragCompleted = false
-    var isReordering = false
+extension Subject : Codable, NSItemProviderReading {
+    static var readableTypeIdentifiersForItemProvider: [String] {
+        return [String(kUTTypeData)]
+    }
     
-    init(sourceIndexPath: IndexPath) {
-        self.sourceIndexPath = sourceIndexPath
+    static func object(withItemProviderData data: Data, typeIdentifier: String) throws -> Subject {
+        do {
+            let subject = try JSONDecoder().decode(Subject.self, from: data)
+            return subject
+        } catch {
+            fatalError()
+        }
     }
 }
 
-final class testModel : Codable {
-    let name : String
-    
-    init(name: String) {
-        self.name = name
-    }
-}
-
-final class testModelList : Codable {
-    let array : [testModel] = [testModel(name: "네이버"), testModel(name: "카카오"), testModel(name: "라인")
-    ]
-    
-    init() {
-        
-    }
-}
