@@ -12,6 +12,19 @@ enum Category : String {
     case todoList
     case doingList
     case doneList
+    
+    func getCount() -> Int {
+        switch self {
+        case .todoList:
+            return 0
+        case .doingList:
+            return 1
+        case .doneList:
+            return 2
+        default:
+            0
+        }
+    }
 }
 
 struct Project : Identifiable {

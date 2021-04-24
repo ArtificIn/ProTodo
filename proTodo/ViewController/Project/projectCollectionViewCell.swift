@@ -9,6 +9,7 @@
 import UIKit
 
 class projectCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var boardNameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -21,11 +22,15 @@ class projectCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
+    func bindViewModel(project: Project){
+        boardNameLabel.text = project.name
+    }
 }
 
 extension projectCollectionViewCell : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ProjectModel.shared.projectList.count
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

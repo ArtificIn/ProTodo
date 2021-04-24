@@ -10,6 +10,11 @@ import UIKit
 import MobileCoreServices
 
 class projectBoardViewController: UIViewController {
+    @IBOutlet weak var projectDateLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var todoListView: UIView!
+    @IBAction func showTodoListButton(_ sender: UIButton) {
+    }
     
     @IBOutlet weak var firstTableView: UITableView!{
         didSet {
@@ -20,19 +25,19 @@ class projectBoardViewController: UIViewController {
             firstTableView.dragInteractionEnabled = true
         }
     }
-    @IBOutlet weak var secondTableView: UITableView! {
+    @IBOutlet weak var todoListTableView: UITableView! {
         didSet {
-            secondTableView.delegate = self
-            secondTableView.dataSource = self
-            secondTableView.dropDelegate = self
-            secondTableView.dragDelegate = self
-            secondTableView.dragInteractionEnabled = true
+            todoListTableView.delegate = self
+            todoListTableView.dataSource = self
+            todoListTableView.dropDelegate = self
+            todoListTableView.dragDelegate = self
+            todoListTableView.dragInteractionEnabled = true
         }
     }
 
     private var selectIndexPath : (IndexPath, Bool)?
-    private var firstItems = [Subject(id: "네이버"), Subject(id: "카카오"), Subject(id: "라인")]
-    private var secondItems = [Subject(id: "할리스"), Subject(id: "스타벅스"), Subject(id: "투썸")]
+    private var firstItems : [Todo] = []
+    private var secondItems = TodoModel.shared.arrayList
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +52,7 @@ extension projectBoardViewController : UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: projectBoardTableViewCell.cellID) as! projectBoardTableViewCell
         cell.todoLabel.text = tableView == firstTableView ?
-            firstItems[indexPath.row].id : secondItems[indexPath.row].id
+            firstItems[indexPath.row].name : secondItems[indexPath.row].name
         return cell
     }
 }
@@ -79,7 +84,7 @@ extension projectBoardViewController : UITableViewDragDelegate {
 
 extension projectBoardViewController : UITableViewDropDelegate {
     func tableView(_ tableView: UITableView, canHandle session: UIDropSession) -> Bool {
-        return session.canLoadObjects(ofClass: Subject.self)
+        return session.canLoadObjects(ofClass: Todo.self)
     }
     
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
@@ -107,17 +112,17 @@ extension projectBoardViewController : UITableViewDropDelegate {
             destinationIndexPath = indexpath
         }
         
-        coordinator.session.loadObjects(ofClass: Subject.self) { [self] items in
-            guard let subject = items as? [Subject] else { return }
+        coordinator.session.loadObjects(ofClass: Todo.self) { [weak self] items in
+            guard let subject = items as? [Todo] else { return }
             var indexPaths = [IndexPath]()
             
             for (index, value) in subject.enumerated() {
                 let indexPath = IndexPath(row: destinationIndexPath.row + index, section: destinationIndexPath.section)
                 
-                if tableView == self.firstTableView {
-                    self.firstItems.insert(value, at: indexPath.row)
+                if tableView == self?.firstTableView {
+                    self?.firstItems.insert(value, at: indexPath.row)
                 } else {
-                    self.secondItems.insert(value, at: indexPath.row)
+                    self?.secondItems.insert(value, at: indexPath.row)
                 }
                 indexPaths.append(indexPath)
             }
@@ -129,45 +134,15 @@ extension projectBoardViewController : UITableViewDropDelegate {
     }
 }
 
-final class Subject : NSObject {
-    let id : String
-    
-    init(id : String) {
-        self.id = id
-    }
-}
 
-extension Subject : NSItemProviderWriting {
-    static var writableTypeIdentifiersForItemProvider: [String] {
-        return [String(kUTTypeData)]
+extension projectBoardViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
     }
     
-    func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress? {
-        let progress = Progress(totalUnitCount: 100)
-        do {
-            let data = try JSONEncoder().encode(self)
-            progress.completedUnitCount = 100
-            completionHandler(data, nil)
-        } catch {
-            completionHandler(nil, error)
-        }
-        return progress
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: projectCollectionViewCell.CellID, for: indexPath) as! projectCollectionViewCell
         
+        return cell
     }
 }
-
-extension Subject : Codable, NSItemProviderReading {
-    static var readableTypeIdentifiersForItemProvider: [String] {
-        return [String(kUTTypeData)]
-    }
-    
-    static func object(withItemProviderData data: Data, typeIdentifier: String) throws -> Subject {
-        do {
-            let subject = try JSONDecoder().decode(Subject.self, from: data)
-            return subject
-        } catch {
-            fatalError()
-        }
-    }
-}
-
