@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol MainViewControllerDelegate  {
+    func presentProjectBoardViewController(index: Int)
+}
+
 class MainViewController: UIViewController {
     @IBOutlet weak var pageCollectionView: UICollectionView! {
         didSet {
@@ -16,11 +20,27 @@ class MainViewController: UIViewController {
         }
     }
     
+    @IBAction func addButton(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if segmentNumber == 0 {
+            let nextVC = storyboard.instantiateViewController(identifier: CalendarAddTodoViewController.cellID) as CalendarAddTodoViewController
+           present(nextVC, animated: true, completion: nil)
+        } else if segmentNumber == 1 {
+            // project create vc
+        }
+    }
+    
     private var segmentControl : CustomSegmentedControl?
+    private var segmentNumber = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createSegmentedControl()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
     }
     
     private func createSegmentedControl(){
@@ -34,6 +54,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSource, CustomSegmentControlDelegate {
     func customSegmentBar(scrollTo index: Int) {
+        segmentNumber = index
         pageCollectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
     }
  
@@ -42,15 +63,15 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = UICollectionViewCell()
-        
         if indexPath.row == 0 {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: todoCollectionViewCell.CellID, for: indexPath) as! todoCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainTodoCollectionViewCell.cellID, for: indexPath) as! MainTodoCollectionViewCell
+            return cell
         } else {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: projectCollectionViewCell.CellID, for: indexPath) as! projectCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainProjectCollectionViewCell.CellID, for: indexPath)
+                as! MainProjectCollectionViewCell
+            cell.delegate = self
+            return cell
         }
-        
-        return cell
     }
 }
 
@@ -58,5 +79,15 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
 extension MainViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.width, height: self.view.frame.height - 50)
+    }
+}
+
+
+extension MainViewController : MainViewControllerDelegate {
+    func presentProjectBoardViewController(index: Int) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let nextVC = storyboard.instantiateViewController(identifier: ProjectBoardViewController.cellID) as ProjectBoardViewController
+        nextVC.project = ProjectModel.shared.list[index]
+        navigationController?.pushViewController(nextVC, animated: true)
     }
 }

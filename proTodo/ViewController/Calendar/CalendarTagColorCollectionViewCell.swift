@@ -8,10 +8,10 @@
 
 import UIKit
 
-class createLabelCollectionViewCell: UICollectionViewCell {
+class CalendarTagColorCollectionViewCell : UICollectionViewCell {
     @IBOutlet weak var colorView: UIView!
     
-    static let cellID = "createLabelCollectionViewCell"
+    static let cellID = "CalendarTagColorCollectionViewCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()

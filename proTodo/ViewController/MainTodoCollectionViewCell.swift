@@ -9,7 +9,7 @@
 import UIKit
 import FSCalendar
 
-class todoCollectionViewCell: UICollectionViewCell {
+class MainTodoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var calendar: FSCalendar! {
         didSet {
             calendar.delegate = self
@@ -23,10 +23,9 @@ class todoCollectionViewCell: UICollectionViewCell {
             tableView.dataSource = self
         }
     }
-    @IBOutlet weak var plusBtn: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     
-    static let CellID = "todoCollectionViewCell"
+    static let cellID = "MainTodoCollectionViewCell"
     var isReapeat : Bool = false
     
     override func awakeFromNib() {
@@ -46,14 +45,14 @@ class todoCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension todoCollectionViewCell : UITableViewDelegate, UITableViewDataSource {
+extension MainTodoCollectionViewCell : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return TodoModel.shared.arrayList.count
+        return TodoModel.shared.list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let todo = TodoModel.shared.arrayList[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: todoTableViewCell.CellID) as! todoTableViewCell
+        let todo = TodoModel.shared.list[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: CalendarTodoTableViewCell.CellID) as! CalendarTodoTableViewCell
             
         cell.bindViewModel(todo: todo)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
@@ -75,7 +74,7 @@ extension todoCollectionViewCell : UITableViewDelegate, UITableViewDataSource {
 }
 
 
-extension todoCollectionViewCell : FSCalendarDelegate, FSCalendarDataSource, UIGestureRecognizerDelegate {
+extension MainTodoCollectionViewCell : FSCalendarDelegate, FSCalendarDataSource, UIGestureRecognizerDelegate {
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         dateSetting()
     }

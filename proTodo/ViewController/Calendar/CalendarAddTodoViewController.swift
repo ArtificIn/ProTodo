@@ -92,6 +92,8 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
         dismiss(animated: true)
     }
     
+    static let cellID = "CalendarAddTodoViewController"
+    
     private var newTag : Tag?
     private var newTodo : Todo?
     private var color : Int = 0x625FDC
@@ -100,7 +102,7 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setLabelBackgroundView()
+//        setLabelBackgroundView()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -129,8 +131,8 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
     
     private func createTodo() {
         guard let text = titleTextField.text else { return }
-        let todo = Todo(id: TodoModel.shared.arrayList.count - 1, name: text, color: color, startDate: startDatePicker.date, endDate: endDatePicker.date, isRepeating: isRepeating, label: labels)
-        TodoModel.shared.arrayList.append(todo)
+        let todo = Todo(id: TodoModel.shared.list.count - 1, name: text, color: color, startDate: startDatePicker.date, endDate: endDatePicker.date, isRepeating: isRepeating, label: labels)
+        TodoModel.shared.list.append(todo)
     }
 }
 
@@ -142,11 +144,11 @@ extension CalendarAddTodoViewController : UICollectionViewDelegate, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == labelCollectionView {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: labelCollectionViewCell.CellID, for: indexPath) as! labelCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarTagCollectionViewCell.CellID, for: indexPath) as! CalendarTagCollectionViewCell
         cell.bindViewModel(tag: TagModel.shared.tagList[indexPath.row])
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: createLabelCollectionViewCell.cellID, for: indexPath) as! createLabelCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarTagColorCollectionViewCell.cellID, for: indexPath) as! CalendarTagColorCollectionViewCell
             cell.bindViewModel(color: Colors.arrays[indexPath.row])
             return cell
         }

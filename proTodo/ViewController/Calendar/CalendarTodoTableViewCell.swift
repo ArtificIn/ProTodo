@@ -8,12 +8,12 @@
 
 import UIKit
 
-class todoTableViewCell: UITableViewCell {
+class CalendarTodoTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var repeatBtn: Checkbox!
     
-    static let CellID = "todoTableViewCell"
+    static let CellID = "CalendarTodoTableViewCell"
     var isRepeat : Bool = false
     var listItems: Todo?
 
@@ -28,7 +28,7 @@ class todoTableViewCell: UITableViewCell {
 }
 
 
-extension todoTableViewCell{
+extension CalendarTodoTableViewCell{
     func ButtonSetting(){
         repeatBtn.addTarget(self, action: #selector(touchRepeatBtn), for: .touchUpInside)
     }

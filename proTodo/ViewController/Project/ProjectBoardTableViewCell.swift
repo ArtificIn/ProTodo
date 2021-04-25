@@ -8,19 +8,17 @@
 
 import UIKit
 
-class projectBoardTableViewCell: UITableViewCell {
+class ProjectBoardTableViewCell: UITableViewCell {
     @IBOutlet weak var todoLabel: UILabel!
     
-    static let cellID = "projectBoardTableViewCell"
+    static let cellID = "ProjectBoardTableViewCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func bindViewModel(todo : Todo) {
+        todoLabel.text = todo.name
     }
 }

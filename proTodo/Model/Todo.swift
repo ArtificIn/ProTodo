@@ -34,7 +34,7 @@ final class Todo : NSObject, Identifiable {
 
 final class TodoModel {
     static let shared = TodoModel()
-    var arrayList : [Todo] = [] // 일반 저장
+    var list : [Todo] = [] // 일반 저장
     
     func defaultData() -> [Todo] {
         let stock = Todo(id: 0, name: "앱 업데이트", color: 0xafeeee, startDate: Date(), endDate: Date() + 3 * 86400, isRepeating: nil, label: [])
@@ -44,7 +44,7 @@ final class TodoModel {
     }
     
     init() {
-        arrayList = defaultData()
+        list = defaultData()
     }
 }
 

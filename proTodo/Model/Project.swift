@@ -22,35 +22,47 @@ enum Category : String {
         case .doneList:
             return 2
         default:
-            0
+            break
         }
     }
 }
 
-struct Project : Identifiable {
+struct ProjectBoard : Identifiable {
     let id : Int
+    var category : Category
+    var todoList : [Todo]
+}
+
+struct Project {
     var name : String
-    var endDate : String
-    var alert : Int?
-    var category : [Category : Todo]
+    var startDate : Date
+    var endDate : Date?
+    var list : [ProjectBoard] = []
 }
 
 class ProjectModel {
     static let shared = ProjectModel()
-    var projectList : [Project] = []
+    var list : [Project] = []
     
     init() {
-        projectList = defaultData()
+        list = defaultData()
     }
     
     init(list : [Project]) {
-        projectList = list
+        self.list = list
     }
     
     private func defaultData() -> [Project] {
-        let p1 = Project(id: 0, name: "기말고사", endDate: "2021.11.11", category: [:])
-        let p2 = Project(id: 1, name: "앱 개발하기", endDate: "2021.06.20", alert: nil, category: [:])
+        let project = Project(name: "기말고사", startDate: Date() - (86400 * 3), endDate: Date() + (86400 * 12),list: projectDefaultData())
+        return [project]
+    }
+    
+    private func projectDefaultData() -> [ProjectBoard] {
+        let p1 = ProjectBoard(id: 0, category: .todoList, todoList: TodoModel.shared.defaultData())
+        let p2 = ProjectBoard(id: 1, category: .doneList, todoList: [])
+        let p3 = ProjectBoard(id: 2, category: .doneList, todoList: [])
         
-        return [p1, p2]
+        return [p1, p2, p3]
     }
 }
+

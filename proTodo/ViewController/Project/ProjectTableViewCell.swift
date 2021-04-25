@@ -9,12 +9,12 @@
 import UIKit
 import FSCalendar
 
-class projectTableViewCell: UITableViewCell {
+class ProjectTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     
-    static let CellID = "projectTableViewCell"
+    static let CellID = "ProjectTableViewCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,17 +22,15 @@ class projectTableViewCell: UITableViewCell {
     }
     
     func bindViewModel(project: Project) {
-        dateLabel.text = project.endDate.isEmpty ? "D-Day None" : "D-Day \(calculateDDay(to: project.endDate))"
+        dateLabel.text = project.endDate == nil ? "D-Day None" : "D-Day \(calculateDDay(date: project.endDate))"
         titleLabel.text = project.name
         progressView.progress = 0.3
     }
     
-    func calculateDDay(to: String) -> Int {
-        let dateformatter = DateFormatter()
+    func calculateDDay(date: Date?) -> Int {
+        guard let dday = date else { return 0 }
         let calendar = Calendar.current
-        dateformatter.dateFormat = "yyyy.MM.dd"
-        guard let end = dateformatter.date(from: to) else { return 0 }
-        let components = calendar.dateComponents([.day], from: Date(), to: end)
+        let components = calendar.dateComponents([.day], from: Date(), to: dday)
         return components.day!
     }
 }

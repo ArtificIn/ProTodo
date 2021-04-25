@@ -8,8 +8,7 @@
 
 import UIKit
 
-class projectCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var boardNameLabel: UILabel!
+class MainProjectCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -17,27 +16,28 @@ class projectCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    static let CellID = "projectCollectionViewCell"
+    static let CellID = "MainProjectCollectionViewCell"
+    var delegate : MainViewControllerDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
-    func bindViewModel(project: Project){
-        boardNameLabel.text = project.name
-    }
 }
 
-extension projectCollectionViewCell : UITableViewDelegate, UITableViewDataSource {
+extension MainProjectCollectionViewCell : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return ProjectModel.shared.list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: projectTableViewCell.CellID) as! projectTableViewCell
-        cell.bindViewModel(project: ProjectModel.shared.projectList[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: ProjectTableViewCell.CellID) as! ProjectTableViewCell
+        cell.bindViewModel(project: ProjectModel.shared.list[indexPath.row])
         cell.selectionStyle = .none
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.presentProjectBoardViewController(index: indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
