@@ -15,14 +15,17 @@ enum Category : String {
     
     func getCount() -> Int {
         switch self {
-        case .todoList:
-            return 0
-        case .doingList:
-            return 1
-        case .doneList:
-            return 2
-        default:
-            break
+        case .todoList: return 0
+        case .doingList: return 1
+        case .doneList: return 2
+        }
+    }
+    
+    func getName() -> String {
+        switch self {
+        case .todoList : return "Todo"
+        case .doingList : return "Doing"
+        case .doneList : return "Done"
         }
     }
 }
@@ -57,9 +60,9 @@ class ProjectModel {
         return [project]
     }
     
-    private func projectDefaultData() -> [ProjectBoard] {
+    func projectDefaultData() -> [ProjectBoard] {
         let p1 = ProjectBoard(id: 0, category: .todoList, todoList: TodoModel.shared.defaultData())
-        let p2 = ProjectBoard(id: 1, category: .doneList, todoList: [])
+        let p2 = ProjectBoard(id: 1, category: .doingList, todoList: [])
         let p3 = ProjectBoard(id: 2, category: .doneList, todoList: [])
         
         return [p1, p2, p3]

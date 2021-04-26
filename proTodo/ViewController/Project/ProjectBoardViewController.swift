@@ -22,7 +22,6 @@ class ProjectBoardViewController: UIViewController {
             }
             
             projectDateLabel.text = date
-            
         }
     }
     @IBOutlet weak var boardCollectionView: UICollectionView! {
@@ -32,17 +31,18 @@ class ProjectBoardViewController: UIViewController {
         }
     }
     @IBOutlet weak var todoListView: UIView!
+    @IBOutlet weak var showTodoListButton: UIButton!
     @IBAction func showTodoListButton(_ sender: UIButton) {
-    }
-    
-    @IBOutlet weak var firstTableView: UITableView!{
-        didSet {
-            firstTableView.delegate = self
-            firstTableView.dataSource = self
-            firstTableView.dropDelegate = self
-            firstTableView.dragDelegate = self
-            firstTableView.dragInteractionEnabled = true
-        }
+        UIView.animate(withDuration: 0.5, animations: { [weak self] in
+            if self?.todoListTableViewBottomConstraint.constant == 0 {
+                self?.showTodoListButton.transform = CGAffineTransform(rotationAngle: .pi)
+                self?.todoListTableViewBottomConstraint.constant = -250
+            } else {
+                self?.showTodoListButton.transform = CGAffineTransform(rotationAngle: 0)
+                self?.todoListTableViewBottomConstraint.constant = 0
+            }
+            self?.view.layoutIfNeeded()
+        })
     }
     @IBOutlet weak var todoListTableView: UITableView! {
         didSet {
@@ -53,7 +53,8 @@ class ProjectBoardViewController: UIViewController {
             todoListTableView.dragInteractionEnabled = true
         }
     }
-
+    @IBOutlet weak var todoListTableViewBottomConstraint: NSLayoutConstraint!
+    
     static let cellID = "ProjectBoardViewController"
     private var selectIndexPath : (IndexPath, Bool)?
     private var firstItems : [Todo] = []
@@ -64,6 +65,8 @@ class ProjectBoardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = project.name
+        showTodoListButton.transform = CGAffineTransform(rotationAngle: .pi)
+        todoListTableViewBottomConstraint.constant = -250
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,12 +99,10 @@ extension ProjectBoardViewController : UITableViewDragDelegate {
         guard let selectIndexPath = selectIndexPath else { return }
        
         if selectIndexPath.1 {
-            if tableView == firstTableView {
-                firstItems.remove(at: selectIndexPath.0.row)
-            } else {
+            
                 todoLists.remove(at: selectIndexPath.0.row)
 //                secondItems.remove(at: selectIndexPath.0.row)
-            }
+            
             tableView.beginUpdates()
             tableView.deleteRows(at: [selectIndexPath.0], with: .automatic)
             tableView.endUpdates()
@@ -144,17 +145,6 @@ extension ProjectBoardViewController : UITableViewDropDelegate {
             guard let subject = items as? [Todo] else { return }
             var indexPaths = [IndexPath]()
             
-            for (index, value) in subject.enumerated() {
-                let indexPath = IndexPath(row: destinationIndexPath.row + index, section: destinationIndexPath.section)
-                
-                if tableView == self?.firstTableView {
-                    self?.firstItems.insert(value, at: indexPath.row)
-                } else {
-//                    self?.secondItems.insert(value, at: indexPath.row)
-                }
-                indexPaths.append(indexPath)
-            }
-            
             tableView.beginUpdates()
             tableView.insertRows(at: indexPaths, with: .automatic)
             tableView.endUpdates()
@@ -163,7 +153,7 @@ extension ProjectBoardViewController : UITableViewDropDelegate {
 }
 
 
-extension ProjectBoardViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+extension ProjectBoardViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return project.list.count
     }
@@ -174,8 +164,8 @@ extension ProjectBoardViewController : UICollectionViewDelegate, UICollectionVie
         cell.handleBorder()
         return cell
     }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: 361, height: 646)
-//    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.bounds.width - 60, height: collectionView.bounds.height - 80)
+    }
 }

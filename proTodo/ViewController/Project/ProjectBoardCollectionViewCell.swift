@@ -28,7 +28,7 @@ class ProjectBoardCollectionViewCell: UICollectionViewCell {
     
     func bindViewModel(board : ProjectBoard) {
         self.board = board
-        boardNameLabel.text = board.category.rawValue
+        boardNameLabel.text = board.category.getName()
     }
 }
 

@@ -17,3 +17,13 @@ extension UICollectionViewCell {
         self.layer.borderColor = UIColor.white.cgColor
     }
 }
+
+
+extension UITableViewCell {
+    func handleBorder(){
+        self.clipsToBounds = true
+        self.layer.borderWidth = 1
+        
+        self.layer.borderColor = UIColor.lightGray.cgColor
+    }
+}

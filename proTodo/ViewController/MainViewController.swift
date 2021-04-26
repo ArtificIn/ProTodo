@@ -24,9 +24,10 @@ class MainViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if segmentNumber == 0 {
             let nextVC = storyboard.instantiateViewController(identifier: CalendarAddTodoViewController.cellID) as CalendarAddTodoViewController
-           present(nextVC, animated: true, completion: nil)
-        } else if segmentNumber == 1 {
-            // project create vc
+           present(nextVC, animated: true)
+        } else {
+            let nextVC = storyboard.instantiateViewController(identifier: ProjectCreateViewController.cellID) as ProjectCreateViewController
+            present(nextVC, animated: true)
         }
     }
     

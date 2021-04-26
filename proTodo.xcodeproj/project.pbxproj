@@ -10,6 +10,8 @@
 		7DBC02765E8E95E4FF472D41 /* Pods_proTodo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1D4205DDABE980F08B5843 /* Pods_proTodo.framework */; };
 		9B0BDE0826282A68009F4552 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0BDE0726282A68009F4552 /* Date+.swift */; };
 		9B0BDE0D26282AE0009F4552 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0BDE0C26282AE0009F4552 /* Color+.swift */; };
+		9B0BF7672636CF030072A083 /* ProjectCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0BF7662636CF030072A083 /* ProjectCreateViewController.swift */; };
+		9B0BF76A2636DB4A0072A083 /* ProjectCreateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0BF7692636DB4A0072A083 /* ProjectCreateTableViewCell.swift */; };
 		9B0EF5C326298C4100BFDAF6 /* MainTodoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EF5C226298C4100BFDAF6 /* MainTodoCollectionViewCell.swift */; };
 		9B1875442635C09D00C8FD98 /* UICollectionViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1875432635C09D00C8FD98 /* UICollectionViewCell+.swift */; };
 		9B2104B4262C0BAA004C24ED /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2104B3262C0BAA004C24ED /* Colors.swift */; };
@@ -42,6 +44,8 @@
 		7EB44766FFD0929662857BAD /* Pods-proTodo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-proTodo.release.xcconfig"; path = "Target Support Files/Pods-proTodo/Pods-proTodo.release.xcconfig"; sourceTree = "<group>"; };
 		9B0BDE0726282A68009F4552 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		9B0BDE0C26282AE0009F4552 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		9B0BF7662636CF030072A083 /* ProjectCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateViewController.swift; sourceTree = "<group>"; };
+		9B0BF7692636DB4A0072A083 /* ProjectCreateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateTableViewCell.swift; sourceTree = "<group>"; };
 		9B0EF5C226298C4100BFDAF6 /* MainTodoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTodoCollectionViewCell.swift; sourceTree = "<group>"; };
 		9B1875432635C09D00C8FD98 /* UICollectionViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+.swift"; sourceTree = "<group>"; };
 		9B2104B3262C0BAA004C24ED /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -148,6 +152,8 @@
 				9B2104C0262D7191004C24ED /* ProjectBoardViewController.swift */,
 				9BF2BF0526355C91006794F1 /* ProjectBoardCollectionViewCell.swift */,
 				9B2104C4262D728C004C24ED /* ProjectBoardTableViewCell.swift */,
+				9B0BF7662636CF030072A083 /* ProjectCreateViewController.swift */,
+				9B0BF7692636DB4A0072A083 /* ProjectCreateTableViewCell.swift */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -332,6 +338,7 @@
 			files = (
 				9B91D6F5262B256A00153A8F /* Tag.swift in Sources */,
 				9B0BDE0D26282AE0009F4552 /* Color+.swift in Sources */,
+				9B0BF7672636CF030072A083 /* ProjectCreateViewController.swift in Sources */,
 				9BC9304325BEB6EB00A27000 /* MainViewController.swift in Sources */,
 				9B3036142341C24E0094550A /* CustomSegmentedControl.swift in Sources */,
 				9B2104C5262D728C004C24ED /* ProjectBoardTableViewCell.swift in Sources */,
@@ -344,6 +351,7 @@
 				9B0BDE0826282A68009F4552 /* Date+.swift in Sources */,
 				9BF2BF0626355C91006794F1 /* ProjectBoardCollectionViewCell.swift in Sources */,
 				9B3036122341C24E0094550A /* SceneDelegate.swift in Sources */,
+				9B0BF76A2636DB4A0072A083 /* ProjectCreateTableViewCell.swift in Sources */,
 				9B1875442635C09D00C8FD98 /* UICollectionViewCell+.swift in Sources */,
 				9B5E286D2341F44800750096 /* Todo.swift in Sources */,
 				9B2104B4262C0BAA004C24ED /* Colors.swift in Sources */,
