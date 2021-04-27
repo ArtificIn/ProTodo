@@ -50,7 +50,7 @@ extension ProjectBoardCollectionViewCell : UITableViewDelegate, UITableViewDataS
 
 extension ProjectBoardCollectionViewCell : UITableViewDropDelegate {
     func tableView(_ tableView: UITableView, canHandle session: UIDropSession) -> Bool {
-        return session.canLoadObjects(ofClass: Todo.self)
+        return session.canLoadObjects(ofClass: Todo2.self)
     }
     
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
@@ -74,8 +74,8 @@ extension ProjectBoardCollectionViewCell : UITableViewDropDelegate {
             destinationIndexPath = indexpath
         }
         
-        coordinator.session.loadObjects(ofClass: Todo.self) { [weak self] items in
-            guard let subject = items as? [Todo] else { return }
+        coordinator.session.loadObjects(ofClass: Todo2.self) { [weak self] items in
+            guard let subject = items as? [Todo2] else { return }
             var indexPaths = [IndexPath]()
             
             for (index, value) in subject.enumerated() {

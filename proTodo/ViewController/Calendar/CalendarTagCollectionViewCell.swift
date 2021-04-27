@@ -17,7 +17,7 @@ class CalendarTagCollectionViewCell : UICollectionViewCell {
     
     static let CellID = "CalendarTagCollectionViewCell"
     
-    func bindViewModel(tag : Tag){
+    func bindViewModel(tag : Tag2){
         tagButton.backgroundColor = UIColor.colorRGBHex(hex: tag.color)
         tagButton.setTitle(" " + tag.name + "    ", for: .normal)
     }

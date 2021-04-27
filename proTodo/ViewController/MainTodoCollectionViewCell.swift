@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 import FSCalendar
 
 class MainTodoCollectionViewCell: UICollectionViewCell {
@@ -26,6 +27,9 @@ class MainTodoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     
     static let cellID = "MainTodoCollectionViewCell"
+    private lazy var list : [NSManagedObject] = {
+        return self.fetchList()
+    }()
     var isReapeat : Bool = false
     
     override func awakeFromNib() {
@@ -43,18 +47,27 @@ class MainTodoCollectionViewCell: UICollectionViewCell {
         month.append(year)
         dateLabel.attributedText = month
     }
+    
+    private func fetchList() -> [NSManagedObject] {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Todo")
+        let result = try! context.fetch(fetchRequest)
+        
+        return result
+    }
 }
 
 extension MainTodoCollectionViewCell : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return TodoModel.shared.list.count
+        return list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let todo = TodoModel.shared.list[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: CalendarTodoTableViewCell.CellID) as! CalendarTodoTableViewCell
             
-        cell.bindViewModel(todo: todo)
+        cell.bindViewModel(todo: list[indexPath.row])
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
             
         return cell

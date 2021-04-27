@@ -57,10 +57,10 @@ class ProjectBoardViewController: UIViewController {
     
     static let cellID = "ProjectBoardViewController"
     private var selectIndexPath : (IndexPath, Bool)?
-    private var firstItems : [Todo] = []
+    private var firstItems : [Todo2] = []
     private var todoLists = TodoModel.shared.list
     
-    var project : Project!
+    var project : Project2!
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,7 +113,7 @@ extension ProjectBoardViewController : UITableViewDragDelegate {
 
 extension ProjectBoardViewController : UITableViewDropDelegate {
     func tableView(_ tableView: UITableView, canHandle session: UIDropSession) -> Bool {
-        return session.canLoadObjects(ofClass: Todo.self)
+        return session.canLoadObjects(ofClass: Todo2.self)
     }
     
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
@@ -141,8 +141,8 @@ extension ProjectBoardViewController : UITableViewDropDelegate {
             destinationIndexPath = indexpath
         }
         
-        coordinator.session.loadObjects(ofClass: Todo.self) { [weak self] items in
-            guard let subject = items as? [Todo] else { return }
+        coordinator.session.loadObjects(ofClass: Todo2.self) { [weak self] items in
+            guard let subject = items as? [Todo2] else { return }
             var indexPaths = [IndexPath]()
             
             tableView.beginUpdates()

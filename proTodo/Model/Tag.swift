@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Tag : Equatable, Hashable, Identifiable, Codable {
+struct Tag2 : Equatable, Hashable, Identifiable, Codable {
     let id : Int
     var name : String
     var color : Int
@@ -16,15 +16,15 @@ struct Tag : Equatable, Hashable, Identifiable, Codable {
 
 class TagModel {
     static let shared = TagModel()
-    var tagList : [Tag] = []
+    var tagList : [Tag2] = []
     
     init() {
         tagList = defaultData()
     }
     
-    private func defaultData() -> [Tag] {
-        let t1 = Tag(id: 0, name: "Study", color: 0xFF9E67)
-        let t2 = Tag(id: 1, name: "Exercise", color: 0x6D84FD)
+    private func defaultData() -> [Tag2] {
+        let t1 = Tag2(id: 0, name: "Study", color: 0xFF9E67)
+        let t2 = Tag2(id: 1, name: "Exercise", color: 0x6D84FD)
         return [t1, t2]
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class CalendarTodoTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
@@ -15,15 +16,16 @@ class CalendarTodoTableViewCell: UITableViewCell {
     
     static let CellID = "CalendarTodoTableViewCell"
     var isRepeat : Bool = false
-    var listItems: Todo?
+    var listItems: Todo2?
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    func bindViewModel(todo : Todo) {
-        titleLabel.text = todo.name
-        colorView.backgroundColor = UIColor.colorRGBHex(hex: todo.color)
+    func bindViewModel(todo : NSManagedObject) {
+        titleLabel.text = todo.value(forKey: "name") as! String
+        let color = todo.value(forKey: "color") as! Int
+        colorView.backgroundColor = UIColor.colorRGBHex(hex: color)
     }
 }
 

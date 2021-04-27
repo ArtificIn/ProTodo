@@ -33,10 +33,10 @@ enum Category : String {
 struct ProjectBoard : Identifiable {
     let id : Int
     var category : Category
-    var todoList : [Todo]
+    var todoList : [Todo2]
 }
 
-struct Project {
+struct Project2 {
     var name : String
     var startDate : Date
     var endDate : Date?
@@ -45,18 +45,18 @@ struct Project {
 
 class ProjectModel {
     static let shared = ProjectModel()
-    var list : [Project] = []
+    var list : [Project2] = []
     
     init() {
         list = defaultData()
     }
     
-    init(list : [Project]) {
+    init(list : [Project2]) {
         self.list = list
     }
     
-    private func defaultData() -> [Project] {
-        let project = Project(name: "기말고사", startDate: Date() - (86400 * 3), endDate: Date() + (86400 * 12),list: projectDefaultData())
+    private func defaultData() -> [Project2] {
+        let project = Project2(name: "기말고사", startDate: Date() - (86400 * 3), endDate: Date() + (86400 * 12),list: projectDefaultData())
         return [project]
     }
     

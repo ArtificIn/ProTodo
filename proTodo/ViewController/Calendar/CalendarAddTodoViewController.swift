@@ -73,7 +73,7 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
     }
     @IBAction func createLabelCompleteButton(_ sender: UIButton) {
         guard let text = createLabelTextField.text else { return }
-        newTag = Tag(id: 0, name: text, color: color)
+        newTag = Tag2(id: 0, name: text, color: color)
         TagModel.shared.tagList.append(newTag!)
         showCreateLabelView(isTrue: false)
         labelCollectionView.reloadData()
@@ -94,11 +94,11 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
     
     static let cellID = "CalendarAddTodoViewController"
     
-    private var newTag : Tag?
-    private var newTodo : Todo?
+    private var newTag : Tag2?
+    private var newTodo : Todo2?
     private var color : Int = 0x625FDC
     private var isRepeating: Int?
-    private var labels : [Tag] = []
+    private var labels : [Tag2] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,7 +131,7 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
     
     private func createTodo() {
         guard let text = titleTextField.text else { return }
-        let todo = Todo(id: TodoModel.shared.list.count - 1, name: text, color: color, startDate: startDatePicker.date, endDate: endDatePicker.date, isRepeating: isRepeating, label: labels)
+        let todo = Todo2(id: TodoModel.shared.list.count - 1, name: text, color: color, startDate: startDatePicker.date, endDate: endDatePicker.date, isRepeating: isRepeating, label: labels)
         TodoModel.shared.list.append(todo)
     }
 }

@@ -21,7 +21,7 @@ class ProjectTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-    func bindViewModel(project: Project) {
+    func bindViewModel(project: Project2) {
         dateLabel.text = project.endDate == nil ? "D-Day None" : "D-Day \(calculateDDay(date: project.endDate))"
         titleLabel.text = project.name
         progressView.progress = 0.3

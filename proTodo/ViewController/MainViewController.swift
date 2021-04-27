@@ -8,8 +8,10 @@
 
 import UIKit
 
+
 protocol MainViewControllerDelegate  {
     func presentProjectBoardViewController(index: Int)
+    func refreshMainViewController()
 }
 
 class MainViewController: UIViewController {
@@ -27,6 +29,7 @@ class MainViewController: UIViewController {
            present(nextVC, animated: true)
         } else {
             let nextVC = storyboard.instantiateViewController(identifier: ProjectCreateViewController.cellID) as ProjectCreateViewController
+            nextVC.delegate = self
             present(nextVC, animated: true)
         }
     }
@@ -90,5 +93,9 @@ extension MainViewController : MainViewControllerDelegate {
         let nextVC = storyboard.instantiateViewController(identifier: ProjectBoardViewController.cellID) as ProjectBoardViewController
         nextVC.project = ProjectModel.shared.list[index]
         navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
+    func refreshMainViewController() {
+        pageCollectionView.reloadData()
     }
 }

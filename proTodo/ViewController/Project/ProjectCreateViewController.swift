@@ -27,12 +27,17 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
         guard var text = nameTextField.text else { return }
         text = text.trimmingCharacters(in: .whitespaces)
         
-        let newProject = Project(name: text, startDate: Date(), endDate: endDatePicker.date, list: list)
-        
-        ProjectModel.shared.list.append(newProject)
+        if !text.isEmpty {
+            let newProject = Project2(name: text, startDate: Date(), endDate: endDatePicker.date, list: list)
+            
+            ProjectModel.shared.list.append(newProject)
+            delegate?.refreshMainViewController()
+            dismiss(animated: true)
+        }
     }
     
     static let cellID = "ProjectCreateViewController"
+    var delegate : MainViewControllerDelegate?
     
     private var list : [ProjectBoard] = [
         .init(id: 0, category: .todoList, todoList: []),

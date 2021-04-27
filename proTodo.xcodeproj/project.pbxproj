@@ -13,6 +13,7 @@
 		9B0BF7672636CF030072A083 /* ProjectCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0BF7662636CF030072A083 /* ProjectCreateViewController.swift */; };
 		9B0BF76A2636DB4A0072A083 /* ProjectCreateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0BF7692636DB4A0072A083 /* ProjectCreateTableViewCell.swift */; };
 		9B0EF5C326298C4100BFDAF6 /* MainTodoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EF5C226298C4100BFDAF6 /* MainTodoCollectionViewCell.swift */; };
+		9B12C26B2637CDAE00DDFE9E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B12C2692637CDAE00DDFE9E /* Model.xcdatamodeld */; };
 		9B1875442635C09D00C8FD98 /* UICollectionViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1875432635C09D00C8FD98 /* UICollectionViewCell+.swift */; };
 		9B2104B4262C0BAA004C24ED /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2104B3262C0BAA004C24ED /* Colors.swift */; };
 		9B2104B7262C146C004C24ED /* CalendarTagColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2104B6262C146C004C24ED /* CalendarTagColorCollectionViewCell.swift */; };
@@ -47,6 +48,7 @@
 		9B0BF7662636CF030072A083 /* ProjectCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateViewController.swift; sourceTree = "<group>"; };
 		9B0BF7692636DB4A0072A083 /* ProjectCreateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateTableViewCell.swift; sourceTree = "<group>"; };
 		9B0EF5C226298C4100BFDAF6 /* MainTodoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTodoCollectionViewCell.swift; sourceTree = "<group>"; };
+		9B12C26A2637CDAE00DDFE9E /* Todo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Todo.xcdatamodel; sourceTree = "<group>"; };
 		9B1875432635C09D00C8FD98 /* UICollectionViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+.swift"; sourceTree = "<group>"; };
 		9B2104B3262C0BAA004C24ED /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		9B2104B6262C146C004C24ED /* CalendarTagColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTagColorCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				9B0BDDFD26282944009F4552 /* Model */,
 				9B0BDDFE26282984009F4552 /* ViewModel */,
 				9B0BDDFC2628293E009F4552 /* ViewController */,
+				9B12C2692637CDAE00DDFE9E /* Model.xcdatamodeld */,
 			);
 			path = proTodo;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				9B91D6F5262B256A00153A8F /* Tag.swift in Sources */,
 				9B0BDE0D26282AE0009F4552 /* Color+.swift in Sources */,
 				9B0BF7672636CF030072A083 /* ProjectCreateViewController.swift in Sources */,
+				9B12C26B2637CDAE00DDFE9E /* Model.xcdatamodeld in Sources */,
 				9BC9304325BEB6EB00A27000 /* MainViewController.swift in Sources */,
 				9B3036142341C24E0094550A /* CustomSegmentedControl.swift in Sources */,
 				9B2104C5262D728C004C24ED /* ProjectBoardTableViewCell.swift in Sources */,
@@ -560,6 +564,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9B12C2692637CDAE00DDFE9E /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9B12C26A2637CDAE00DDFE9E /* Todo.xcdatamodel */,
+			);
+			currentVersion = 9B12C26A2637CDAE00DDFE9E /* Todo.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9B3036042341C24E0094550A /* Project object */;
 }
