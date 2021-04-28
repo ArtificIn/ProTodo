@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 extension UIColor {
+    class var deepBlue: UIColor { return .colorRGBHex(hex: 0x625FDC)}
+    
     class func colorRGBHex(hex:Int, alpha: Float = 1.0) -> UIColor {
         let r = Float((hex >> 16) & 0xFF)
         let g = Float((hex >> 8) & 0xFF)
