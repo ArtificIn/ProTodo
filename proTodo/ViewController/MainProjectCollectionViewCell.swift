@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MainProjectCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var tableView: UITableView! {
@@ -17,21 +18,60 @@ class MainProjectCollectionViewCell: UICollectionViewCell {
     }
     
     static let CellID = "MainProjectCollectionViewCell"
+    var models : [ManagedProject] = []
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var delegate : MainViewControllerDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        getAllItems()
+    }
+    
+    // Core Data
+    func getAllItems(){
+        do {
+            models = try context.fetch(ManagedProject.fetchRequest())
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        } catch {
+            // 현재 fetch가 안되고 있음
+            // error
+        }
+    }
+    
+    private func deleteItems(item: ManagedProject) {
+        context.delete(item)
+        
+        do {
+            try context.save()
+        } catch {
+            
+        }
+    }
+    
+    private func updateItem(item: ManagedProject, newItem: ManagedProject) {
+        item.name = newItem.name
+        item.list = newItem.list
+        item.startDate = newItem.startDate
+        item.endDate = newItem.endDate
+        
+        do {
+            try context.save()
+        } catch {
+            
+        }
     }
 }
 
 extension MainProjectCollectionViewCell : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ProjectModel.shared.list.count
+        return models.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProjectTableViewCell.CellID) as! ProjectTableViewCell
-        cell.bindViewModel(project: ProjectModel.shared.list[indexPath.row])
+        cell.bindViewModel(project: models[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }

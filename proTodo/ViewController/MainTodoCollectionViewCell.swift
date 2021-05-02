@@ -27,15 +27,16 @@ class MainTodoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     
     static let cellID = "MainTodoCollectionViewCell"
-    private lazy var list : [NSManagedObject] = {
-        return self.fetchList()
-    }()
+    private var models : [ManagedTodo] = []
     var isReapeat : Bool = false
+    
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func awakeFromNib() {
         super.awakeFromNib()
         dateSetting()
         handlePanGesture()
+        getAllItems()
     }
 
     private func dateSetting(){
@@ -48,26 +49,61 @@ class MainTodoCollectionViewCell: UICollectionViewCell {
         dateLabel.attributedText = month
     }
     
-    private func fetchList() -> [NSManagedObject] {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Todo")
-        let result = try! context.fetch(fetchRequest)
+    // Core Data
+    
+    private func getAllItems() {
+        do {
+            models = try context.fetch(ManagedTodo.fetchRequest())
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        } catch {
+            // error
+        }
+    }
+    
+    private func createItem(name: String) {
+        let newItem = ManagedTodo(context: context)
+        newItem.name = name
         
-        return result
+        do {
+            try context.save()
+            getAllItems()
+        } catch {
+            // error
+        }
+    }
+    
+    private func deleteItem(item: ManagedTodo) {
+        context.delete(item)
+        
+        do {
+            try context.save()
+        } catch {
+            // error
+        }
+    }
+    
+    private func updateItem(item: ManagedTodo, newItem: ManagedTodo){
+        item.name = newItem.name
+        
+        do {
+            try context.save()
+        } catch {
+            // error
+        }
     }
 }
 
 extension MainTodoCollectionViewCell : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.count
+        return models.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let todo = TodoModel.shared.list[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: CalendarTodoTableViewCell.CellID) as! CalendarTodoTableViewCell
             
-        cell.bindViewModel(todo: list[indexPath.row])
+        cell.bindViewModel(todo: models[indexPath.row])
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
             
         return cell

@@ -11,14 +11,20 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    // Database
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "Chapter07_CoreData")
+        let container = NSPersistentContainer(name: "Model")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
         return container
+    }()
+    
+    lazy var managedObjectModel : NSManagedObjectModel? = {
+        guard let modelURL = Bundle.main.url(forResource: "Model", withExtension: "momd") else { return nil }
+        return NSManagedObjectModel(contentsOf: modelURL)
     }()
     
     // MARK: - Core Data Saving support

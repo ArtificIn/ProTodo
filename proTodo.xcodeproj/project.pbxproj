@@ -32,6 +32,16 @@
 		9B91D6F1262B244100153A8F /* CalendarTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B91D6F0262B244100153A8F /* CalendarTagCollectionViewCell.swift */; };
 		9B91D6F5262B256A00153A8F /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B91D6F4262B256A00153A8F /* Tag.swift */; };
 		9B9FEC6F24924AE400162F27 /* CalendarAddTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9FEC6E24924AE400162F27 /* CalendarAddTodoViewController.swift */; };
+		9BC7FE86263E7635001E7387 /* ManagedTodo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE84263E7635001E7387 /* ManagedTodo+CoreDataProperties.swift */; };
+		9BC7FE87263E7635001E7387 /* ManagedTodo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE85263E7635001E7387 /* ManagedTodo+CoreDataClass.swift */; };
+		9BC7FE8D263E76A6001E7387 /* ManagedProject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE89263E76A6001E7387 /* ManagedProject+CoreDataClass.swift */; };
+		9BC7FE8E263E76A6001E7387 /* ManagedTag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE8A263E76A6001E7387 /* ManagedTag+CoreDataClass.swift */; };
+		9BC7FE8F263E76A6001E7387 /* ManagedProject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE8B263E76A6001E7387 /* ManagedProject+CoreDataProperties.swift */; };
+		9BC7FE90263E76A6001E7387 /* ManagedTag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE8C263E76A6001E7387 /* ManagedTag+CoreDataProperties.swift */; };
+		9BC7FE97263E80F3001E7387 /* ProjectBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE96263E80F3001E7387 /* ProjectBoard.swift */; };
+		9BC7FE9A263E830A001E7387 /* ProCoreDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE99263E830A001E7387 /* ProCoreDataDelegate.swift */; };
+		9BC7FE9E263E8653001E7387 /* ManagedProjectBoard+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE9C263E8653001E7387 /* ManagedProjectBoard+CoreDataClass.swift */; };
+		9BC7FE9F263E8653001E7387 /* ManagedProjectBoard+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE9D263E8653001E7387 /* ManagedProjectBoard+CoreDataProperties.swift */; };
 		9BC9304325BEB6EB00A27000 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9304225BEB6EB00A27000 /* MainViewController.swift */; };
 		9BF2BF0626355C91006794F1 /* ProjectBoardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2BF0526355C91006794F1 /* ProjectBoardCollectionViewCell.swift */; };
 		9BF4F08A2629757300CFF96E /* MainProjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4F0892629757300CFF96E /* MainProjectCollectionViewCell.swift */; };
@@ -69,6 +79,16 @@
 		9B91D6F0262B244100153A8F /* CalendarTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		9B91D6F4262B256A00153A8F /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		9B9FEC6E24924AE400162F27 /* CalendarAddTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAddTodoViewController.swift; sourceTree = "<group>"; };
+		9BC7FE84263E7635001E7387 /* ManagedTodo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedTodo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9BC7FE85263E7635001E7387 /* ManagedTodo+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedTodo+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9BC7FE89263E76A6001E7387 /* ManagedProject+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedProject+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9BC7FE8A263E76A6001E7387 /* ManagedTag+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedTag+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9BC7FE8B263E76A6001E7387 /* ManagedProject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedProject+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9BC7FE8C263E76A6001E7387 /* ManagedTag+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedTag+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9BC7FE96263E80F3001E7387 /* ProjectBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectBoard.swift; sourceTree = "<group>"; };
+		9BC7FE99263E830A001E7387 /* ProCoreDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProCoreDataDelegate.swift; sourceTree = "<group>"; };
+		9BC7FE9C263E8653001E7387 /* ManagedProjectBoard+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedProjectBoard+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9BC7FE9D263E8653001E7387 /* ManagedProjectBoard+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedProjectBoard+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9BC9304225BEB6EB00A27000 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9BF2BF0526355C91006794F1 /* ProjectBoardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectBoardCollectionViewCell.swift; sourceTree = "<group>"; };
 		9BF4F0892629757300CFF96E /* MainProjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProjectCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -111,10 +131,12 @@
 		9B0BDDFD26282944009F4552 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9BC7FE74263E7580001E7387 /* CoreData */,
 				9B5E286C2341F44800750096 /* Todo.swift */,
 				9BF4F0952629772B00CFF96E /* Project.swift */,
 				9B91D6F4262B256A00153A8F /* Tag.swift */,
 				9B2104B3262C0BAA004C24ED /* Colors.swift */,
+				9BC7FE96263E80F3001E7387 /* ProjectBoard.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -143,6 +165,7 @@
 				9B8DA4742341EFE300096A0E /* Checkbox.swift */,
 				9B3036132341C24E0094550A /* CustomSegmentedControl.swift */,
 				9B2104BC262D52B0004C24ED /* LabelCollectionViewLayout.swift */,
+				9BC7FE99263E830A001E7387 /* ProCoreDataDelegate.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -183,13 +206,13 @@
 			children = (
 				9B3036152341C24E0094550A /* Main.storyboard */,
 				9B30361A2341C24F0094550A /* LaunchScreen.storyboard */,
+				9B12C2692637CDAE00DDFE9E /* Model.xcdatamodeld */,
 				9B0BDDFF26282989009F4552 /* Supporting Files */,
 				9B3036272341C31E0094550A /* Extension */,
 				9B0BDE0626282A46009F4552 /* Resource */,
 				9B0BDDFD26282944009F4552 /* Model */,
 				9B0BDDFE26282984009F4552 /* ViewModel */,
 				9B0BDDFC2628293E009F4552 /* ViewController */,
-				9B12C2692637CDAE00DDFE9E /* Model.xcdatamodeld */,
 			);
 			path = proTodo;
 			sourceTree = "<group>";
@@ -213,6 +236,21 @@
 				9B2104B6262C146C004C24ED /* CalendarTagColorCollectionViewCell.swift */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		9BC7FE74263E7580001E7387 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				9BC7FE9C263E8653001E7387 /* ManagedProjectBoard+CoreDataClass.swift */,
+				9BC7FE9D263E8653001E7387 /* ManagedProjectBoard+CoreDataProperties.swift */,
+				9BC7FE89263E76A6001E7387 /* ManagedProject+CoreDataClass.swift */,
+				9BC7FE8B263E76A6001E7387 /* ManagedProject+CoreDataProperties.swift */,
+				9BC7FE8A263E76A6001E7387 /* ManagedTag+CoreDataClass.swift */,
+				9BC7FE8C263E76A6001E7387 /* ManagedTag+CoreDataProperties.swift */,
+				9BC7FE85263E7635001E7387 /* ManagedTodo+CoreDataClass.swift */,
+				9BC7FE84263E7635001E7387 /* ManagedTodo+CoreDataProperties.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		C64F041D20884C870EF9E317 /* Pods */ = {
@@ -346,6 +384,9 @@
 				9BC9304325BEB6EB00A27000 /* MainViewController.swift in Sources */,
 				9B3036142341C24E0094550A /* CustomSegmentedControl.swift in Sources */,
 				9B2104C5262D728C004C24ED /* ProjectBoardTableViewCell.swift in Sources */,
+				9BC7FE8D263E76A6001E7387 /* ManagedProject+CoreDataClass.swift in Sources */,
+				9BC7FE8F263E76A6001E7387 /* ManagedProject+CoreDataProperties.swift in Sources */,
+				9BC7FE86263E7635001E7387 /* ManagedTodo+CoreDataProperties.swift in Sources */,
 				9B9FEC6F24924AE400162F27 /* CalendarAddTodoViewController.swift in Sources */,
 				9B2104B7262C146C004C24ED /* CalendarTagColorCollectionViewCell.swift in Sources */,
 				9B0EF5C326298C4100BFDAF6 /* MainTodoCollectionViewCell.swift in Sources */,
@@ -354,15 +395,22 @@
 				9BF4F08A2629757300CFF96E /* MainProjectCollectionViewCell.swift in Sources */,
 				9B0BDE0826282A68009F4552 /* Date+.swift in Sources */,
 				9BF2BF0626355C91006794F1 /* ProjectBoardCollectionViewCell.swift in Sources */,
+				9BC7FE90263E76A6001E7387 /* ManagedTag+CoreDataProperties.swift in Sources */,
 				9B3036122341C24E0094550A /* SceneDelegate.swift in Sources */,
 				9B0BF76A2636DB4A0072A083 /* ProjectCreateTableViewCell.swift in Sources */,
+				9BC7FE9A263E830A001E7387 /* ProCoreDataDelegate.swift in Sources */,
 				9B1875442635C09D00C8FD98 /* UICollectionViewCell+.swift in Sources */,
+				9BC7FE8E263E76A6001E7387 /* ManagedTag+CoreDataClass.swift in Sources */,
+				9BC7FE97263E80F3001E7387 /* ProjectBoard.swift in Sources */,
 				9B5E286D2341F44800750096 /* Todo.swift in Sources */,
 				9B2104B4262C0BAA004C24ED /* Colors.swift in Sources */,
 				9B5E286F2341FA0500750096 /* CalendarTodoTableViewCell.swift in Sources */,
 				9BF4F09D2629856F00CFF96E /* ProjectTableViewCell.swift in Sources */,
 				9BF4F0962629772B00CFF96E /* Project.swift in Sources */,
+				9BC7FE9F263E8653001E7387 /* ManagedProjectBoard+CoreDataProperties.swift in Sources */,
 				9B2104BD262D52B0004C24ED /* LabelCollectionViewLayout.swift in Sources */,
+				9BC7FE87263E7635001E7387 /* ManagedTodo+CoreDataClass.swift in Sources */,
+				9BC7FE9E263E8653001E7387 /* ManagedProjectBoard+CoreDataClass.swift in Sources */,
 				9B91D6F1262B244100153A8F /* CalendarTagCollectionViewCell.swift in Sources */,
 				9B2104C1262D7191004C24ED /* ProjectBoardViewController.swift in Sources */,
 			);

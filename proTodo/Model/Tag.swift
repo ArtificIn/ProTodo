@@ -7,6 +7,24 @@
 //
 
 import Foundation
+import CoreData
+
+struct Tag: Equatable {
+    var id : Int
+    var name : String
+    var color : Int
+    var objectID : NSManagedObjectID?
+    
+    init(id: Int = 0, name: String, color : Int) {
+        self.id = id
+        self.name = name
+        self.color = color
+    }
+}
+
+func ==(lhs: Tag, rhs: Tag) -> Bool {
+    return lhs.id == rhs.id && lhs.name == rhs.name
+}
 
 struct Tag2 : Equatable, Hashable, Identifiable, Codable {
     let id : Int

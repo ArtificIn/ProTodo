@@ -36,6 +36,8 @@ class MainViewController: UIViewController {
     
     private var segmentControl : CustomSegmentedControl?
     private var segmentNumber = 0
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private var projectModels : [ManagedProject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +98,7 @@ extension MainViewController : MainViewControllerDelegate {
     }
     
     func refreshMainViewController() {
+        print("refresh!")
         pageCollectionView.reloadData()
     }
 }

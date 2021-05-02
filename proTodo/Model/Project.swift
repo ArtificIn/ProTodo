@@ -8,39 +8,12 @@
 
 import Foundation
 
-enum Category : String {
-    case todoList
-    case doingList
-    case doneList
-    
-    func getCount() -> Int {
-        switch self {
-        case .todoList: return 0
-        case .doingList: return 1
-        case .doneList: return 2
-        }
-    }
-    
-    func getName() -> String {
-        switch self {
-        case .todoList : return "Todo"
-        case .doingList : return "Doing"
-        case .doneList : return "Done"
-        }
-    }
-}
-
-struct ProjectBoard : Identifiable {
-    let id : Int
-    var category : Category
-    var todoList : [Todo2]
-}
 
 struct Project2 {
     var name : String
     var startDate : Date
     var endDate : Date?
-    var list : [ProjectBoard] = []
+    var list : [ManagedProjectBoard] = []
 }
 
 class ProjectModel {
@@ -56,16 +29,16 @@ class ProjectModel {
     }
     
     private func defaultData() -> [Project2] {
-        let project = Project2(name: "기말고사", startDate: Date() - (86400 * 3), endDate: Date() + (86400 * 12),list: projectDefaultData())
+        let project = Project2(name: "기말고사", startDate: Date() - (86400 * 3), endDate: Date() + (86400 * 12),list: [])
         return [project]
     }
     
-    func projectDefaultData() -> [ProjectBoard] {
-        let p1 = ProjectBoard(id: 0, category: .todoList, todoList: TodoModel.shared.defaultData())
-        let p2 = ProjectBoard(id: 1, category: .doingList, todoList: [])
-        let p3 = ProjectBoard(id: 2, category: .doneList, todoList: [])
-        
-        return [p1, p2, p3]
-    }
+//    func projectDefaultData() -> [ProjectBoard] {
+//        let p1 = ProjectBoard(id: 0, category: .todoList, todoList: TodoModel.shared.defaultData())
+//        let p2 = ProjectBoard(id: 1, category: .doingList, todoList: [])
+//        let p3 = ProjectBoard(id: 2, category: .doneList, todoList: [])
+//
+//        return [p1, p2, p3]
+//    }
 }
 

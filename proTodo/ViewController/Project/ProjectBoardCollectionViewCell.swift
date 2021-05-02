@@ -20,15 +20,16 @@ class ProjectBoardCollectionViewCell: UICollectionViewCell {
     }
     
     static let cellID = "ProjectBoardCollectionViewCell"
-    var board : ProjectBoard?
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var board : ManagedProjectBoard?
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    func bindViewModel(board : ProjectBoard) {
+    func bindViewModel(board : ManagedProjectBoard) {
         self.board = board
-        boardNameLabel.text = board.category.getName()
+        boardNameLabel.text = board.category
     }
 }
 
@@ -36,13 +37,13 @@ class ProjectBoardCollectionViewCell: UICollectionViewCell {
 extension ProjectBoardCollectionViewCell : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let b = board else { return 0 }
-        return b.todoList.count
+        return b.todoList?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let b = board else { return UITableViewCell() }
         let cell = tableView.dequeueReusableCell(withIdentifier: ProjectBoardTableViewCell.cellID) as! ProjectBoardTableViewCell
-        cell.bindViewModel(todo: b.todoList[indexPath.row])
+//        cell.bindViewModel(todo: b.todoList[indexPath.row])
         return cell
     }
 }
@@ -81,7 +82,7 @@ extension ProjectBoardCollectionViewCell : UITableViewDropDelegate {
             for (index, value) in subject.enumerated() {
                 let indexPath = IndexPath(row: destinationIndexPath.row + index, section: destinationIndexPath.section)
                 
-                self?.board!.todoList.insert(value, at: indexPath.row)
+//                self?.board!.todoList.insert(value, at: indexPath.row)
                 indexPaths.append(indexPath)
             }
             
