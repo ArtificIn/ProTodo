@@ -13,7 +13,7 @@ struct Project2 {
     var name : String
     var startDate : Date
     var endDate : Date?
-    var list : [ManagedProjectBoard] = []
+    var list : [ProjectBoard2] = []
 }
 
 class ProjectModel {

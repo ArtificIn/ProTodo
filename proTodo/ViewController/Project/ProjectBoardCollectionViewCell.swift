@@ -21,15 +21,15 @@ class ProjectBoardCollectionViewCell: UICollectionViewCell {
     
     static let cellID = "ProjectBoardCollectionViewCell"
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var board : ManagedProjectBoard?
+    var board : ProjectBoard2?
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    func bindViewModel(board : ManagedProjectBoard) {
+    func bindViewModel(board : ProjectBoard2) {
         self.board = board
-        boardNameLabel.text = board.category
+        boardNameLabel.text = ""
     }
 }
 
@@ -37,7 +37,7 @@ class ProjectBoardCollectionViewCell: UICollectionViewCell {
 extension ProjectBoardCollectionViewCell : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let b = board else { return 0 }
-        return b.todoList?.count ?? 0
+        return b.list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

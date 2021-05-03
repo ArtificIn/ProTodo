@@ -30,13 +30,13 @@ class MainProjectCollectionViewCell: UICollectionViewCell {
     // Core Data
     func getAllItems(){
         do {
-            models = try context.fetch(ManagedProject.fetchRequest())
+            print("calling project data...")
+            self.models = try context.fetch(ManagedProject.fetchRequest())
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         } catch {
-            // 현재 fetch가 안되고 있음
-            // error
+            print("MainProjectCC - project를 가져올 수 없습니다. error :", error)
         }
     }
     
@@ -46,20 +46,20 @@ class MainProjectCollectionViewCell: UICollectionViewCell {
         do {
             try context.save()
         } catch {
-            
+            print("MainProjectCC - project를 삭제할 수 없습니다. error:",error)
         }
     }
     
     private func updateItem(item: ManagedProject, newItem: ManagedProject) {
         item.name = newItem.name
-        item.list = newItem.list
+        item.boardList = newItem.boardList
         item.startDate = newItem.startDate
         item.endDate = newItem.endDate
         
         do {
             try context.save()
         } catch {
-            
+            print("MainProjectCC - project를 수정할 수  없습니다. error:",error)
         }
     }
 }

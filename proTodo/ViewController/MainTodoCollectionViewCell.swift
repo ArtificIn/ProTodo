@@ -58,7 +58,7 @@ class MainTodoCollectionViewCell: UICollectionViewCell {
                 self.tableView.reloadData()
             }
         } catch {
-            // error
+            print("MainTodoCC - Todo를 가져올 수 없습니다. error:",error)
         }
     }
     
@@ -70,7 +70,7 @@ class MainTodoCollectionViewCell: UICollectionViewCell {
             try context.save()
             getAllItems()
         } catch {
-            // error
+            print("MainTodoCC - Todo를 생성할 수 없습니다. error:",error)
         }
     }
     
@@ -80,7 +80,7 @@ class MainTodoCollectionViewCell: UICollectionViewCell {
         do {
             try context.save()
         } catch {
-            // error
+            print("MainTodoCC - Todo를 삭제할 수 없습니다. error:",error)
         }
     }
     
@@ -90,7 +90,7 @@ class MainTodoCollectionViewCell: UICollectionViewCell {
         do {
             try context.save()
         } catch {
-            // error
+            print("MainTodoCC - Todo를 수정할 수 없습니다. error:",error)
         }
     }
 }

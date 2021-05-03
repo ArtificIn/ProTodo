@@ -19,6 +19,7 @@ class MainViewController: UIViewController {
         didSet {
             pageCollectionView.delegate = self
             pageCollectionView.dataSource = self
+            pageCollectionView.isScrollEnabled = false
         }
     }
     

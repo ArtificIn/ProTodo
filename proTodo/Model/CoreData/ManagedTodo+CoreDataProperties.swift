@@ -2,7 +2,7 @@
 //  ManagedTodo+CoreDataProperties.swift
 //  
 //
-//  Created by 성다연 on 2021/05/02.
+//  Created by 성다연 on 2021/05/03.
 //
 //
 
@@ -22,6 +22,24 @@ extension ManagedTodo {
     @NSManaged public var isRepeating: Int32
     @NSManaged public var name: String?
     @NSManaged public var startDate: Date?
-    @NSManaged public var tag: [ManagedTag]?
+    @NSManaged public var board: ManagedProjectBoard?
+    @NSManaged public var tag: NSSet?
+
+}
+
+// MARK: Generated accessors for tag
+extension ManagedTodo {
+
+    @objc(addTagObject:)
+    @NSManaged public func addToTag(_ value: ManagedTag)
+
+    @objc(removeTagObject:)
+    @NSManaged public func removeFromTag(_ value: ManagedTag)
+
+    @objc(addTag:)
+    @NSManaged public func addToTag(_ values: NSSet)
+
+    @objc(removeTag:)
+    @NSManaged public func removeFromTag(_ values: NSSet)
 
 }

@@ -2,7 +2,7 @@
 //  ManagedTag+CoreDataProperties.swift
 //  
 //
-//  Created by 성다연 on 2021/05/02.
+//  Created by 성다연 on 2021/05/03.
 //
 //
 
@@ -18,5 +18,6 @@ extension ManagedTag {
 
     @NSManaged public var color: Int32
     @NSManaged public var name: String?
+    @NSManaged public var todo: ManagedTodo?
 
 }

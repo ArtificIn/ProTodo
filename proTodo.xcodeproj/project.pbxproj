@@ -23,25 +23,20 @@
 		9B3036102341C24E0094550A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B30360F2341C24E0094550A /* AppDelegate.swift */; };
 		9B3036122341C24E0094550A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3036112341C24E0094550A /* SceneDelegate.swift */; };
 		9B3036142341C24E0094550A /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3036132341C24E0094550A /* CustomSegmentedControl.swift */; };
-		9B3036172341C24E0094550A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B3036152341C24E0094550A /* Main.storyboard */; };
-		9B3036192341C24F0094550A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B3036182341C24F0094550A /* Assets.xcassets */; };
-		9B30361C2341C24F0094550A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B30361A2341C24F0094550A /* LaunchScreen.storyboard */; };
+		9B32B689263FED5800F386C7 /* ManagedProject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32B66C263FEB8600F386C7 /* ManagedProject+CoreDataClass.swift */; };
+		9B32B68A263FED5800F386C7 /* ManagedProject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32B666263FEB8600F386C7 /* ManagedProject+CoreDataProperties.swift */; };
+		9B32B68D263FED5800F386C7 /* ManagedTag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32B667263FEB8600F386C7 /* ManagedTag+CoreDataClass.swift */; };
+		9B32B68E263FED5800F386C7 /* ManagedTag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32B669263FEB8600F386C7 /* ManagedTag+CoreDataProperties.swift */; };
+		9B32B68F263FED5800F386C7 /* ManagedTodo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32B668263FEB8600F386C7 /* ManagedTodo+CoreDataClass.swift */; };
+		9B32B690263FED5800F386C7 /* ManagedTodo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32B665263FEB8600F386C7 /* ManagedTodo+CoreDataProperties.swift */; };
 		9B5E286D2341F44800750096 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5E286C2341F44800750096 /* Todo.swift */; };
 		9B5E286F2341FA0500750096 /* CalendarTodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5E286E2341FA0500750096 /* CalendarTodoTableViewCell.swift */; };
 		9B8DA4752341EFE300096A0E /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DA4742341EFE300096A0E /* Checkbox.swift */; };
 		9B91D6F1262B244100153A8F /* CalendarTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B91D6F0262B244100153A8F /* CalendarTagCollectionViewCell.swift */; };
 		9B91D6F5262B256A00153A8F /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B91D6F4262B256A00153A8F /* Tag.swift */; };
 		9B9FEC6F24924AE400162F27 /* CalendarAddTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9FEC6E24924AE400162F27 /* CalendarAddTodoViewController.swift */; };
-		9BC7FE86263E7635001E7387 /* ManagedTodo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE84263E7635001E7387 /* ManagedTodo+CoreDataProperties.swift */; };
-		9BC7FE87263E7635001E7387 /* ManagedTodo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE85263E7635001E7387 /* ManagedTodo+CoreDataClass.swift */; };
-		9BC7FE8D263E76A6001E7387 /* ManagedProject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE89263E76A6001E7387 /* ManagedProject+CoreDataClass.swift */; };
-		9BC7FE8E263E76A6001E7387 /* ManagedTag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE8A263E76A6001E7387 /* ManagedTag+CoreDataClass.swift */; };
-		9BC7FE8F263E76A6001E7387 /* ManagedProject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE8B263E76A6001E7387 /* ManagedProject+CoreDataProperties.swift */; };
-		9BC7FE90263E76A6001E7387 /* ManagedTag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE8C263E76A6001E7387 /* ManagedTag+CoreDataProperties.swift */; };
 		9BC7FE97263E80F3001E7387 /* ProjectBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE96263E80F3001E7387 /* ProjectBoard.swift */; };
 		9BC7FE9A263E830A001E7387 /* ProCoreDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE99263E830A001E7387 /* ProCoreDataDelegate.swift */; };
-		9BC7FE9E263E8653001E7387 /* ManagedProjectBoard+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE9C263E8653001E7387 /* ManagedProjectBoard+CoreDataClass.swift */; };
-		9BC7FE9F263E8653001E7387 /* ManagedProjectBoard+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE9D263E8653001E7387 /* ManagedProjectBoard+CoreDataProperties.swift */; };
 		9BC9304325BEB6EB00A27000 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9304225BEB6EB00A27000 /* MainViewController.swift */; };
 		9BF2BF0626355C91006794F1 /* ProjectBoardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2BF0526355C91006794F1 /* ProjectBoardCollectionViewCell.swift */; };
 		9BF4F08A2629757300CFF96E /* MainProjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4F0892629757300CFF96E /* MainProjectCollectionViewCell.swift */; };
@@ -73,22 +68,22 @@
 		9B3036182341C24F0094550A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B30361B2341C24F0094550A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B30361D2341C24F0094550A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B32B665263FEB8600F386C7 /* ManagedTodo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedTodo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9B32B666263FEB8600F386C7 /* ManagedProject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedProject+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9B32B667263FEB8600F386C7 /* ManagedTag+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedTag+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9B32B668263FEB8600F386C7 /* ManagedTodo+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedTodo+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9B32B669263FEB8600F386C7 /* ManagedTag+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedTag+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9B32B66A263FEB8600F386C7 /* ManagedProjectBoard+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedProjectBoard+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9B32B66B263FEB8600F386C7 /* ManagedProjectBoard+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedProjectBoard+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9B32B66C263FEB8600F386C7 /* ManagedProject+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedProject+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9B5E286C2341F44800750096 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		9B5E286E2341FA0500750096 /* CalendarTodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTodoTableViewCell.swift; sourceTree = "<group>"; };
 		9B8DA4742341EFE300096A0E /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		9B91D6F0262B244100153A8F /* CalendarTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		9B91D6F4262B256A00153A8F /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		9B9FEC6E24924AE400162F27 /* CalendarAddTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAddTodoViewController.swift; sourceTree = "<group>"; };
-		9BC7FE84263E7635001E7387 /* ManagedTodo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedTodo+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		9BC7FE85263E7635001E7387 /* ManagedTodo+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedTodo+CoreDataClass.swift"; sourceTree = "<group>"; };
-		9BC7FE89263E76A6001E7387 /* ManagedProject+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedProject+CoreDataClass.swift"; sourceTree = "<group>"; };
-		9BC7FE8A263E76A6001E7387 /* ManagedTag+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedTag+CoreDataClass.swift"; sourceTree = "<group>"; };
-		9BC7FE8B263E76A6001E7387 /* ManagedProject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedProject+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		9BC7FE8C263E76A6001E7387 /* ManagedTag+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedTag+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9BC7FE96263E80F3001E7387 /* ProjectBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectBoard.swift; sourceTree = "<group>"; };
 		9BC7FE99263E830A001E7387 /* ProCoreDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProCoreDataDelegate.swift; sourceTree = "<group>"; };
-		9BC7FE9C263E8653001E7387 /* ManagedProjectBoard+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedProjectBoard+CoreDataClass.swift"; sourceTree = "<group>"; };
-		9BC7FE9D263E8653001E7387 /* ManagedProjectBoard+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedProjectBoard+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9BC9304225BEB6EB00A27000 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9BF2BF0526355C91006794F1 /* ProjectBoardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectBoardCollectionViewCell.swift; sourceTree = "<group>"; };
 		9BF4F0892629757300CFF96E /* MainProjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProjectCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -241,14 +236,14 @@
 		9BC7FE74263E7580001E7387 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				9BC7FE9C263E8653001E7387 /* ManagedProjectBoard+CoreDataClass.swift */,
-				9BC7FE9D263E8653001E7387 /* ManagedProjectBoard+CoreDataProperties.swift */,
-				9BC7FE89263E76A6001E7387 /* ManagedProject+CoreDataClass.swift */,
-				9BC7FE8B263E76A6001E7387 /* ManagedProject+CoreDataProperties.swift */,
-				9BC7FE8A263E76A6001E7387 /* ManagedTag+CoreDataClass.swift */,
-				9BC7FE8C263E76A6001E7387 /* ManagedTag+CoreDataProperties.swift */,
-				9BC7FE85263E7635001E7387 /* ManagedTodo+CoreDataClass.swift */,
-				9BC7FE84263E7635001E7387 /* ManagedTodo+CoreDataProperties.swift */,
+				9B32B66C263FEB8600F386C7 /* ManagedProject+CoreDataClass.swift */,
+				9B32B666263FEB8600F386C7 /* ManagedProject+CoreDataProperties.swift */,
+				9B32B66B263FEB8600F386C7 /* ManagedProjectBoard+CoreDataClass.swift */,
+				9B32B66A263FEB8600F386C7 /* ManagedProjectBoard+CoreDataProperties.swift */,
+				9B32B667263FEB8600F386C7 /* ManagedTag+CoreDataClass.swift */,
+				9B32B669263FEB8600F386C7 /* ManagedTag+CoreDataProperties.swift */,
+				9B32B668263FEB8600F386C7 /* ManagedTodo+CoreDataClass.swift */,
+				9B32B665263FEB8600F386C7 /* ManagedTodo+CoreDataProperties.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -322,9 +317,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B30361C2341C24F0094550A /* LaunchScreen.storyboard in Resources */,
-				9B3036192341C24F0094550A /* Assets.xcassets in Resources */,
-				9B3036172341C24E0094550A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +369,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B32B689263FED5800F386C7 /* ManagedProject+CoreDataClass.swift in Sources */,
+				9B32B68A263FED5800F386C7 /* ManagedProject+CoreDataProperties.swift in Sources */,
+				9B32B68D263FED5800F386C7 /* ManagedTag+CoreDataClass.swift in Sources */,
+				9B32B68E263FED5800F386C7 /* ManagedTag+CoreDataProperties.swift in Sources */,
+				9B32B68F263FED5800F386C7 /* ManagedTodo+CoreDataClass.swift in Sources */,
+				9B32B690263FED5800F386C7 /* ManagedTodo+CoreDataProperties.swift in Sources */,
 				9B91D6F5262B256A00153A8F /* Tag.swift in Sources */,
 				9B0BDE0D26282AE0009F4552 /* Color+.swift in Sources */,
 				9B0BF7672636CF030072A083 /* ProjectCreateViewController.swift in Sources */,
@@ -384,9 +382,6 @@
 				9BC9304325BEB6EB00A27000 /* MainViewController.swift in Sources */,
 				9B3036142341C24E0094550A /* CustomSegmentedControl.swift in Sources */,
 				9B2104C5262D728C004C24ED /* ProjectBoardTableViewCell.swift in Sources */,
-				9BC7FE8D263E76A6001E7387 /* ManagedProject+CoreDataClass.swift in Sources */,
-				9BC7FE8F263E76A6001E7387 /* ManagedProject+CoreDataProperties.swift in Sources */,
-				9BC7FE86263E7635001E7387 /* ManagedTodo+CoreDataProperties.swift in Sources */,
 				9B9FEC6F24924AE400162F27 /* CalendarAddTodoViewController.swift in Sources */,
 				9B2104B7262C146C004C24ED /* CalendarTagColorCollectionViewCell.swift in Sources */,
 				9B0EF5C326298C4100BFDAF6 /* MainTodoCollectionViewCell.swift in Sources */,
@@ -395,22 +390,17 @@
 				9BF4F08A2629757300CFF96E /* MainProjectCollectionViewCell.swift in Sources */,
 				9B0BDE0826282A68009F4552 /* Date+.swift in Sources */,
 				9BF2BF0626355C91006794F1 /* ProjectBoardCollectionViewCell.swift in Sources */,
-				9BC7FE90263E76A6001E7387 /* ManagedTag+CoreDataProperties.swift in Sources */,
 				9B3036122341C24E0094550A /* SceneDelegate.swift in Sources */,
 				9B0BF76A2636DB4A0072A083 /* ProjectCreateTableViewCell.swift in Sources */,
 				9BC7FE9A263E830A001E7387 /* ProCoreDataDelegate.swift in Sources */,
 				9B1875442635C09D00C8FD98 /* UICollectionViewCell+.swift in Sources */,
-				9BC7FE8E263E76A6001E7387 /* ManagedTag+CoreDataClass.swift in Sources */,
 				9BC7FE97263E80F3001E7387 /* ProjectBoard.swift in Sources */,
 				9B5E286D2341F44800750096 /* Todo.swift in Sources */,
 				9B2104B4262C0BAA004C24ED /* Colors.swift in Sources */,
 				9B5E286F2341FA0500750096 /* CalendarTodoTableViewCell.swift in Sources */,
 				9BF4F09D2629856F00CFF96E /* ProjectTableViewCell.swift in Sources */,
 				9BF4F0962629772B00CFF96E /* Project.swift in Sources */,
-				9BC7FE9F263E8653001E7387 /* ManagedProjectBoard+CoreDataProperties.swift in Sources */,
 				9B2104BD262D52B0004C24ED /* LabelCollectionViewLayout.swift in Sources */,
-				9BC7FE87263E7635001E7387 /* ManagedTodo+CoreDataClass.swift in Sources */,
-				9BC7FE9E263E8653001E7387 /* ManagedProjectBoard+CoreDataClass.swift in Sources */,
 				9B91D6F1262B244100153A8F /* CalendarTagCollectionViewCell.swift in Sources */,
 				9B2104C1262D7191004C24ED /* ProjectBoardViewController.swift in Sources */,
 			);
@@ -558,13 +548,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NU8G5ASQP7;
 				INFOPLIST_FILE = "proTodo/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = checkStudyList.proTodo;
+				PRODUCT_BUNDLE_IDENTIFIER = dayuen.ios.protodo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -577,13 +568,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NU8G5ASQP7;
 				INFOPLIST_FILE = "proTodo/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = checkStudyList.proTodo;
+				PRODUCT_BUNDLE_IDENTIFIER = dayuen.ios.protodo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

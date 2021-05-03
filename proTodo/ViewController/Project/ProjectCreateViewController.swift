@@ -54,27 +54,7 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setBoardList()
         getAllItems()
-    }
-    
-    private func setBoardList(){
-        let board1 = ManagedProjectBoard(context: context)
-        board1.id = 0
-        board1.category = "Todo"
-        board1.todoList = []
-        
-        let board2 = ManagedProjectBoard(context: context)
-        board2.id = 1
-        board2.category = "Doing"
-        board2.todoList = []
-        
-        let board3 = ManagedProjectBoard(context: context)
-        board3.id = 2
-        board3.category = "Done"
-        board3.todoList = []
-        
-        list.append(contentsOf: [board1, board2, board3])
     }
     
     private func getAllItems() {
@@ -84,7 +64,7 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
                 self.tableView.reloadData()
             }
         } catch {
-            
+            print("ProjectCreateVC - project를 가져올 수 없습니다. error:",error)
         }
     }
     
@@ -92,28 +72,29 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
         
         let newItem = ManagedProject(context: context)
         newItem.name = name
-        newItem.list = list
+        newItem.boardList = NSSet(object: list)
         newItem.startDate = startDate
         newItem.endDate = endDate
-    
+        print("creating item...")
         do {
             try context.save()
+            print("create success!")
             getAllItems()
         } catch {
-            
+            print("ProjectCreateVC - project를 생성할 수 없습니다. error:",error)
         }
     }
     
     private func updateItem(item: ManagedProject, newItem: ManagedProject) {
         item.name = newItem.name
-        item.list = newItem.list
+        item.boardList = newItem.boardList
         item.startDate = newItem.startDate
         item.endDate = newItem.endDate
         
         do {
             try context.save()
         } catch {
-            
+            print("ProjectCreateVC - project를 수정할 수 없습니다. error:",error)
         }
     }
 }
@@ -135,7 +116,7 @@ extension ProjectCreateViewController : UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProjectCreateTableViewCell.cellID) as! ProjectCreateTableViewCell
-        let text = section == list.count ? "추가하기" : list[section].category
+        let text = section == list.count ? "추가하기" : list[section].description
         cell.boardLabel.text = text
         cell.handleBorder()
         return cell
