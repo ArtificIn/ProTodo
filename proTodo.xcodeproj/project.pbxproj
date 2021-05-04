@@ -38,6 +38,8 @@
 		9BC7FE97263E80F3001E7387 /* ProjectBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE96263E80F3001E7387 /* ProjectBoard.swift */; };
 		9BC7FE9A263E830A001E7387 /* ProCoreDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7FE99263E830A001E7387 /* ProCoreDataDelegate.swift */; };
 		9BC9304325BEB6EB00A27000 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9304225BEB6EB00A27000 /* MainViewController.swift */; };
+		9BD6B47B26411A1A00F70FDD /* Main.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = 9B3036152341C24E0094550A /* Main.storyboard */; };
+		9BD6B47D26411A6400F70FDD /* Assets.xcassets in Sources */ = {isa = PBXBuildFile; fileRef = 9B3036182341C24F0094550A /* Assets.xcassets */; };
 		9BF2BF0626355C91006794F1 /* ProjectBoardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2BF0526355C91006794F1 /* ProjectBoardCollectionViewCell.swift */; };
 		9BF4F08A2629757300CFF96E /* MainProjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4F0892629757300CFF96E /* MainProjectCollectionViewCell.swift */; };
 		9BF4F0962629772B00CFF96E /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4F0952629772B00CFF96E /* Project.swift */; };
@@ -369,6 +371,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BD6B47D26411A6400F70FDD /* Assets.xcassets in Sources */,
+				9BD6B47B26411A1A00F70FDD /* Main.storyboard in Sources */,
 				9B32B689263FED5800F386C7 /* ManagedProject+CoreDataClass.swift in Sources */,
 				9B32B68A263FED5800F386C7 /* ManagedProject+CoreDataProperties.swift in Sources */,
 				9B32B68D263FED5800F386C7 /* ManagedTag+CoreDataClass.swift in Sources */,

@@ -7,7 +7,7 @@
         <relationship name="boardList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedProjectBoard" inverseName="project" inverseEntity="ManagedProjectBoard"/>
     </entity>
     <entity name="ManagedProjectBoard" representedClassName="ManagedProjectBoard" syncable="YES" codeGenerationType="class">
-        <attribute name="category" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedProject" inverseName="boardList" inverseEntity="ManagedProject"/>
         <relationship name="todoList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedTodo" inverseName="board" inverseEntity="ManagedTodo"/>

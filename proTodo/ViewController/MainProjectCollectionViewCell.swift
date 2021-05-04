@@ -62,6 +62,10 @@ class MainProjectCollectionViewCell: UICollectionViewCell {
             print("MainProjectCC - project를 수정할 수  없습니다. error:",error)
         }
     }
+    
+    func refresh() {
+        tableView.reloadData()
+    }
 }
 
 extension MainProjectCollectionViewCell : UITableViewDelegate, UITableViewDataSource {

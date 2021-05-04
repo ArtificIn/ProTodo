@@ -29,13 +29,8 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
         text = text.trimmingCharacters(in: .whitespaces)
         
         if !text.isEmpty {
-//            let newProject = Project2(name: text, startDate: Date(), endDate: endDatePicker.date, list: list)
-            
-//            ProjectModel.shared.list.append(newProject)
             createItem(name: text, list: list, startDate: Date(), endDate: endDatePicker.date)
             
-            
-            delegate?.refreshMainViewController()
             dismiss(animated: true)
         }
     }
@@ -45,7 +40,7 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
     private var models : [ManagedProject] = []
     var delegate : MainViewControllerDelegate?
     
-    private var list : [ManagedProjectBoard] = [
+    private var list : Set<ManagedProjectBoard> = [
     ]
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -54,7 +49,29 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setCategoryList()
         getAllItems()
+    }
+    
+    private func setCategoryList(){
+        let board1 = ManagedProjectBoard(context: context)
+        board1.id = 0
+        board1.category = "Todo"
+        board1.todoList = []
+        
+        let board2 = ManagedProjectBoard(context: context)
+        board2.id = 1
+        board2.category = "Doing"
+        board2.todoList = []
+        
+        let board3 = ManagedProjectBoard(context: context)
+        board3.id = 2
+        board3.category = "Done"
+        board3.todoList = []
+        
+        list.update(with: board1)
+        list.update(with: board2)
+        list.update(with: board3)
     }
     
     private func getAllItems() {
@@ -68,17 +85,16 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    private func createItem(name : String, list : [ManagedProjectBoard], startDate: Date, endDate: Date ) {
+    private func createItem(name : String, list : Set<ManagedProjectBoard>, startDate: Date, endDate: Date ) {
         
         let newItem = ManagedProject(context: context)
         newItem.name = name
-        newItem.boardList = NSSet(object: list)
+        newItem.boardList = list
         newItem.startDate = startDate
         newItem.endDate = endDate
-        print("creating item...")
+    
         do {
             try context.save()
-            print("create success!")
             getAllItems()
         } catch {
             print("ProjectCreateVC - project를 생성할 수 없습니다. error:",error)
@@ -116,7 +132,7 @@ extension ProjectCreateViewController : UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProjectCreateTableViewCell.cellID) as! ProjectCreateTableViewCell
-        let text = section == list.count ? "추가하기" : list[section].description
+        let text = section == list.count ? "추가하기" : list[list.index(list.startIndex, offsetBy: section)].category
         cell.boardLabel.text = text
         cell.handleBorder()
         return cell

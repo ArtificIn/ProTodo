@@ -18,7 +18,7 @@ extension ManagedProjectBoard {
 
     @NSManaged public var id: Int32
     @NSManaged public var category: String?
-    @NSManaged public var todoList: NSSet?
+    @NSManaged public var todoList: ManagedTodo?
     @NSManaged public var project: ManagedProject?
 
 }

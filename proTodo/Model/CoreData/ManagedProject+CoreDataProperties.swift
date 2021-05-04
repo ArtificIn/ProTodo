@@ -19,7 +19,7 @@ extension ManagedProject {
     @NSManaged public var endDate: Date?
     @NSManaged public var name: String?
     @NSManaged public var startDate: Date?
-    @NSManaged public var boardList: NSSet?
+    @NSManaged public var boardList: Set<ManagedProjectBoard>?
 
 }
 
