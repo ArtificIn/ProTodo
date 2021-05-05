@@ -16,7 +16,7 @@ class CalendarTodoTableViewCell: UITableViewCell {
     
     static let CellID = "CalendarTodoTableViewCell"
     var isRepeat : Bool = false
-    var listItems: Todo2?
+    var listItems: Todo?
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol MainViewControllerDelegate  {
-    func presentProjectBoardViewController(index: Int)
+    func presentProjectBoardViewController(project: ManagedProject)
     func refreshMainViewController()
 }
 
@@ -91,10 +91,10 @@ extension MainViewController : UICollectionViewDelegateFlowLayout {
 
 
 extension MainViewController : MainViewControllerDelegate {
-    func presentProjectBoardViewController(index: Int) {
+    func presentProjectBoardViewController(project: ManagedProject) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let nextVC = storyboard.instantiateViewController(identifier: ProjectBoardViewController.cellID) as ProjectBoardViewController
-        nextVC.project = ProjectModel.shared.list[index]
+        nextVC.project = project
         navigationController?.pushViewController(nextVC, animated: true)
     }
     

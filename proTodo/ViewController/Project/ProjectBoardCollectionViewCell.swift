@@ -21,15 +21,15 @@ class ProjectBoardCollectionViewCell: UICollectionViewCell {
     
     static let cellID = "ProjectBoardCollectionViewCell"
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var board : ProjectBoard2?
+    var board : ManagedProjectBoard?
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    func bindViewModel(board : ProjectBoard2) {
+    func bindViewModel(board : ManagedProjectBoard) {
         self.board = board
-        boardNameLabel.text = ""
+        boardNameLabel.text = board.category
     }
 }
 
@@ -37,13 +37,13 @@ class ProjectBoardCollectionViewCell: UICollectionViewCell {
 extension ProjectBoardCollectionViewCell : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let b = board else { return 0 }
-        return b.list.count
+        return b.todo?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let b = board else { return UITableViewCell() }
+        guard let b = board, let todos = b.todo else { return UITableViewCell() }
         let cell = tableView.dequeueReusableCell(withIdentifier: ProjectBoardTableViewCell.cellID) as! ProjectBoardTableViewCell
-//        cell.bindViewModel(todo: b.todoList[indexPath.row])
+        cell.bindViewModel(todo: todos[todos.index(todos.startIndex, offsetBy: indexPath.row)])
         return cell
     }
 }
@@ -51,7 +51,7 @@ extension ProjectBoardCollectionViewCell : UITableViewDelegate, UITableViewDataS
 
 extension ProjectBoardCollectionViewCell : UITableViewDropDelegate {
     func tableView(_ tableView: UITableView, canHandle session: UIDropSession) -> Bool {
-        return session.canLoadObjects(ofClass: Todo2.self)
+        return session.canLoadObjects(ofClass: Todo.self)
     }
     
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
@@ -75,8 +75,8 @@ extension ProjectBoardCollectionViewCell : UITableViewDropDelegate {
             destinationIndexPath = indexpath
         }
         
-        coordinator.session.loadObjects(ofClass: Todo2.self) { [weak self] items in
-            guard let subject = items as? [Todo2] else { return }
+        coordinator.session.loadObjects(ofClass: Todo.self) { [weak self] items in
+            guard let subject = items as? [Todo] else { return }
             var indexPaths = [IndexPath]()
             
             for (index, value) in subject.enumerated() {

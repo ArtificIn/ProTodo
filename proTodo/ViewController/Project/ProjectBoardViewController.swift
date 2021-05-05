@@ -14,7 +14,7 @@ class ProjectBoardViewController: UIViewController {
         didSet {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy년 MM월 dd일"
-            var date = formatter.string(from: project.startDate)
+            var date = formatter.string(from: project.startDate!)
             
             if project.endDate != nil {
                 let end = formatter.string(from: project.endDate!)
@@ -56,17 +56,19 @@ class ProjectBoardViewController: UIViewController {
     @IBOutlet weak var todoListTableViewBottomConstraint: NSLayoutConstraint!
     
     static let cellID = "ProjectBoardViewController"
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var selectIndexPath : (IndexPath, Bool)?
-    private var firstItems : [Todo2] = []
-    private var todoLists = TodoModel.shared.list
+    private var firstItems : [Todo] = []
+//    private var todoLists = TodoModel.shared.list
     
-    var project : Project2!
+    var project : ManagedProject!
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = project.name
+        navigationItem.title = project!.name
         showTodoListButton.transform = CGAffineTransform(rotationAngle: .pi)
         todoListTableViewBottomConstraint.constant = -250
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,12 +79,15 @@ class ProjectBoardViewController: UIViewController {
 
 extension ProjectBoardViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoLists.count
+        guard let b = project.boardList, let todos = b[b.index(b.startIndex, offsetBy: section)].todo else { return 0 }
+        return todos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProjectBoardTableViewCell.cellID) as! ProjectBoardTableViewCell
-        cell.bindViewModel(todo: todoLists[indexPath.row])
+        guard let b = project.boardList,
+              let todos = b[b.index(b.startIndex, offsetBy: indexPath.section)].todo else { return UITableViewCell() }
+        cell.bindViewModel(todo: todos[todos.index(todos.startIndex, offsetBy: indexPath.row)])
         return cell
     }
 }
@@ -90,7 +95,7 @@ extension ProjectBoardViewController : UITableViewDataSource, UITableViewDelegat
 
 extension ProjectBoardViewController : UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        let itemProvider = NSItemProvider(object: todoLists[indexPath.row] as NSItemProviderWriting)
+        let itemProvider = NSItemProvider(object: firstItems[indexPath.row] as NSItemProviderWriting)
         selectIndexPath = (indexPath, false)
         return [UIDragItem(itemProvider: itemProvider)]
     }
@@ -100,7 +105,6 @@ extension ProjectBoardViewController : UITableViewDragDelegate {
        
         if selectIndexPath.1 {
             
-                todoLists.remove(at: selectIndexPath.0.row)
 //                secondItems.remove(at: selectIndexPath.0.row)
             
             tableView.beginUpdates()
@@ -113,7 +117,7 @@ extension ProjectBoardViewController : UITableViewDragDelegate {
 
 extension ProjectBoardViewController : UITableViewDropDelegate {
     func tableView(_ tableView: UITableView, canHandle session: UIDropSession) -> Bool {
-        return session.canLoadObjects(ofClass: Todo2.self)
+        return session.canLoadObjects(ofClass: Todo.self)
     }
     
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
@@ -141,8 +145,8 @@ extension ProjectBoardViewController : UITableViewDropDelegate {
             destinationIndexPath = indexpath
         }
         
-        coordinator.session.loadObjects(ofClass: Todo2.self) { [weak self] items in
-            guard let subject = items as? [Todo2] else { return }
+        coordinator.session.loadObjects(ofClass: Todo.self) { [weak self] items in
+            guard let subject = items as? [Todo] else { return }
             var indexPaths = [IndexPath]()
             
             tableView.beginUpdates()
@@ -155,12 +159,14 @@ extension ProjectBoardViewController : UITableViewDropDelegate {
 
 extension ProjectBoardViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return project.list.count
+        guard let b = project.boardList else { return 0 }
+        return b.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectBoardCollectionViewCell.cellID, for: indexPath) as! ProjectBoardCollectionViewCell
-        cell.bindViewModel(board: project.list[indexPath.row])
+        guard let b = project.boardList else { return UICollectionViewCell() }
+        cell.bindViewModel(board: b[b.index(b.startIndex, offsetBy: indexPath.row)])
         cell.handleBorder()
         return cell
     }

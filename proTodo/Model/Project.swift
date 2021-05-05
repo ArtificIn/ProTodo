@@ -9,27 +9,27 @@
 import Foundation
 
 
-struct Project2 {
+struct Project {
     var name : String
     var startDate : Date
     var endDate : Date?
-    var list : [ProjectBoard2] = []
+    var list : [ProjectBoard] = []
 }
 
 class ProjectModel {
     static let shared = ProjectModel()
-    var list : [Project2] = []
+    var list : [Project] = []
     
     init() {
         list = defaultData()
     }
     
-    init(list : [Project2]) {
+    init(list : [Project]) {
         self.list = list
     }
     
-    private func defaultData() -> [Project2] {
-        let project = Project2(name: "기말고사", startDate: Date() - (86400 * 3), endDate: Date() + (86400 * 12),list: [])
+    private func defaultData() -> [Project] {
+        let project = Project(name: "기말고사", startDate: Date() - (86400 * 3), endDate: Date() + (86400 * 12),list: [])
         return [project]
     }
     

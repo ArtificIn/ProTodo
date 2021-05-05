@@ -2,7 +2,7 @@
 //  ManagedProjectBoard+CoreDataClass.swift
 //  
 //
-//  Created by 성다연 on 2021/05/03.
+//  Created by 성다연 on 2021/05/05.
 //
 //
 

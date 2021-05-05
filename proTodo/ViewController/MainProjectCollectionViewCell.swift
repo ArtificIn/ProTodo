@@ -81,7 +81,7 @@ extension MainProjectCollectionViewCell : UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.presentProjectBoardViewController(index: indexPath.row)
+        delegate?.presentProjectBoardViewController(project: models[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

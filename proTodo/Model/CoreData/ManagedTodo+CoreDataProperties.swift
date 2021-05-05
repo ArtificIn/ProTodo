@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import MobileCoreServices
 
 
 extension ManagedTodo {
@@ -18,13 +19,12 @@ extension ManagedTodo {
 
     @NSManaged public var color: Int32
     @NSManaged public var endDate: Date?
-    @NSManaged public var id: Int16
+    @NSManaged public var id: Int32
     @NSManaged public var isRepeating: Int32
-    @NSManaged public var name: String?
-    @NSManaged public var startDate: Date?
+    @NSManaged public var name: String
+    @NSManaged public var startDate: Date
     @NSManaged public var board: ManagedProjectBoard?
-    @NSManaged public var tag: NSSet?
-
+    @NSManaged public var tag: Set<ManagedTag>?
 }
 
 // MARK: Generated accessors for tag
@@ -42,4 +42,34 @@ extension ManagedTodo {
     @objc(removeTag:)
     @NSManaged public func removeFromTag(_ values: NSSet)
 
+}
+
+extension ManagedTodo {
+    func toTodo() -> Todo {
+        var tags : [Tag] = []
+        if let t = tag {
+            t.forEach { item in
+                let i = item.toTag()
+                tags.append(i)
+            }
+        }
+        let todo = Todo.init(id: Int(id), name: name, color: Int(color), startDate: startDate, endDate: endDate, isRepeating: Int(isRepeating), label: tags)
+        return todo
+    }
+    
+    func fromTodo(todo: Todo) {
+        self.id = Int32(todo.id)
+        self.name = todo.name
+        self.color = Int32(todo.color)
+        self.startDate = todo.startDate
+        self.endDate = todo.endDate
+        self.isRepeating = Int32(todo.isRepeating ?? 0)
+        
+        var tags : Set<ManagedTag> = []
+        
+        todo.label.forEach { item in
+            tags.update(with: ManagedTag.fromTag(item))
+        }
+//        self.tag =
+    }
 }

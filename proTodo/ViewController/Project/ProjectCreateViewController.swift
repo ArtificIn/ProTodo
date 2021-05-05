@@ -57,17 +57,17 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
         let board1 = ManagedProjectBoard(context: context)
         board1.id = 0
         board1.category = "Todo"
-        board1.todoList = []
+        board1.todo = []
         
         let board2 = ManagedProjectBoard(context: context)
         board2.id = 1
         board2.category = "Doing"
-        board2.todoList = []
+        board2.todo = []
         
         let board3 = ManagedProjectBoard(context: context)
         board3.id = 2
         board3.category = "Done"
-        board3.todoList = []
+        board3.todo = []
         
         list.update(with: board1)
         list.update(with: board2)

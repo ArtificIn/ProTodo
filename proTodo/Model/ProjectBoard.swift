@@ -23,7 +23,7 @@ import CoreData
     }
 }
 
-public class ProjectBoard2 : NSObject, NSCoding {
+public class ProjectBoard : NSObject, NSCoding {
     let id : Int
     let category : Category
     var list : [ManagedTodo]

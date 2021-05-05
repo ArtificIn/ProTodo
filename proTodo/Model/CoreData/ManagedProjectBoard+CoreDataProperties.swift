@@ -2,7 +2,7 @@
 //  ManagedProjectBoard+CoreDataProperties.swift
 //  
 //
-//  Created by 성다연 on 2021/05/03.
+//  Created by 성다연 on 2021/05/05.
 //
 //
 
@@ -16,26 +16,26 @@ extension ManagedProjectBoard {
         return NSFetchRequest<ManagedProjectBoard>(entityName: "ManagedProjectBoard")
     }
 
-    @NSManaged public var id: Int32
     @NSManaged public var category: String?
-    @NSManaged public var todoList: ManagedTodo?
+    @NSManaged public var id: Int32
     @NSManaged public var project: ManagedProject?
+    @NSManaged public var todo: Set<ManagedTodo>?
 
 }
 
-// MARK: Generated accessors for todoList
+// MARK: Generated accessors for todo
 extension ManagedProjectBoard {
 
-    @objc(addTodoListObject:)
-    @NSManaged public func addToTodoList(_ value: ManagedTodo)
+    @objc(addTodoObject:)
+    @NSManaged public func addToTodo(_ value: ManagedTodo)
 
-    @objc(removeTodoListObject:)
-    @NSManaged public func removeFromTodoList(_ value: ManagedTodo)
+    @objc(removeTodoObject:)
+    @NSManaged public func removeFromTodo(_ value: ManagedTodo)
 
-    @objc(addTodoList:)
-    @NSManaged public func addToTodoList(_ values: NSSet)
+    @objc(addTodo:)
+    @NSManaged public func addToTodo(_ values: NSSet)
 
-    @objc(removeTodoList:)
-    @NSManaged public func removeFromTodoList(_ values: NSSet)
+    @objc(removeTodo:)
+    @NSManaged public func removeFromTodo(_ values: NSSet)
 
 }
