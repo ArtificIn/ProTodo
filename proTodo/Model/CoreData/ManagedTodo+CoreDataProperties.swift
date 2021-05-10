@@ -65,11 +65,7 @@ extension ManagedTodo {
         self.endDate = todo.endDate
         self.isRepeating = Int32(todo.isRepeating ?? 0)
         
-        var tags : Set<ManagedTag> = []
-        
-        todo.label.forEach { item in
-            tags.update(with: ManagedTag.fromTag(item))
-        }
-//        self.tag =
+        let tags : Set<ManagedTag> = []
+        self.tag = tags
     }
 }

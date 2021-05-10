@@ -23,7 +23,7 @@ class CalendarTodoTableViewCell: UITableViewCell {
     }
     
     func bindViewModel(todo : NSManagedObject) {
-        titleLabel.text = todo.value(forKey: "name") as! String
+        titleLabel.text = todo.value(forKey: "name") as? String
         let color = todo.value(forKey: "color") as! Int
         colorView.backgroundColor = UIColor.colorRGBHex(hex: color)
     }

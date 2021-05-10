@@ -42,7 +42,7 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
             case 4:
                 isRepeating = 364
             default:
-                isRepeating = nil
+                isRepeating = 0
             }
         }
     }
@@ -88,21 +88,27 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
         showCreateLabelView(isTrue: true)
     }
     @IBAction func completeButton(_ sender: UIButton) {
-        createTodo()
+        guard let text = titleTextField.text else { return }
+        
+        createTodo(name: text, color: color, startDate: startDatePicker.date, endDate: endDatePicker.date, isRepeat: isRepeating, tag: [])
+        delegate?.refreshMain(0)
         dismiss(animated: true)
     }
     
     static let cellID = "CalendarAddTodoViewController"
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     private var newTag : Tag?
-    private var newTodo : Todo?
     private var color : Int = 0x625FDC
-    private var isRepeating: Int?
+    private var isRepeating: Int = 0
     private var labels : [Tag] = []
+    
+    var delegate : MainViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setLabelBackgroundView()
+        startDatePicker.date = selectDate
+        endDatePicker.date = selectDate
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -128,11 +134,21 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
             createLabelView.isHidden = true
         }
     }
-    
-    private func createTodo() {
-        guard let text = titleTextField.text else { return }
-        let todo = Todo(id: TodoModel.shared.list.count - 1, name: text, color: color, startDate: startDatePicker.date, endDate: endDatePicker.date, isRepeating: isRepeating, label: labels)
-        TodoModel.shared.list.append(todo)
+
+    private func createTodo(name: String, color: Int, startDate: Date, endDate: Date, isRepeat: Int, tag: Set<ManagedTag>) {
+        let newItem = ManagedTodo(context: context)
+        newItem.name = name
+        newItem.color = Int32(color)
+        newItem.isRepeating = Int32(isRepeat)
+        newItem.tag = tag
+        newItem.startDate = startDate
+        newItem.endDate = endDate
+        
+        do {
+            try context.save()
+        } catch {
+            print("CalendarAddTodo - Todo를 생성할 수 없습니다. error:",error)
+        }
     }
 }
 

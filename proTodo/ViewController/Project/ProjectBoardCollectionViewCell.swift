@@ -75,11 +75,11 @@ extension ProjectBoardCollectionViewCell : UITableViewDropDelegate {
             destinationIndexPath = indexpath
         }
         
-        coordinator.session.loadObjects(ofClass: Todo.self) { [weak self] items in
+        coordinator.session.loadObjects(ofClass: Todo.self) { items in
             guard let subject = items as? [Todo] else { return }
             var indexPaths = [IndexPath]()
             
-            for (index, value) in subject.enumerated() {
+            for (index, _) in subject.enumerated() {
                 let indexPath = IndexPath(row: destinationIndexPath.row + index, section: destinationIndexPath.section)
                 
 //                self?.board!.todoList.insert(value, at: indexPath.row)

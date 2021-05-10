@@ -30,8 +30,7 @@ class MainProjectCollectionViewCell: UICollectionViewCell {
     // Core Data
     func getAllItems(){
         do {
-            print("calling project data...")
-            self.models = try context.fetch(ManagedProject.fetchRequest())
+            models = try context.fetch(ManagedProject.fetchRequest())
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }

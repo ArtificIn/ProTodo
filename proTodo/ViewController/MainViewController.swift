@@ -8,10 +8,10 @@
 
 import UIKit
 
-
 protocol MainViewControllerDelegate  {
     func presentProjectBoardViewController(project: ManagedProject)
     func refreshMainViewController()
+    func refreshMain(_ position :Int)
 }
 
 class MainViewController: UIViewController {
@@ -27,6 +27,7 @@ class MainViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if segmentNumber == 0 {
             let nextVC = storyboard.instantiateViewController(identifier: CalendarAddTodoViewController.cellID) as CalendarAddTodoViewController
+            nextVC.delegate = self
            present(nextVC, animated: true)
         } else {
             let nextVC = storyboard.instantiateViewController(identifier: ProjectCreateViewController.cellID) as ProjectCreateViewController
@@ -72,11 +73,13 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainTodoCollectionViewCell.cellID, for: indexPath) as! MainTodoCollectionViewCell
+            cell.getAllItems()
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainProjectCollectionViewCell.CellID, for: indexPath)
                 as! MainProjectCollectionViewCell
             cell.delegate = self
+            cell.getAllItems()
             return cell
         }
     }
@@ -91,6 +94,10 @@ extension MainViewController : UICollectionViewDelegateFlowLayout {
 
 
 extension MainViewController : MainViewControllerDelegate {
+    func refreshMain(_ position :Int) {
+        pageCollectionView.reloadItems(at: [IndexPath(item: position, section: 0)])
+    }
+   
     func presentProjectBoardViewController(project: ManagedProject) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let nextVC = storyboard.instantiateViewController(identifier: ProjectBoardViewController.cellID) as ProjectBoardViewController
@@ -99,7 +106,6 @@ extension MainViewController : MainViewControllerDelegate {
     }
     
     func refreshMainViewController() {
-        print("refresh!")
         pageCollectionView.reloadData()
     }
 }

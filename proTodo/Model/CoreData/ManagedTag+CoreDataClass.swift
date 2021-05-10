@@ -12,7 +12,7 @@ import CoreData
 @objc(ManagedTag)
 public class ManagedTag: NSManagedObject {
     func toTag() -> Tag {
-        var tag = Tag(id: Int(id), name: name!, color: Int(color))
+        let tag = Tag(id: Int(id), name: name!, color: Int(color))
         return tag
     }
     

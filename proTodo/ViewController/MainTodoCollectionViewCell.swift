@@ -10,6 +10,12 @@ import UIKit
 import CoreData
 import FSCalendar
 
+var selectDate = Date()
+
+protocol MainTodoCollectionViewCellDelegate {
+    func reloadTodoData()
+}
+
 class MainTodoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var calendar: FSCalendar! {
         didSet {
@@ -28,6 +34,7 @@ class MainTodoCollectionViewCell: UICollectionViewCell {
     
     static let cellID = "MainTodoCollectionViewCell"
     private var models : [ManagedTodo] = []
+    private var filteredModels : [ManagedTodo] = []
     var isReapeat : Bool = false
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -37,6 +44,7 @@ class MainTodoCollectionViewCell: UICollectionViewCell {
         dateSetting()
         handlePanGesture()
         getAllItems()
+        getFilterData(date: Date())
     }
 
     private func dateSetting(){
@@ -49,9 +57,15 @@ class MainTodoCollectionViewCell: UICollectionViewCell {
         dateLabel.attributedText = month
     }
     
+    private func getFilterData(date : Date) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY.MM.dd"
+        
+        filteredModels = models.filter { formatter.string(from: $0.startDate) == formatter.string(from: date) }
+    }
     // Core Data
     
-    private func getAllItems() {
+    func getAllItems() {
         do {
             models = try context.fetch(ManagedTodo.fetchRequest())
             DispatchQueue.main.async {
@@ -62,10 +76,12 @@ class MainTodoCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private func createItem(name: String) {
+    private func createItem(name: String, color: Int, isRepeat: Int, tag: Set<ManagedTag>) {
         let newItem = ManagedTodo(context: context)
         newItem.name = name
-        
+        newItem.color = Int32(color)
+        newItem.isRepeating = Int32(isRepeat)
+        newItem.tag = tag
         do {
             try context.save()
             getAllItems()
@@ -97,15 +113,15 @@ class MainTodoCollectionViewCell: UICollectionViewCell {
 
 extension MainTodoCollectionViewCell : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return models.count
+        return filteredModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CalendarTodoTableViewCell.CellID) as! CalendarTodoTableViewCell
             
-        cell.bindViewModel(todo: models[indexPath.row])
+        cell.bindViewModel(todo: filteredModels[indexPath.row])
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-            
+
         return cell
     }
     
@@ -131,6 +147,12 @@ extension MainTodoCollectionViewCell : FSCalendarDelegate, FSCalendarDataSource,
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         calendar_height_constraint.constant = bounds.height
         self.layoutIfNeeded()
+    }
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        selectDate = date
+        getFilterData(date: date)
+        tableView.reloadData()
     }
     
     func handlePanGesture(){

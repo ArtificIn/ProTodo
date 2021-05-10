@@ -145,12 +145,12 @@ extension ProjectBoardViewController : UITableViewDropDelegate {
             destinationIndexPath = indexpath
         }
         
-        coordinator.session.loadObjects(ofClass: Todo.self) { [weak self] items in
-            guard let subject = items as? [Todo] else { return }
-            var indexPaths = [IndexPath]()
+        coordinator.session.loadObjects(ofClass: Todo.self) { items in
+//            guard let subject = items as? [Todo] else { return }
+//            var indexPaths = [IndexPath]()
             
             tableView.beginUpdates()
-            tableView.insertRows(at: indexPaths, with: .automatic)
+            tableView.insertRows(at: [IndexPath](), with: .automatic)
             tableView.endUpdates()
         }
     }
