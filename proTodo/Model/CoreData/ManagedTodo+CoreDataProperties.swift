@@ -17,7 +17,6 @@ extension ManagedTodo {
         return NSFetchRequest<ManagedTodo>(entityName: "ManagedTodo")
     }
 
-    @NSManaged public var color: Int32
     @NSManaged public var endDate: Date?
     @NSManaged public var id: Int32
     @NSManaged public var isRepeating: Int32
@@ -53,14 +52,13 @@ extension ManagedTodo {
                 tags.append(i)
             }
         }
-        let todo = Todo.init(id: Int(id), name: name, color: Int(color), startDate: startDate, endDate: endDate, isRepeating: Int(isRepeating), label: tags)
+        let todo = Todo.init(id: Int(id), name: name, startDate: startDate, endDate: endDate, isRepeating: Int(isRepeating), label: tags)
         return todo
     }
     
     func fromTodo(todo: Todo) {
         self.id = Int32(todo.id)
         self.name = todo.name
-        self.color = Int32(todo.color)
         self.startDate = todo.startDate
         self.endDate = todo.endDate
         self.isRepeating = Int32(todo.isRepeating ?? 0)

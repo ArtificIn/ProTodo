@@ -73,10 +73,10 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
     }
     @IBAction func createLabelCompleteButton(_ sender: UIButton) {
         guard let text = createLabelTextField.text else { return }
-        newTag = Tag(id: 0, name: text, color: color)
-        TagModel.shared.tagList.append(newTag!)
+        if !text.trimmingCharacters(in: .whitespaces).isEmpty {
+            createTag(name: text, color: color)
+        }
         showCreateLabelView(isTrue: false)
-        labelCollectionView.reloadData()
     }
     @IBAction func createLabelCancleButton(_ sender: UIButton) {
         showCreateLabelView(isTrue: false)
@@ -89,8 +89,8 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
     }
     @IBAction func completeButton(_ sender: UIButton) {
         guard let text = titleTextField.text else { return }
-        
-        createTodo(name: text, color: color, startDate: startDatePicker.date, endDate: endDatePicker.date, isRepeat: isRepeating, tag: [])
+        createTodo(name: text, color: color, startDate: startDatePicker.date, endDate: endDatePicker.date, isRepeat: isRepeating, tag: [selectedTag])
+        selectedTag = nil
         delegate?.refreshMain(0)
         dismiss(animated: true)
     }
@@ -98,10 +98,10 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
     static let cellID = "CalendarAddTodoViewController"
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    private var newTag : Tag?
+    private var selectedTag : ManagedTag?
     private var color : Int = 0x625FDC
     private var isRepeating: Int = 0
-    private var labels : [Tag] = []
+    private var labels : [ManagedTag] = []
     
     var delegate : MainViewControllerDelegate?
     
@@ -111,8 +111,52 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
         endDatePicker.date = selectDate
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getAllItems()
+        selectedTag = nil
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+    }
+    
+    
+    // Core Data
+    
+    func getAllItems() {
+        do {
+            labels = try context.fetch(ManagedTag.fetchRequest())
+
+            DispatchQueue.main.async {
+                self.labelCollectionView.reloadData()
+            }
+        } catch {
+            print("CalendarAddTodoVC - Tag를 가져올 수 없습니다. error:",error)
+        }
+    }
+    
+    private func createTag(name:String, color: Int) {
+        let newTag = ManagedTag(context: context)
+        newTag.name = name
+        newTag.color = Int32(color)
+        
+        do {
+            try context.save()
+            getAllItems()
+        } catch {
+            print("CalendarAddTodoVC - Tag를 생성할 수 없습니다. error:",error)
+        }
+    }
+    
+    private func deleteTag(tag: ManagedTag) {
+        context.delete(tag)
+        
+        do {
+            try context.save()
+        } catch {
+            print("CalendarAddTodoVC - Tag를 삭제할 수 없습니다. error:",error)
+        }
     }
     
     private func setLabelBackgroundView() {
@@ -135,12 +179,11 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-    private func createTodo(name: String, color: Int, startDate: Date, endDate: Date, isRepeat: Int, tag: Set<ManagedTag>) {
+    private func createTodo(name: String, color: Int, startDate: Date, endDate: Date, isRepeat: Int, tag: Set<ManagedTag?>) {
         let newItem = ManagedTodo(context: context)
         newItem.name = name
-        newItem.color = Int32(color)
         newItem.isRepeating = Int32(isRepeat)
-        newItem.tag = tag
+        newItem.tag = tag.first! == nil ? [] :  Set(tag.map { $0!})
         newItem.startDate = startDate
         newItem.endDate = endDate
         
@@ -155,13 +198,13 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
 
 extension CalendarAddTodoViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionView == labelCollectionView ? TagModel.shared.tagList.count : Colors.arrays.count
+        return collectionView == labelCollectionView ? labels.count : Colors.arrays.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == labelCollectionView {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarTagCollectionViewCell.CellID, for: indexPath) as! CalendarTagCollectionViewCell
-        cell.bindViewModel(tag: TagModel.shared.tagList[indexPath.row])
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarTagCollectionViewCell.CellID, for: indexPath) as! CalendarTagCollectionViewCell
+            cell.bindViewModel(tag: labels[indexPath.row])
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarTagColorCollectionViewCell.cellID, for: indexPath) as! CalendarTagColorCollectionViewCell
@@ -172,10 +215,7 @@ extension CalendarAddTodoViewController : UICollectionViewDelegate, UICollection
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == labelCollectionView {
-            let item = TagModel.shared.tagList[indexPath.row]
-            if !labels.contains(where: { $0 == item }) {
-                labels.append(item)
-            }
+            selectedTag = labels[indexPath.row]
         } else {
             color = Colors.arrays[indexPath.row]
             createLabelTextFieldBackgroundView.backgroundColor = UIColor.colorRGBHex(hex: color)

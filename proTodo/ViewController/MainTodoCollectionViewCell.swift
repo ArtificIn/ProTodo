@@ -79,7 +79,6 @@ class MainTodoCollectionViewCell: UICollectionViewCell {
     private func createItem(name: String, color: Int, isRepeat: Int, tag: Set<ManagedTag>) {
         let newItem = ManagedTodo(context: context)
         newItem.name = name
-        newItem.color = Int32(color)
         newItem.isRepeating = Int32(isRepeat)
         newItem.tag = tag
         do {

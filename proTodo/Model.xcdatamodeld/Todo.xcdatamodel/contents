@@ -19,7 +19,6 @@
         <relationship name="todo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedTodo" inverseName="tag" inverseEntity="ManagedTodo"/>
     </entity>
     <entity name="ManagedTodo" representedClassName="ManagedTodo" syncable="YES">
-        <attribute name="color" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="isRepeating" optional="YES" attributeType="Integer 32" usesScalarValueType="YES"/>
@@ -32,6 +31,6 @@
         <element name="ManagedProject" positionX="152.3828125" positionY="-54.9609375" width="128" height="103"/>
         <element name="ManagedProjectBoard" positionX="-13.83984375" positionY="-57.63671875" width="128" height="103"/>
         <element name="ManagedTag" positionX="-358.1875" positionY="-24.23046875" width="128" height="103"/>
-        <element name="ManagedTodo" positionX="-180.98046875" positionY="-68.96875" width="128" height="163"/>
+        <element name="ManagedTodo" positionX="-180.98046875" positionY="-68.96875" width="128" height="148"/>
     </elements>
 </model>

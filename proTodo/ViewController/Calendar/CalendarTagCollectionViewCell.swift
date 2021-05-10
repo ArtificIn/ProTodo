@@ -14,11 +14,19 @@ class CalendarTagCollectionViewCell : UICollectionViewCell {
             tagButton.titleEdgeInsets = UIEdgeInsets(top: 5, left: 8, bottom: 5, right: 8)
         }
     }
+    @IBOutlet weak var selectColorView: UIView!
+    
     
     static let CellID = "CalendarTagCollectionViewCell"
     
-    func bindViewModel(tag : Tag){
-        tagButton.backgroundColor = UIColor.colorRGBHex(hex: tag.color)
-        tagButton.setTitle(" " + tag.name + "    ", for: .normal)
+    override var isSelected: Bool {
+        didSet {
+            selectColorView.isHidden = isSelected
+        }
+    }
+    
+    func bindViewModel(tag : ManagedTag){
+        tagButton.backgroundColor = UIColor.colorRGBHex(hex: Int(tag.color))
+        tagButton.setTitle(" " + tag.name! + "    ", for: .normal)
     }
 }
