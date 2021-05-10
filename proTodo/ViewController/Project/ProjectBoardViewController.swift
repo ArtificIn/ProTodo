@@ -8,6 +8,7 @@
 
 import UIKit
 import MobileCoreServices
+import CoreData
 
 class ProjectBoardViewController: UIViewController {
     @IBOutlet weak var projectDateLabel: UILabel! {
@@ -58,7 +59,9 @@ class ProjectBoardViewController: UIViewController {
     static let cellID = "ProjectBoardViewController"
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var selectIndexPath : (IndexPath, Bool)?
-    private var firstItems : [Todo] = []
+    private var todoList : [Todo] = []
+    private var managedTodoItems : [ManagedTodo] = []
+    private var boardTodoItems : [[ManagedTodo]] = []
 //    private var todoLists = TodoModel.shared.list
     
     var project : ManagedProject!
@@ -68,6 +71,7 @@ class ProjectBoardViewController: UIViewController {
         navigationItem.title = project!.name
         showTodoListButton.transform = CGAffineTransform(rotationAngle: .pi)
         todoListTableViewBottomConstraint.constant = -250
+        getAllTodoItems()
         
     }
     
@@ -75,19 +79,35 @@ class ProjectBoardViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
     }
+    
+    // Core Data
+    func getAllTodoItems() {
+        do {
+            managedTodoItems = try context.fetch(ManagedTodo.fetchRequest())
+            todoList = managedTodoItems.map { $0.toTodo() }
+            guard let boards = project.boardList else {return}
+            for i in boards {
+                boardTodoItems.append(Array(i.todo!))
+            }
+            DispatchQueue.main.async {
+                self.todoListTableView.reloadData()
+            }
+            
+        } catch {
+            print("ProjectBoardVC - Todo를 가져올 수 없습니다. error:",error)
+        }
+    }
 }
 
 extension ProjectBoardViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let b = project.boardList, let todos = b[b.index(b.startIndex, offsetBy: section)].todo else { return 0 }
-        return todos.count
+        return todoList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProjectBoardTableViewCell.cellID) as! ProjectBoardTableViewCell
-        guard let b = project.boardList,
-              let todos = b[b.index(b.startIndex, offsetBy: indexPath.section)].todo else { return UITableViewCell() }
-        cell.bindViewModel(todo: todos[todos.index(todos.startIndex, offsetBy: indexPath.row)])
+
+        cell.bindViewModel(todo: todoList[indexPath.row])
         return cell
     }
 }
@@ -95,7 +115,7 @@ extension ProjectBoardViewController : UITableViewDataSource, UITableViewDelegat
 
 extension ProjectBoardViewController : UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        let itemProvider = NSItemProvider(object: firstItems[indexPath.row] as NSItemProviderWriting)
+        let itemProvider = NSItemProvider(object: todoList[indexPath.row] as NSItemProviderWriting)
         selectIndexPath = (indexPath, false)
         return [UIDragItem(itemProvider: itemProvider)]
     }
@@ -104,7 +124,7 @@ extension ProjectBoardViewController : UITableViewDragDelegate {
         guard let selectIndexPath = selectIndexPath else { return }
        
         if selectIndexPath.1 {
-            
+            todoList.remove(at: selectIndexPath.0.row)
 //                secondItems.remove(at: selectIndexPath.0.row)
             
             tableView.beginUpdates()
@@ -146,8 +166,8 @@ extension ProjectBoardViewController : UITableViewDropDelegate {
         }
         
         coordinator.session.loadObjects(ofClass: Todo.self) { items in
-//            guard let subject = items as? [Todo] else { return }
-//            var indexPaths = [IndexPath]()
+            guard let subject = items as? [Todo] else { return }
+            var indexPaths = [IndexPath]()
             
             tableView.beginUpdates()
             tableView.insertRows(at: [IndexPath](), with: .automatic)

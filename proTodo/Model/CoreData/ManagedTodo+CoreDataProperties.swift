@@ -56,14 +56,19 @@ extension ManagedTodo {
         return todo
     }
     
-    func fromTodo(todo: Todo) {
+    func fromTodo(_ todo: Todo, context : NSManagedObjectContext) -> ManagedTodo{
         self.id = Int32(todo.id)
         self.name = todo.name
         self.startDate = todo.startDate
         self.endDate = todo.endDate
         self.isRepeating = Int32(todo.isRepeating ?? 0)
         
-        let tags : Set<ManagedTag> = []
+        var tags : Set<ManagedTag> = []
+        for i in todo.label {
+            tags.update(with: ManagedTag(context: context).fromTag(i))
+        }
         self.tag = tags
+        
+        return self
     }
 }

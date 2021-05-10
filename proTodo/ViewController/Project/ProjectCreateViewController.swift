@@ -30,7 +30,7 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
         
         if !text.isEmpty {
             createItem(name: text, list: list, startDate: Date(), endDate: endDatePicker.date)
-            
+            delegate?.refreshMain(1)
             dismiss(animated: true)
         }
     }
@@ -40,8 +40,7 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
     private var models : [ManagedProject] = []
     var delegate : MainViewControllerDelegate?
     
-    private var list : Set<ManagedProjectBoard> = [
-    ]
+    private var list : Set<ManagedProjectBoard> = []
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)

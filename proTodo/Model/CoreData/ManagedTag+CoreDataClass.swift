@@ -16,9 +16,10 @@ public class ManagedTag: NSManagedObject {
         return tag
     }
     
-    func fromTag(tag: Tag) {
+    func fromTag(_ tag: Tag) -> ManagedTag{
         self.id = Int32(tag.id)
         self.name = tag.name
         self.color = Int32(tag.color)
+        return self
     }
 }

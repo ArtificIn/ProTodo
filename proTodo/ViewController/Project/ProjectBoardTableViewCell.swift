@@ -18,7 +18,11 @@ class ProjectBoardTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-    func bindViewModel(todo : ManagedTodo) {
+    func bindViewModel(todo : Todo) {
+        todoLabel.text = todo.name
+    }
+    
+    func bindViewModel(todo: ManagedTodo) {
         todoLabel.text = todo.name
     }
 }
