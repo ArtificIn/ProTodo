@@ -9,6 +9,7 @@
 import UIKit
 
 class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
     @IBAction func startDatePicker(_ sender: UIDatePicker) {
         if endDatePicker.date < sender.date {
@@ -109,6 +110,7 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         startDatePicker.date = selectDate
         endDatePicker.date = selectDate
+        dateLabel.text = selectDate.Date2String(format: "MM월 dd일")
     }
     
     override func viewWillAppear(_ animated: Bool) {

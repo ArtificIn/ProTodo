@@ -4,9 +4,9 @@
 
 Management TodoList like as Github's issues, project system
 
-Remodeling 2020.06.11
+New Plan, New Design, Refactoring from 2021.04.20 
+
 
 ## Library & Frameworks Reference
 
-- [Carthage](https://www.google.com/search?client=safari&rls=en&q=carthage&ie=UTF-8&oe=UTF-8) 
 - [FSCalendar](https://github.com/WenchaoD/FSCalendar)

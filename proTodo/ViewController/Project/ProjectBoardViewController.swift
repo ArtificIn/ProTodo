@@ -61,8 +61,6 @@ class ProjectBoardViewController: UIViewController {
     private var selectIndexPath : (IndexPath, Bool)?
     private var todoList : [Todo] = []
     private var managedTodoItems : [ManagedTodo] = []
-    private var boardTodoItems : [[ManagedTodo]] = []
-//    private var todoLists = TodoModel.shared.list
     
     var project : ManagedProject!
         
@@ -85,10 +83,7 @@ class ProjectBoardViewController: UIViewController {
         do {
             managedTodoItems = try context.fetch(ManagedTodo.fetchRequest())
             todoList = managedTodoItems.map { $0.toTodo() }
-            guard let boards = project.boardList else {return}
-            for i in boards {
-                boardTodoItems.append(Array(i.todo!))
-            }
+            
             DispatchQueue.main.async {
                 self.todoListTableView.reloadData()
             }
@@ -106,7 +101,6 @@ extension ProjectBoardViewController : UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProjectBoardTableViewCell.cellID) as! ProjectBoardTableViewCell
-
         cell.bindViewModel(todo: todoList[indexPath.row])
         return cell
     }
@@ -166,12 +160,12 @@ extension ProjectBoardViewController : UITableViewDropDelegate {
         }
         
         coordinator.session.loadObjects(ofClass: Todo.self) { items in
-            guard let subject = items as? [Todo] else { return }
-            var indexPaths = [IndexPath]()
-            
-            tableView.beginUpdates()
-            tableView.insertRows(at: [IndexPath](), with: .automatic)
-            tableView.endUpdates()
+//            guard let subject = items as? [Todo] else { return }
+//            var indexPaths = [IndexPath]()
+//
+//            tableView.beginUpdates()
+//            tableView.insertRows(at: [IndexPath](), with: .automatic)
+//            tableView.endUpdates()
         }
     }
 }
@@ -186,7 +180,8 @@ extension ProjectBoardViewController : UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectBoardCollectionViewCell.cellID, for: indexPath) as! ProjectBoardCollectionViewCell
         guard let b = project.boardList else { return UICollectionViewCell() }
-        cell.bindViewModel(board: b[b.index(b.startIndex, offsetBy: indexPath.row)])
+        let p = b.filter { $0.id == indexPath.row }.first!
+        cell.bindViewModel(board: p)
         cell.handleBorder()
         return cell
     }
