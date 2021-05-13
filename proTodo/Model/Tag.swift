@@ -7,11 +7,19 @@
 //
 
 import Foundation
+import CoreData
 
-struct Tag : Equatable, Hashable, Identifiable, Codable {
-    let id : Int
+
+struct Tag : Equatable, Hashable, Codable {
+    var id : Int
     var name : String
     var color : Int
+    
+    init(id: Int, name: String, color: Int) {
+        self.id = id
+        self.name = name
+        self.color = color
+    }
 }
 
 class TagModel {

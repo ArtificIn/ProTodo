@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="19E266" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ManagedProject" representedClassName="ManagedProject" syncable="YES">
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="boardList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedProjectBoard" inverseName="project" inverseEntity="ManagedProjectBoard"/>
+    </entity>
+    <entity name="ManagedProjectBoard" representedClassName="ManagedProjectBoard" syncable="YES">
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedProject" inverseName="boardList" inverseEntity="ManagedProject"/>
+        <relationship name="todo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedTodo" inverseName="board" inverseEntity="ManagedTodo"/>
+    </entity>
+    <entity name="ManagedTag" representedClassName="ManagedTag" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="todo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedTodo" inverseName="tag" inverseEntity="ManagedTodo"/>
+    </entity>
+    <entity name="ManagedTodo" representedClassName="ManagedTodo" syncable="YES">
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isRepeating" optional="YES" attributeType="Integer 32" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="board" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedProjectBoard" inverseName="todo" inverseEntity="ManagedProjectBoard"/>
+        <relationship name="tag" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedTag" inverseName="todo" inverseEntity="ManagedTag"/>
+    </entity>
+    <elements>
+        <element name="ManagedProject" positionX="152.3828125" positionY="-54.9609375" width="128" height="103"/>
+        <element name="ManagedProjectBoard" positionX="-13.83984375" positionY="-57.63671875" width="128" height="103"/>
+        <element name="ManagedTag" positionX="-358.1875" positionY="-24.23046875" width="128" height="103"/>
+        <element name="ManagedTodo" positionX="-180.98046875" positionY="-68.96875" width="128" height="148"/>
+    </elements>
+</model>

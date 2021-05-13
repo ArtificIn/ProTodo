@@ -9,7 +9,9 @@
 import UIKit
 
 protocol MainViewControllerDelegate  {
-    func presentProjectBoardViewController(index: Int)
+    func presentProjectBoardViewController(project: ManagedProject)
+    func refreshMainViewController()
+    func refreshMain(_ position :Int)
 }
 
 class MainViewController: UIViewController {
@@ -17,6 +19,7 @@ class MainViewController: UIViewController {
         didSet {
             pageCollectionView.delegate = self
             pageCollectionView.dataSource = self
+            pageCollectionView.isScrollEnabled = false
         }
     }
     
@@ -24,15 +27,19 @@ class MainViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if segmentNumber == 0 {
             let nextVC = storyboard.instantiateViewController(identifier: CalendarAddTodoViewController.cellID) as CalendarAddTodoViewController
+            nextVC.delegate = self
            present(nextVC, animated: true)
         } else {
             let nextVC = storyboard.instantiateViewController(identifier: ProjectCreateViewController.cellID) as ProjectCreateViewController
+            nextVC.delegate = self
             present(nextVC, animated: true)
         }
     }
     
     private var segmentControl : CustomSegmentedControl?
     private var segmentNumber = 0
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private var projectModels : [ManagedProject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,11 +73,13 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainTodoCollectionViewCell.cellID, for: indexPath) as! MainTodoCollectionViewCell
+            cell.getAllItems()
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainProjectCollectionViewCell.CellID, for: indexPath)
                 as! MainProjectCollectionViewCell
             cell.delegate = self
+            cell.getAllItems()
             return cell
         }
     }
@@ -85,10 +94,18 @@ extension MainViewController : UICollectionViewDelegateFlowLayout {
 
 
 extension MainViewController : MainViewControllerDelegate {
-    func presentProjectBoardViewController(index: Int) {
+    func refreshMain(_ position :Int) {
+        pageCollectionView.reloadItems(at: [IndexPath(item: position, section: 0)])
+    }
+   
+    func presentProjectBoardViewController(project: ManagedProject) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let nextVC = storyboard.instantiateViewController(identifier: ProjectBoardViewController.cellID) as ProjectBoardViewController
-        nextVC.project = ProjectModel.shared.list[index]
+        nextVC.project = project
         navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
+    func refreshMainViewController() {
+        pageCollectionView.reloadData()
     }
 }

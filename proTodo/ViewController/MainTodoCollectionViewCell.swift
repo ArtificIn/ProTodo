@@ -7,7 +7,14 @@
 //
 
 import UIKit
+import CoreData
 import FSCalendar
+
+var selectDate = Date()
+
+protocol MainTodoCollectionViewCellDelegate {
+    func reloadTodoData()
+}
 
 class MainTodoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var calendar: FSCalendar! {
@@ -26,12 +33,18 @@ class MainTodoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     
     static let cellID = "MainTodoCollectionViewCell"
+    private var models : [ManagedTodo] = []
+    private var filteredModels : [ManagedTodo] = []
     var isReapeat : Bool = false
+    
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func awakeFromNib() {
         super.awakeFromNib()
         dateSetting()
         handlePanGesture()
+        getAllItems()
+        getFilterData(date: Date())
     }
 
     private func dateSetting(){
@@ -43,20 +56,71 @@ class MainTodoCollectionViewCell: UICollectionViewCell {
         month.append(year)
         dateLabel.attributedText = month
     }
+    
+    private func getFilterData(date : Date) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY.MM.dd"
+        
+        filteredModels = models.filter { formatter.string(from: $0.startDate) == formatter.string(from: date) }
+    }
+    // Core Data
+    
+    func getAllItems() {
+        do {
+            models = try context.fetch(ManagedTodo.fetchRequest())
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        } catch {
+            print("MainTodoCC - Todo를 가져올 수 없습니다. error:",error)
+        }
+    }
+    
+    private func createItem(name: String, color: Int, isRepeat: Int, tag: Set<ManagedTag>) {
+        let newItem = ManagedTodo(context: context)
+        newItem.name = name
+        newItem.isRepeating = Int32(isRepeat)
+        newItem.tag = tag
+        do {
+            try context.save()
+            getAllItems()
+        } catch {
+            print("MainTodoCC - Todo를 생성할 수 없습니다. error:",error)
+        }
+    }
+    
+    private func deleteItem(item: ManagedTodo) {
+        context.delete(item)
+        
+        do {
+            try context.save()
+        } catch {
+            print("MainTodoCC - Todo를 삭제할 수 없습니다. error:",error)
+        }
+    }
+    
+    private func updateItem(item: ManagedTodo, newItem: ManagedTodo){
+        item.name = newItem.name
+        
+        do {
+            try context.save()
+        } catch {
+            print("MainTodoCC - Todo를 수정할 수 없습니다. error:",error)
+        }
+    }
 }
 
 extension MainTodoCollectionViewCell : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return TodoModel.shared.list.count
+        return filteredModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let todo = TodoModel.shared.list[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: CalendarTodoTableViewCell.CellID) as! CalendarTodoTableViewCell
             
-        cell.bindViewModel(todo: todo)
+        cell.bindViewModel(todo: filteredModels[indexPath.row])
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-            
+
         return cell
     }
     
@@ -82,6 +146,12 @@ extension MainTodoCollectionViewCell : FSCalendarDelegate, FSCalendarDataSource,
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         calendar_height_constraint.constant = bounds.height
         self.layoutIfNeeded()
+    }
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        selectDate = date
+        getFilterData(date: date)
+        tableView.reloadData()
     }
     
     func handlePanGesture(){

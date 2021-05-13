@@ -20,29 +20,55 @@ class ProjectBoardCollectionViewCell: UICollectionViewCell {
     }
     
     static let cellID = "ProjectBoardCollectionViewCell"
-    var board : ProjectBoard?
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var board : ManagedProjectBoard?
+    private var todoList : [Todo] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
     }
     
-    func bindViewModel(board : ProjectBoard) {
+    func bindViewModel(board : ManagedProjectBoard) {
         self.board = board
-        boardNameLabel.text = board.category.getName()
+        boardNameLabel.text = board.category
+        getAllItems()
+    }
+    
+    func getAllItems(){
+        do {
+            var list : [ManagedTodo] = try context.fetch(ManagedTodo.fetchRequest())
+            list = list.filter { $0.board == board }
+            todoList = list.map { $0.toTodo() }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        } catch {
+            print("ProjectBoardCC - Todo를 가져올 수 없습니다. error:",error)
+        }
+    }
+    
+    func insertTodoAtBoard(board: ManagedProjectBoard, newTodo : ManagedTodo) {
+        guard var list = board.todo else {return}
+        list.update(with: newTodo)
+        
+        do {
+            try context.save()
+        } catch {
+            print("ProjectBoardCC - Todo를 추가할 수 없습니다.")
+        }
     }
 }
 
 
 extension ProjectBoardCollectionViewCell : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let b = board else { return 0 }
-        return b.todoList.count
+        return todoList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let b = board else { return UITableViewCell() }
         let cell = tableView.dequeueReusableCell(withIdentifier: ProjectBoardTableViewCell.cellID) as! ProjectBoardTableViewCell
-        cell.bindViewModel(todo: b.todoList[indexPath.row])
+        cell.bindViewModel(todo: todoList[indexPath.row])
         return cell
     }
 }
@@ -74,14 +100,15 @@ extension ProjectBoardCollectionViewCell : UITableViewDropDelegate {
             destinationIndexPath = indexpath
         }
         
-        coordinator.session.loadObjects(ofClass: Todo.self) { [weak self] items in
+        coordinator.session.loadObjects(ofClass: Todo.self) { items in
             guard let subject = items as? [Todo] else { return }
             var indexPaths = [IndexPath]()
             
-            for (index, value) in subject.enumerated() {
+            for (index, item) in subject.enumerated() {
                 let indexPath = IndexPath(row: destinationIndexPath.row + index, section: destinationIndexPath.section)
-                
-                self?.board!.todoList.insert(value, at: indexPath.row)
+                self.todoList.insert(item, at: indexPath.row)
+                let managedTodo = ManagedTodo(context: self.context)
+                self.insertTodoAtBoard(board: self.board!, newTodo: managedTodo.fromTodo(item, context: self.context))
                 indexPaths.append(indexPath)
             }
             

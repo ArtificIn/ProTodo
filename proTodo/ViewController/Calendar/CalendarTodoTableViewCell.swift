@@ -7,23 +7,29 @@
 //
 
 import UIKit
+import CoreData
 
 class CalendarTodoTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var repeatBtn: Checkbox!
+    @IBOutlet weak var tagButton: UIButton! {
+        didSet {
+            tagButton.titleEdgeInsets = UIEdgeInsets(top: 5, left: 8, bottom: 5, right: 8)
+        }
+    }
     
     static let CellID = "CalendarTodoTableViewCell"
     var isRepeat : Bool = false
-    var listItems: Todo?
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    func bindViewModel(todo : Todo) {
-        titleLabel.text = todo.name
-        colorView.backgroundColor = UIColor.colorRGBHex(hex: todo.color)
+    func bindViewModel(todo : NSManagedObject) {
+        titleLabel.text = todo.value(forKey: "name") as? String
+        guard let tag = todo.value(forKey: "tag") as? Set<ManagedTag>, let first = tag.first else {return}
+        tagButton.backgroundColor = UIColor.colorRGBHex(hex: Int(first.color))
+        tagButton.setTitle(first.name!+"    ", for: .normal)
     }
 }
 

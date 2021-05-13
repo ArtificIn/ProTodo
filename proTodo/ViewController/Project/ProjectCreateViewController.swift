@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tableView: UITableView! {
@@ -27,18 +28,19 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
         guard var text = nameTextField.text else { return }
         text = text.trimmingCharacters(in: .whitespaces)
         
-        let newProject = Project(name: text, startDate: Date(), endDate: endDatePicker.date, list: list)
-        
-        ProjectModel.shared.list.append(newProject)
+        if !text.isEmpty {
+            createItem(name: text, list: list, startDate: Date(), endDate: endDatePicker.date)
+            delegate?.refreshMain(1)
+            dismiss(animated: true)
+        }
     }
     
     static let cellID = "ProjectCreateViewController"
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private var models : [ManagedProject] = []
+    var delegate : MainViewControllerDelegate?
     
-    private var list : [ProjectBoard] = [
-        .init(id: 0, category: .todoList, todoList: []),
-        .init(id: 1, category: .doingList, todoList: []),
-        .init(id: 2, category: .doneList, todoList: [])
-    ]
+    private var list : Set<ManagedProjectBoard> = []
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
@@ -46,6 +48,69 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setCategoryList()
+        getAllItems()
+    }
+    
+    private func setCategoryList(){
+        let board1 = ManagedProjectBoard(context: context)
+        board1.id = 0
+        board1.category = "Todo"
+        board1.todo = []
+        
+        let board2 = ManagedProjectBoard(context: context)
+        board2.id = 1
+        board2.category = "Doing"
+        board2.todo = []
+        
+        let board3 = ManagedProjectBoard(context: context)
+        board3.id = 2
+        board3.category = "Done"
+        board3.todo = []
+        
+        list.update(with: board1)
+        list.update(with: board2)
+        list.update(with: board3)
+    }
+    
+    private func getAllItems() {
+        do {
+            models = try context.fetch(ManagedProject.fetchRequest())
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        } catch {
+            print("ProjectCreateVC - project를 가져올 수 없습니다. error:",error)
+        }
+    }
+    
+    private func createItem(name : String, list : Set<ManagedProjectBoard>, startDate: Date, endDate: Date ) {
+        
+        let newItem = ManagedProject(context: context)
+        newItem.name = name
+        newItem.boardList = list
+        newItem.startDate = startDate
+        newItem.endDate = endDate
+    
+        do {
+            try context.save()
+            getAllItems()
+        } catch {
+            print("ProjectCreateVC - project를 생성할 수 없습니다. error:",error)
+        }
+    }
+    
+    private func updateItem(item: ManagedProject, newItem: ManagedProject) {
+        item.name = newItem.name
+        item.boardList = newItem.boardList
+        item.startDate = newItem.startDate
+        item.endDate = newItem.endDate
+        
+        do {
+            try context.save()
+        } catch {
+            print("ProjectCreateVC - project를 수정할 수 없습니다. error:",error)
+        }
     }
 }
 
@@ -66,7 +131,7 @@ extension ProjectCreateViewController : UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProjectCreateTableViewCell.cellID) as! ProjectCreateTableViewCell
-        let text = section == list.count ? "추가하기" : list[section].category.getName()
+        let text = section == list.count ? "추가하기" : list[list.index(list.startIndex, offsetBy: section)].category
         cell.boardLabel.text = text
         cell.handleBorder()
         return cell
