@@ -14,6 +14,7 @@ class CalendarTodoTableViewCell: UITableViewCell {
     @IBOutlet weak var repeatBtn: Checkbox!
     @IBOutlet weak var tagButton: UIButton! {
         didSet {
+            tagButton.isHidden = true
             tagButton.titleEdgeInsets = UIEdgeInsets(top: 5, left: 8, bottom: 5, right: 8)
         }
     }
@@ -27,7 +28,8 @@ class CalendarTodoTableViewCell: UITableViewCell {
     
     func bindViewModel(todo : NSManagedObject) {
         titleLabel.text = todo.value(forKey: "name") as? String
-        guard let tag = todo.value(forKey: "tag") as? Set<ManagedTag>, let first = tag.first else {return}
+        guard let tag = todo.value(forKey: "tag") as? Set<ManagedTag>, let first = tag.first else { return}
+        tagButton.isHidden = false
         tagButton.backgroundColor = UIColor.colorRGBHex(hex: Int(first.color))
         tagButton.setTitle(first.name!+"    ", for: .normal)
     }
