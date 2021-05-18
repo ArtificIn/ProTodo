@@ -9,6 +9,7 @@
 import UIKit
 
 class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
     @IBAction func startDatePicker(_ sender: UIDatePicker) {
         if endDatePicker.date < sender.date {
@@ -89,7 +90,11 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
     }
     @IBAction func completeButton(_ sender: UIButton) {
         guard let text = titleTextField.text else { return }
-        createTodo(name: text, color: color, startDate: startDatePicker.date, endDate: endDatePicker.date, isRepeat: isRepeating, tag: [selectedTag])
+        var tag = Set<ManagedTag>()
+        if let selectedTag = selectedTag {
+            tag.insert(selectedTag)
+        }
+        createTodo(name: text, color: color, startDate: startDatePicker.date, endDate: endDatePicker.date, isRepeat: isRepeating, tag: tag)
         selectedTag = nil
         delegate?.refreshMain(0)
         dismiss(animated: true)
@@ -109,6 +114,7 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         startDatePicker.date = selectDate
         endDatePicker.date = selectDate
+        dateLabel.text = selectDate.Date2String(format: "MM월 dd일")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -179,11 +185,12 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-    private func createTodo(name: String, color: Int, startDate: Date, endDate: Date, isRepeat: Int, tag: Set<ManagedTag?>) {
+    private func createTodo(name: String, color: Int, startDate: Date, endDate: Date, isRepeat: Int, tag: Set<ManagedTag>) {
         let newItem = ManagedTodo(context: context)
         newItem.name = name
         newItem.isRepeating = Int32(isRepeat)
-        newItem.tag = tag.first! == nil ? [] :  Set(tag.map { $0!})
+        newItem.tag = tag
+//        newItem.tag = tag.first! == nil ? [] :  Set(tag.map { $0!})
         newItem.startDate = startDate
         newItem.endDate = endDate
         

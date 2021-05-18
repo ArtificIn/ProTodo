@@ -1131,6 +1131,7 @@
                         <outlet property="createLabelTextField" destination="3bo-mb-ghI" id="BgH-4i-tBN"/>
                         <outlet property="createLabelTextFieldBackgroundView" destination="yG6-NO-Uio" id="Msr-6w-yWR"/>
                         <outlet property="createLabelView" destination="HOK-Th-iWD" id="TQr-6s-PFq"/>
+                        <outlet property="dateLabel" destination="DLO-oc-VDj" id="W74-Pt-ZZt"/>
                         <outlet property="endDatePicker" destination="Kna-HA-0Gr" id="fVv-8T-nTc"/>
                         <outlet property="labelCollectionView" destination="f6V-Re-cGX" id="HFf-w3-cSh"/>
                         <outlet property="repeatTextField" destination="SdG-4P-pyO" id="1cg-HE-JAz"/>

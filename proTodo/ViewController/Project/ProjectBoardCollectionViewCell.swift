@@ -15,18 +15,20 @@ class ProjectBoardCollectionViewCell: UICollectionViewCell {
             tableView.delegate = self
             tableView.dataSource = self
             tableView.dropDelegate = self
+            tableView.dragDelegate = self
             tableView.dragInteractionEnabled = true
         }
     }
     
     static let cellID = "ProjectBoardCollectionViewCell"
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var board : ManagedProjectBoard?
+    var board : ManagedProjectBoard!
     private var todoList : [Todo] = []
+    private var managedTodoList : [ManagedTodo] = []
+    private var selectIndexPath = (IndexPath(), false)
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
     
     func bindViewModel(board : ManagedProjectBoard) {
@@ -37,9 +39,9 @@ class ProjectBoardCollectionViewCell: UICollectionViewCell {
     
     func getAllItems(){
         do {
-            var list : [ManagedTodo] = try context.fetch(ManagedTodo.fetchRequest())
-            list = list.filter { $0.board == board }
-            todoList = list.map { $0.toTodo() }
+            managedTodoList = try context.fetch(ManagedTodo.fetchRequest())
+            todoList = managedTodoList.filter { $0.board == board }.map { $0.toTodo() }
+            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -48,14 +50,25 @@ class ProjectBoardCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func insertTodoAtBoard(board: ManagedProjectBoard, newTodo : ManagedTodo) {
-        guard var list = board.todo else {return}
-        list.update(with: newTodo)
+    func insertTodoAtBoard(todo : Todo) {
+        guard let item = managedTodoList.filter({ $0.name == todo.name && $0.id == todo.id}).first, var list = board.todo else {return}
+        item.board = board
+        list.update(with: item)
         
         do {
             try context.save()
         } catch {
             print("ProjectBoardCC - Todo를 추가할 수 없습니다.")
+        }
+    }
+    
+    func removeTodoAtBouard(todo: Todo) {
+        guard let item = managedTodoList.filter({ $0.name == todo.name && $0.id == todo.id}).first, var list = board.todo else {return}
+        list.remove(item)
+        do {
+            try context.save()
+        } catch {
+            print("ProjectBoardCC - Todo를 삭제할 수 없습니다.")
         }
     }
 }
@@ -106,9 +119,8 @@ extension ProjectBoardCollectionViewCell : UITableViewDropDelegate {
             
             for (index, item) in subject.enumerated() {
                 let indexPath = IndexPath(row: destinationIndexPath.row + index, section: destinationIndexPath.section)
+                self.insertTodoAtBoard(todo: item)
                 self.todoList.insert(item, at: indexPath.row)
-                let managedTodo = ManagedTodo(context: self.context)
-                self.insertTodoAtBoard(board: self.board!, newTodo: managedTodo.fromTodo(item, context: self.context))
                 indexPaths.append(indexPath)
             }
             
@@ -116,5 +128,23 @@ extension ProjectBoardCollectionViewCell : UITableViewDropDelegate {
             tableView.insertRows(at: indexPaths, with: .automatic)
             tableView.endUpdates()
         }
+    }
+}
+
+
+extension ProjectBoardCollectionViewCell : UITableViewDragDelegate {
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let itemProvider = NSItemProvider(object: todoList[indexPath.row])
+        selectIndexPath = (indexPath, false)
+        return [UIDragItem(itemProvider: itemProvider)]
+    }
+    
+    func tableView(_ tableView: UITableView, dragSessionDidEnd session: UIDragSession) {
+        removeTodoAtBouard(todo: todoList[selectIndexPath.0.row])
+        todoList.remove(at: selectIndexPath.0.row)
+        
+        tableView.beginUpdates()
+        tableView.deleteRows(at: [selectIndexPath.0], with: .automatic)
+        tableView.endUpdates()
     }
 }

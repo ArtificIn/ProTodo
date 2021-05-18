@@ -18,9 +18,9 @@ class MainProjectCollectionViewCell: UICollectionViewCell {
     }
     
     static let CellID = "MainProjectCollectionViewCell"
-    var models : [ManagedProject] = []
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var delegate : MainViewControllerDelegate?
+    var models : [ManagedProject] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,6 +31,7 @@ class MainProjectCollectionViewCell: UICollectionViewCell {
     func getAllItems(){
         do {
             models = try context.fetch(ManagedProject.fetchRequest())
+            models.sort(by: { $0.endDate! < $1.endDate! })
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
