@@ -96,7 +96,7 @@ class CalendarAddTodoViewController: UIViewController, UITextFieldDelegate {
         }
         createTodo(name: text, color: color, startDate: startDatePicker.date, endDate: endDatePicker.date, isRepeat: isRepeating, tag: tag)
         selectedTag = nil
-        delegate?.refreshMain(0)
+        delegate?.refreshMain(IndexPath(item: 0, section: 0))
         dismiss(animated: true)
     }
     

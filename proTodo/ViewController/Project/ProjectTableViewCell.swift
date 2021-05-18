@@ -20,6 +20,7 @@ class ProjectTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
+    
     func bindViewModel(project: ManagedProject) {
         dateLabel.text = project.endDate == nil ? "D-Day None" : "D-Day \(calculateDDay(date: project.endDate))"
         titleLabel.text = project.name

@@ -19,6 +19,10 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
     }
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var endDatePicker: UIDatePicker!
+    @IBOutlet weak var endDateCancleLabel: UILabel!
+    @IBOutlet weak var endDateAnimationLabel: UILabel!
+    @IBOutlet weak var endDateAnimationLabel_rightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var endDateAnimationLabel_widthConstraint: NSLayoutConstraint!
     
     @IBAction func closeButton(_ sender: UIButton) {
         dismiss(animated: true)
@@ -29,8 +33,8 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
         text = text.trimmingCharacters(in: .whitespaces)
         
         if !text.isEmpty {
-            createItem(name: text, list: list, startDate: Date(), endDate: endDatePicker.date)
-            delegate?.refreshMain(1)
+            createItem(name: text, list: list, startDate: Date(), endDate: endDateValue)
+            delegate?.refreshMain(IndexPath(item: 1, section: 0))
             dismiss(animated: true)
         }
     }
@@ -38,6 +42,7 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
     static let cellID = "ProjectCreateViewController"
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var models : [ManagedProject] = []
+    private var endDateValue : Date?
     var delegate : MainViewControllerDelegate?
     
     private var list : Set<ManagedProjectBoard> = []
@@ -49,6 +54,7 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setCategoryList()
+        setUpSubViews()
         getAllItems()
     }
     
@@ -73,6 +79,13 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
         list.update(with: board3)
     }
     
+    private func setUpSubViews(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleEndDateLabel))
+        endDateCancleLabel.addGestureRecognizer(tap)
+        endDatePicker.minimumDate = Date()
+        endDatePicker.addTarget(self, action: #selector(handleEndDatePicker), for: .valueChanged)
+    }
+    
     private func getAllItems() {
         do {
             models = try context.fetch(ManagedProject.fetchRequest())
@@ -84,7 +97,7 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    private func createItem(name : String, list : Set<ManagedProjectBoard>, startDate: Date, endDate: Date ) {
+    private func createItem(name : String, list : Set<ManagedProjectBoard>, startDate: Date, endDate: Date? ) {
         
         let newItem = ManagedProject(context: context)
         newItem.name = name
@@ -111,6 +124,26 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
         } catch {
             print("ProjectCreateVC - project를 수정할 수 없습니다. error:",error)
         }
+    }
+    
+    @objc private func handleEndDateLabel() {
+        endDateValue = nil
+        endDateAnimationLabel_widthConstraint.constant = 95
+        endDateAnimationLabel_rightConstraint.constant = 28
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    @objc private func handleEndDatePicker() {
+        endDateValue = endDatePicker.date
+        endDateAnimationLabel_widthConstraint.constant = 130
+        endDateAnimationLabel_rightConstraint.constant = 134
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view.layoutIfNeeded()
+        })
     }
 }
 

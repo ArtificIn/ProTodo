@@ -9,9 +9,8 @@
 import UIKit
 
 protocol MainViewControllerDelegate  {
-    func presentProjectBoardViewController(project: ManagedProject)
-    func refreshMainViewController()
-    func refreshMain(_ position :Int)
+    func presentProjectBoardViewController(_ index: Int, _ project: ManagedProject)
+    func refreshMain(_ indexpath :IndexPath)
 }
 
 class MainViewController: UIViewController {
@@ -28,7 +27,7 @@ class MainViewController: UIViewController {
         if segmentNumber == 0 {
             let nextVC = storyboard.instantiateViewController(identifier: CalendarAddTodoViewController.cellID) as CalendarAddTodoViewController
             nextVC.delegate = self
-           present(nextVC, animated: true)
+            present(nextVC, animated: true)
         } else {
             let nextVC = storyboard.instantiateViewController(identifier: ProjectCreateViewController.cellID) as ProjectCreateViewController
             nextVC.delegate = self
@@ -94,18 +93,15 @@ extension MainViewController : UICollectionViewDelegateFlowLayout {
 
 
 extension MainViewController : MainViewControllerDelegate {
-    func refreshMain(_ position :Int) {
-        pageCollectionView.reloadItems(at: [IndexPath(item: position, section: 0)])
+    func refreshMain(_ indexpath : IndexPath) {
+        pageCollectionView.reloadItems(at: [indexpath])
     }
    
-    func presentProjectBoardViewController(project: ManagedProject) {
+    func presentProjectBoardViewController(_ index: Int, _ project: ManagedProject) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let nextVC = storyboard.instantiateViewController(identifier: ProjectBoardViewController.cellID) as ProjectBoardViewController
+        nextVC.delegate = self
         nextVC.project = project
         navigationController?.pushViewController(nextVC, animated: true)
-    }
-    
-    func refreshMainViewController() {
-        pageCollectionView.reloadData()
     }
 }

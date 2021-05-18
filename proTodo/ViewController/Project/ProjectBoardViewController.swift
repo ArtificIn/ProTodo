@@ -63,6 +63,7 @@ class ProjectBoardViewController: UIViewController {
     private var managedTodoItems : [ManagedTodo] = []
     
     var project : ManagedProject!
+    var delegate : MainViewControllerDelegate?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,12 +71,16 @@ class ProjectBoardViewController: UIViewController {
         showTodoListButton.transform = CGAffineTransform(rotationAngle: .pi)
         todoListTableViewBottomConstraint.constant = -250
         getAllTodoItems()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        delegate?.refreshMain(IndexPath(item: 1, section: 0))
     }
     
     // Core Data

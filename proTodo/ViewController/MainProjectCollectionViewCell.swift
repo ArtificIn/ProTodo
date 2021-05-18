@@ -31,7 +31,11 @@ class MainProjectCollectionViewCell: UICollectionViewCell {
     func getAllItems(){
         do {
             models = try context.fetch(ManagedProject.fetchRequest())
-            models.sort(by: { $0.endDate! < $1.endDate! })
+            var ddayProjects = models.filter { $0.endDate != nil }
+            ddayProjects.sort(by: { $0.endDate! < $1.endDate! })
+            ddayProjects.append(contentsOf: models.filter { $0.endDate == nil})
+            models = ddayProjects
+            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -62,10 +66,6 @@ class MainProjectCollectionViewCell: UICollectionViewCell {
             print("MainProjectCC - project를 수정할 수  없습니다. error:",error)
         }
     }
-    
-    func refresh() {
-        tableView.reloadData()
-    }
 }
 
 extension MainProjectCollectionViewCell : UITableViewDelegate, UITableViewDataSource {
@@ -81,7 +81,7 @@ extension MainProjectCollectionViewCell : UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.presentProjectBoardViewController(project: models[indexPath.row])
+        delegate?.presentProjectBoardViewController(indexPath.row, models[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
