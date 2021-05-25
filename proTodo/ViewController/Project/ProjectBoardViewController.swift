@@ -29,6 +29,7 @@ class ProjectBoardViewController: UIViewController {
         didSet {
             boardCollectionView.delegate = self
             boardCollectionView.dataSource = self
+            boardCollectionView.decelerationRate = .fast
         }
     }
     @IBOutlet weak var todoListView: UIView!
@@ -61,15 +62,23 @@ class ProjectBoardViewController: UIViewController {
     private var selectIndexPath : (IndexPath, Bool)?
     private var todoList : [Todo] = []
     private var managedTodoItems : [ManagedTodo] = []
+    private let collectionViewLayout : UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 10
+        return layout
+    }()
     
     var project : ManagedProject!
     var delegate : MainViewControllerDelegate?
+    
+    private var previousOffset: CGFloat = 0
+    private var currentPage = 0
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = project!.name
-        showTodoListButton.transform = CGAffineTransform(rotationAngle: .pi)
-        todoListTableViewBottomConstraint.constant = -250
+        setUpSubViews()
+        setUpCollectionVieWLayout()
         getAllTodoItems()
     }
     
@@ -81,6 +90,44 @@ class ProjectBoardViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         delegate?.refreshMain(IndexPath(item: 1, section: 0))
+    }
+   
+    private func setUpSubViews() {
+        navigationItem.title = project!.name
+        showTodoListButton.transform = CGAffineTransform(rotationAngle: .pi)
+        todoListTableViewBottomConstraint.constant = -250
+    }
+    
+    private func setUpCollectionVieWLayout() {
+        collectionViewLayout.itemSize = CGSize(width: boardCollectionView.bounds.width - 60, height: boardCollectionView.bounds.height - 80)
+        boardCollectionView.collectionViewLayout = collectionViewLayout
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let point = self.targetContentOffset(scrollView, withVelocity: velocity)
+        targetContentOffset.pointee = point
+        
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: velocity.x, options: .allowUserInteraction, animations: {
+            self.boardCollectionView.setContentOffset(point, animated: true)
+        }, completion: nil)
+    }
+    
+    func targetContentOffset(_ scrollView: UIScrollView, withVelocity velocity: CGPoint) -> CGPoint {
+        guard let flowLayout = boardCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return .zero }
+        
+        if previousOffset > boardCollectionView.contentOffset.x && velocity.x < 0 {
+            currentPage = currentPage - 1
+        } else if previousOffset < boardCollectionView.contentOffset.x && velocity.x > 0 {
+            currentPage = currentPage + 1
+        }
+        
+        let additional = (flowLayout.itemSize.width + flowLayout.minimumLineSpacing) - flowLayout.headerReferenceSize.width
+        
+        let updatedOffset = (flowLayout.itemSize.width + flowLayout.minimumLineSpacing) * CGFloat(currentPage) - additional
+        
+        previousOffset = updatedOffset
+        
+        return CGPoint(x: updatedOffset, y: 0)
     }
     
     // Core Data
