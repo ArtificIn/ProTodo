@@ -18,9 +18,11 @@ class MainProjectCollectionViewCell: UICollectionViewCell {
     }
     
     static let CellID = "MainProjectCollectionViewCell"
+    
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var delegate : MainViewControllerDelegate?
     var models : [ManagedProject] = []
+    var endProjects : [ManagedProject] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,6 +35,8 @@ class MainProjectCollectionViewCell: UICollectionViewCell {
             models = try context.fetch(ManagedProject.fetchRequest())
             var ddayProjects = models.filter { $0.endDate != nil }
             ddayProjects.sort(by: { $0.endDate! < $1.endDate! })
+            endProjects.append(contentsOf: ddayProjects.filter { $0.endDate! < Date()})
+            ddayProjects.removeAll(where: { $0.endDate! < Date() })
             ddayProjects.append(contentsOf: models.filter { $0.endDate == nil})
             models = ddayProjects
             

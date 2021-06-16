@@ -58,6 +58,7 @@ class ProjectBoardViewController: UIViewController {
     @IBOutlet weak var todoListTableViewBottomConstraint: NSLayoutConstraint!
     
     static let cellID = "ProjectBoardViewController"
+    
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var selectIndexPath : (IndexPath, Bool)?
     private var todoList : [Todo] = []
@@ -66,6 +67,8 @@ class ProjectBoardViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 10
+        layout.headerReferenceSize = CGSize(width: 20, height: 0)
+        layout.footerReferenceSize = CGSize(width: 20, height: 0)
         return layout
     }()
     
@@ -122,8 +125,7 @@ class ProjectBoardViewController: UIViewController {
         }
         
         let additional = (flowLayout.itemSize.width + flowLayout.minimumLineSpacing) - flowLayout.headerReferenceSize.width
-        
-        let updatedOffset = (flowLayout.itemSize.width + flowLayout.minimumLineSpacing) * CGFloat(currentPage) - additional
+        let updatedOffset = (flowLayout.itemSize.width + flowLayout.minimumLineSpacing) * CGFloat(currentPage) - additional - 20
         
         previousOffset = updatedOffset
         
@@ -139,7 +141,6 @@ class ProjectBoardViewController: UIViewController {
             DispatchQueue.main.async {
                 self.todoListTableView.reloadData()
             }
-            
         } catch {
             print("ProjectBoardVC - Todo를 가져올 수 없습니다. error:",error)
         }
@@ -232,8 +233,9 @@ extension ProjectBoardViewController : UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectBoardCollectionViewCell.cellID, for: indexPath) as! ProjectBoardCollectionViewCell
         guard let b = project.boardList else { return UICollectionViewCell() }
-        let p = b.filter { $0.id == indexPath.row }.first!
-        cell.bindViewModel(board: p)
+        if let p = b.filter({ $0.id == indexPath.row }).first {
+            cell.bindViewModel(board: p)
+        }
         cell.handleBorder()
         return cell
     }
